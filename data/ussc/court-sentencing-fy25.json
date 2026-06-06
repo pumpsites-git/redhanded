@@ -1,0 +1,674 @@
+{
+  "mied": {
+    "total": 587,
+    "within_range": 170,
+    "below_range": 78,
+    "above_range": 0,
+    "below_range_pct": 13.3,
+    "avg_sentence_months": 73.6
+  },
+  "nhd": {
+    "total": 99,
+    "within_range": 31,
+    "below_range": 5,
+    "above_range": 0,
+    "below_range_pct": 5.1,
+    "avg_sentence_months": 57.5
+  },
+  "gud": {
+    "total": 584,
+    "within_range": 267,
+    "below_range": 18,
+    "above_range": 0,
+    "below_range_pct": 3.1,
+    "avg_sentence_months": 72.2
+  },
+  "lawd": {
+    "total": 10416,
+    "within_range": 7749,
+    "below_range": 257,
+    "above_range": 4,
+    "below_range_pct": 2.5,
+    "avg_sentence_months": 21.2
+  },
+  "wied": {
+    "total": 988,
+    "within_range": 444,
+    "below_range": 108,
+    "above_range": 1,
+    "below_range_pct": 10.9,
+    "avg_sentence_months": 72.7
+  },
+  "ared": {
+    "total": 4134,
+    "within_range": 1485,
+    "below_range": 1800,
+    "above_range": 10,
+    "below_range_pct": 43.5,
+    "avg_sentence_months": 17.4
+  },
+  "vtd": {
+    "total": 673,
+    "within_range": 194,
+    "below_range": 140,
+    "above_range": 1,
+    "below_range_pct": 20.8,
+    "avg_sentence_months": 55.0
+  },
+  "ncmd": {
+    "total": 248,
+    "within_range": 75,
+    "below_range": 51,
+    "above_range": 0,
+    "below_range_pct": 20.6,
+    "avg_sentence_months": 71.0
+  },
+  "wiwd": {
+    "total": 668,
+    "within_range": 239,
+    "below_range": 125,
+    "above_range": 1,
+    "below_range_pct": 18.7,
+    "avg_sentence_months": 106.3
+  },
+  "ded": {
+    "total": 477,
+    "within_range": 197,
+    "below_range": 99,
+    "above_range": 1,
+    "below_range_pct": 20.8,
+    "avg_sentence_months": 77.5
+  },
+  "kywd": {
+    "total": 339,
+    "within_range": 154,
+    "below_range": 44,
+    "above_range": 2,
+    "below_range_pct": 13.0,
+    "avg_sentence_months": 88.8
+  },
+  "paed": {
+    "total": 456,
+    "within_range": 196,
+    "below_range": 55,
+    "above_range": 1,
+    "below_range_pct": 12.1,
+    "avg_sentence_months": 66.5
+  },
+  "nyed": {
+    "total": 899,
+    "within_range": 223,
+    "below_range": 131,
+    "above_range": 0,
+    "below_range_pct": 14.6,
+    "avg_sentence_months": 64.9
+  },
+  "txsd": {
+    "total": 662,
+    "within_range": 252,
+    "below_range": 115,
+    "above_range": 1,
+    "below_range_pct": 17.4,
+    "avg_sentence_months": 76.6
+  },
+  "rid": {
+    "total": 972,
+    "within_range": 433,
+    "below_range": 105,
+    "above_range": 3,
+    "below_range_pct": 10.8,
+    "avg_sentence_months": 62.8
+  },
+  "iasd": {
+    "total": 932,
+    "within_range": 287,
+    "below_range": 202,
+    "above_range": 4,
+    "below_range_pct": 21.7,
+    "avg_sentence_months": 60.0
+  },
+  "txwd": {
+    "total": 560,
+    "within_range": 134,
+    "below_range": 204,
+    "above_range": 3,
+    "below_range_pct": 36.4,
+    "avg_sentence_months": 71.3
+  },
+  "mssd": {
+    "total": 388,
+    "within_range": 119,
+    "below_range": 105,
+    "above_range": 3,
+    "below_range_pct": 27.1,
+    "avg_sentence_months": 82.2
+  },
+  "nced": {
+    "total": 884,
+    "within_range": 469,
+    "below_range": 49,
+    "above_range": 3,
+    "below_range_pct": 5.5,
+    "avg_sentence_months": 78.8
+  },
+  "casd": {
+    "total": 2699,
+    "within_range": 1723,
+    "below_range": 663,
+    "above_range": 22,
+    "below_range_pct": 24.6,
+    "avg_sentence_months": 19.7
+  },
+  "ilsd": {
+    "total": 313,
+    "within_range": 153,
+    "below_range": 49,
+    "above_range": 9,
+    "below_range_pct": 15.7,
+    "avg_sentence_months": 101.4
+  },
+  "pamd": {
+    "total": 443,
+    "within_range": 118,
+    "below_range": 80,
+    "above_range": 4,
+    "below_range_pct": 18.1,
+    "avg_sentence_months": 73.9
+  },
+  "alnd": {
+    "total": 1457,
+    "within_range": 814,
+    "below_range": 79,
+    "above_range": 1,
+    "below_range_pct": 5.4,
+    "avg_sentence_months": 56.8
+  },
+  "flsd": {
+    "total": 324,
+    "within_range": 204,
+    "below_range": 34,
+    "above_range": 9,
+    "below_range_pct": 10.5,
+    "avg_sentence_months": 84.5
+  },
+  "hid": {
+    "total": 564,
+    "within_range": 319,
+    "below_range": 83,
+    "above_range": 7,
+    "below_range_pct": 14.7,
+    "avg_sentence_months": 67.9
+  },
+  "gamd": {
+    "total": 378,
+    "within_range": 264,
+    "below_range": 45,
+    "above_range": 8,
+    "below_range_pct": 11.9,
+    "avg_sentence_months": 90.6
+  },
+  "caed": {
+    "total": 377,
+    "within_range": 106,
+    "below_range": 103,
+    "above_range": 3,
+    "below_range_pct": 27.3,
+    "avg_sentence_months": 68.7
+  },
+  "lamd": {
+    "total": 7545,
+    "within_range": 5249,
+    "below_range": 886,
+    "above_range": 27,
+    "below_range_pct": 11.7,
+    "avg_sentence_months": 21.4
+  },
+  "txed": {
+    "total": 851,
+    "within_range": 365,
+    "below_range": 82,
+    "above_range": 1,
+    "below_range_pct": 9.6,
+    "avg_sentence_months": 53.1
+  },
+  "vid": {
+    "total": 312,
+    "within_range": 162,
+    "below_range": 20,
+    "above_range": 0,
+    "below_range_pct": 6.4,
+    "avg_sentence_months": 92.8
+  },
+  "ohnd": {
+    "total": 240,
+    "within_range": 146,
+    "below_range": 39,
+    "above_range": 3,
+    "below_range_pct": 16.2,
+    "avg_sentence_months": 82.1
+  },
+  "kyed": {
+    "total": 346,
+    "within_range": 80,
+    "below_range": 61,
+    "above_range": 0,
+    "below_range_pct": 17.6,
+    "avg_sentence_months": 80.7
+  },
+  "gasd": {
+    "total": 378,
+    "within_range": 244,
+    "below_range": 45,
+    "above_range": 0,
+    "below_range_pct": 11.9,
+    "avg_sentence_months": 77.1
+  },
+  "prd": {
+    "total": 260,
+    "within_range": 55,
+    "below_range": 65,
+    "above_range": 2,
+    "below_range_pct": 25.0,
+    "avg_sentence_months": 79.5
+  },
+  "med": {
+    "total": 558,
+    "within_range": 159,
+    "below_range": 92,
+    "above_range": 3,
+    "below_range_pct": 16.5,
+    "avg_sentence_months": 51.8
+  },
+  "sdd": {
+    "total": 501,
+    "within_range": 103,
+    "below_range": 101,
+    "above_range": 4,
+    "below_range_pct": 20.2,
+    "avg_sentence_months": 55.5
+  },
+  "almd": {
+    "total": 1528,
+    "within_range": 809,
+    "below_range": 165,
+    "above_range": 3,
+    "below_range_pct": 10.8,
+    "avg_sentence_months": 78.1
+  },
+  "mdd": {
+    "total": 591,
+    "within_range": 210,
+    "below_range": 128,
+    "above_range": 2,
+    "below_range_pct": 21.7,
+    "avg_sentence_months": 71.0
+  },
+  "ohsd": {
+    "total": 279,
+    "within_range": 146,
+    "below_range": 41,
+    "above_range": 1,
+    "below_range_pct": 14.7,
+    "avg_sentence_months": 92.0
+  },
+  "iand": {
+    "total": 472,
+    "within_range": 154,
+    "below_range": 109,
+    "above_range": 3,
+    "below_range_pct": 23.1,
+    "avg_sentence_months": 86.2
+  },
+  "nynd": {
+    "total": 403,
+    "within_range": 171,
+    "below_range": 90,
+    "above_range": 0,
+    "below_range_pct": 22.3,
+    "avg_sentence_months": 59.3
+  },
+  "arwd": {
+    "total": 364,
+    "within_range": 43,
+    "below_range": 59,
+    "above_range": 1,
+    "below_range_pct": 16.2,
+    "avg_sentence_months": 38.7
+  },
+  "dcd": {
+    "total": 144,
+    "within_range": 56,
+    "below_range": 30,
+    "above_range": 0,
+    "below_range_pct": 20.8,
+    "avg_sentence_months": 73.7
+  },
+  "ncwd": {
+    "total": 326,
+    "within_range": 151,
+    "below_range": 25,
+    "above_range": 0,
+    "below_range_pct": 7.7,
+    "avg_sentence_months": 76.8
+  },
+  "cacd": {
+    "total": 346,
+    "within_range": 104,
+    "below_range": 12,
+    "above_range": 1,
+    "below_range_pct": 3.5,
+    "avg_sentence_months": 59.7
+  },
+  "wvsd": {
+    "total": 301,
+    "within_range": 142,
+    "below_range": 51,
+    "above_range": 0,
+    "below_range_pct": 16.9,
+    "avg_sentence_months": 69.0
+  },
+  "wvnd": {
+    "total": 299,
+    "within_range": 174,
+    "below_range": 64,
+    "above_range": 0,
+    "below_range_pct": 21.4,
+    "avg_sentence_months": 67.3
+  },
+  "pawd": {
+    "total": 811,
+    "within_range": 486,
+    "below_range": 184,
+    "above_range": 4,
+    "below_range_pct": 22.7,
+    "avg_sentence_months": 87.0
+  },
+  "ilcd": {
+    "total": 475,
+    "within_range": 233,
+    "below_range": 39,
+    "above_range": 0,
+    "below_range_pct": 8.2,
+    "avg_sentence_months": 83.3
+  },
+  "laed": {
+    "total": 1015,
+    "within_range": 605,
+    "below_range": 76,
+    "above_range": 11,
+    "below_range_pct": 7.5,
+    "avg_sentence_months": 96.6
+  },
+  "gand": {
+    "total": 180,
+    "within_range": 93,
+    "below_range": 27,
+    "above_range": 3,
+    "below_range_pct": 15.0,
+    "avg_sentence_months": 61.0
+  },
+  "ned": {
+    "total": 403,
+    "within_range": 140,
+    "below_range": 94,
+    "above_range": 2,
+    "below_range_pct": 23.3,
+    "avg_sentence_months": 57.9
+  },
+  "mowd": {
+    "total": 309,
+    "within_range": 118,
+    "below_range": 72,
+    "above_range": 0,
+    "below_range_pct": 23.3,
+    "avg_sentence_months": 68.2
+  },
+  "ndd": {
+    "total": 202,
+    "within_range": 36,
+    "below_range": 49,
+    "above_range": 0,
+    "below_range_pct": 24.3,
+    "avg_sentence_months": 54.1
+  },
+  "moed": {
+    "total": 142,
+    "within_range": 38,
+    "below_range": 49,
+    "above_range": 0,
+    "below_range_pct": 34.5,
+    "avg_sentence_months": 88.2
+  },
+  "cand": {
+    "total": 410,
+    "within_range": 165,
+    "below_range": 77,
+    "above_range": 3,
+    "below_range_pct": 18.8,
+    "avg_sentence_months": 86.6
+  },
+  "vaed": {
+    "total": 516,
+    "within_range": 339,
+    "below_range": 62,
+    "above_range": 0,
+    "below_range_pct": 12.0,
+    "avg_sentence_months": 71.5
+  },
+  "txnd": {
+    "total": 242,
+    "within_range": 146,
+    "below_range": 27,
+    "above_range": 2,
+    "below_range_pct": 11.2,
+    "avg_sentence_months": 101.0
+  },
+  "njd": {
+    "total": 408,
+    "within_range": 171,
+    "below_range": 104,
+    "above_range": 0,
+    "below_range_pct": 25.5,
+    "avg_sentence_months": 82.8
+  },
+  "nywd": {
+    "total": 149,
+    "within_range": 93,
+    "below_range": 22,
+    "above_range": 1,
+    "below_range_pct": 14.8,
+    "avg_sentence_months": 44.7
+  },
+  "azd": {
+    "total": 335,
+    "within_range": 101,
+    "below_range": 82,
+    "above_range": 1,
+    "below_range_pct": 24.5,
+    "avg_sentence_months": 77.8
+  },
+  "mnd": {
+    "total": 2661,
+    "within_range": 726,
+    "below_range": 1643,
+    "above_range": 7,
+    "below_range_pct": 61.7,
+    "avg_sentence_months": 19.0
+  },
+  "akd": {
+    "total": 423,
+    "within_range": 175,
+    "below_range": 58,
+    "above_range": 4,
+    "below_range_pct": 13.7,
+    "avg_sentence_months": 88.2
+  },
+  "miwd": {
+    "total": 218,
+    "within_range": 60,
+    "below_range": 33,
+    "above_range": 0,
+    "below_range_pct": 15.1,
+    "avg_sentence_months": 96.8
+  },
+  "alsd": {
+    "total": 502,
+    "within_range": 176,
+    "below_range": 46,
+    "above_range": 0,
+    "below_range_pct": 9.2,
+    "avg_sentence_months": 58.5
+  },
+  "tned": {
+    "total": 356,
+    "within_range": 175,
+    "below_range": 56,
+    "above_range": 0,
+    "below_range_pct": 15.7,
+    "avg_sentence_months": 112.4
+  },
+  "insd": {
+    "total": 396,
+    "within_range": 137,
+    "below_range": 81,
+    "above_range": 2,
+    "below_range_pct": 20.5,
+    "avg_sentence_months": 74.2
+  },
+  "wawd": {
+    "total": 138,
+    "within_range": 44,
+    "below_range": 15,
+    "above_range": 1,
+    "below_range_pct": 10.9,
+    "avg_sentence_months": 81.9
+  },
+  "mad": {
+    "total": 130,
+    "within_range": 28,
+    "below_range": 24,
+    "above_range": 0,
+    "below_range_pct": 18.5,
+    "avg_sentence_months": 47.0
+  },
+  "vawd": {
+    "total": 263,
+    "within_range": 130,
+    "below_range": 26,
+    "above_range": 0,
+    "below_range_pct": 9.9,
+    "avg_sentence_months": 73.5
+  },
+  "scd": {
+    "total": 216,
+    "within_range": 97,
+    "below_range": 18,
+    "above_range": 1,
+    "below_range_pct": 8.3,
+    "avg_sentence_months": 75.5
+  },
+  "flnd": {
+    "total": 272,
+    "within_range": 204,
+    "below_range": 36,
+    "above_range": 1,
+    "below_range_pct": 13.2,
+    "avg_sentence_months": 83.4
+  },
+  "tnwd": {
+    "total": 129,
+    "within_range": 33,
+    "below_range": 23,
+    "above_range": 1,
+    "below_range_pct": 17.8,
+    "avg_sentence_months": 72.5
+  },
+  "msnd": {
+    "total": 390,
+    "within_range": 203,
+    "below_range": 78,
+    "above_range": 3,
+    "below_range_pct": 20.0,
+    "avg_sentence_months": 102.8
+  },
+  "innd": {
+    "total": 343,
+    "within_range": 134,
+    "below_range": 29,
+    "above_range": 1,
+    "below_range_pct": 8.5,
+    "avg_sentence_months": 129.3
+  },
+  "flmd": {
+    "total": 405,
+    "within_range": 273,
+    "below_range": 23,
+    "above_range": 0,
+    "below_range_pct": 5.7,
+    "avg_sentence_months": 84.4
+  },
+  "nvd": {
+    "total": 259,
+    "within_range": 168,
+    "below_range": 19,
+    "above_range": 2,
+    "below_range_pct": 7.3,
+    "avg_sentence_months": 108.3
+  },
+  "ilnd": {
+    "total": 164,
+    "within_range": 62,
+    "below_range": 16,
+    "above_range": 0,
+    "below_range_pct": 9.8,
+    "avg_sentence_months": 100.8
+  },
+  "nysd": {
+    "total": 210,
+    "within_range": 44,
+    "below_range": 53,
+    "above_range": 0,
+    "below_range_pct": 25.2,
+    "avg_sentence_months": 32.6
+  },
+  "idd": {
+    "total": 59,
+    "within_range": 35,
+    "below_range": 5,
+    "above_range": 0,
+    "below_range_pct": 8.5,
+    "avg_sentence_months": 60.9
+  },
+  "tnmd": {
+    "total": 302,
+    "within_range": 57,
+    "below_range": 15,
+    "above_range": 0,
+    "below_range_pct": 5.0,
+    "avg_sentence_months": 57.9
+  },
+  "ctd": {
+    "total": 604,
+    "within_range": 140,
+    "below_range": 162,
+    "above_range": 2,
+    "below_range_pct": 26.8,
+    "avg_sentence_months": 74.0
+  },
+  "waed": {
+    "total": 17,
+    "within_range": 13,
+    "below_range": 1,
+    "above_range": 1,
+    "below_range_pct": 5.9,
+    "avg_sentence_months": 37.9
+  },
+  "ord": {
+    "total": 35,
+    "within_range": 15,
+    "below_range": 9,
+    "above_range": 0,
+    "below_range_pct": 25.7,
+    "avg_sentence_months": 64.5
+  }
+}
