@@ -1,0 +1,575 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RedHanded — System Blueprint</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --fg: #e5e7eb;
+    --muted: #9ca3af;
+    --line: #6b7280;
+    --red: #dc2626;
+    --red-dim: #991b1b;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --purple: #8b5cf6;
+    --teal: #14b8a6;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 13px/1.4 ui-sans-serif, system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 22px; font-weight: 700; fill: var(--fg); }
+  .subtitle { font-size: 13px; fill: var(--muted); }
+  .label { font-size: 13px; font-weight: 600; fill: var(--fg); }
+  .small { font-size: 11px; fill: var(--muted); }
+  .tiny { font-size: 10px; fill: var(--muted); }
+  .node { stroke: var(--border); stroke-width: 1.5; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .edge-red { stroke: var(--red); stroke-width: 1.5; fill: none; }
+  .edge-blue { stroke: var(--blue); stroke-width: 1.5; fill: none; }
+  .edge-green { stroke: var(--green); stroke-width: 1.5; fill: none; }
+  .edge-amber { stroke: var(--amber); stroke-width: 1.5; fill: none; }
+  .edge-purple { stroke: var(--purple); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--border); stroke-width: 1; stroke-dasharray: 6 4; rx: 12; }
+  .zone-label { font-size: 11px; font-weight: 600; fill: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  marker path { fill: var(--line); }
+  .marker-red path { fill: var(--red); }
+  .marker-blue path { fill: var(--blue); }
+  .marker-green path { fill: var(--green); }
+  .marker-amber path { fill: var(--amber); }
+  .marker-purple path { fill: var(--purple); }
+  h2 { color: var(--red); font-size: 16px; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0 24px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .section-text { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 8px 0 20px; max-width: 800px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0 24px; }
+  th { text-align: left; padding: 8px 12px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 600; }
+  td { padding: 8px 12px; font-size: 12px; color: var(--fg); border-bottom: 1px solid var(--border); }
+  td:first-child { font-weight: 600; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .tag-amber { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .tag-red { background: rgba(220,38,38,0.15); color: #dc2626; }
+</style>
+<main>
+
+<!-- ==================== HEADER ==================== -->
+<svg viewBox="0 0 1060 80" xmlns="http://www.w3.org/2000/svg">
+  <text x="20" y="36" class="title">🔴 Red<tspan fill="#dc2626">Handed</tspan> — System Architecture Blueprint</text>
+  <text x="20" y="58" class="subtitle">Data Flow · Scoring Pipeline · User Experience · Deployment Strategy</text>
+</svg>
+
+<!-- ==================== DIAGRAM 1: HIGH-LEVEL ARCHITECTURE ==================== -->
+<h2>1. High-Level System Architecture</h2>
+<p class="section-text">Three-layer architecture: external data sources feed an ingestion pipeline, which normalizes and stores data. The scoring engine calculates accountability scores. The frontend serves search, profiles, and community features.</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> External Data Sources</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> Ingestion / Processing</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Storage</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div> Application</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div> User-Facing</div>
+</div>
+
+<svg viewBox="0 0 1060 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+    <marker id="arr-red" class="marker-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+    <marker id="arr-blue" class="marker-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+    <marker id="arr-green" class="marker-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+    <marker id="arr-amber" class="marker-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+    <marker id="arr-purple" class="marker-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z"/></marker>
+  </defs>
+
+  <!-- Zone: External Sources -->
+  <rect x="10" y="10" width="230" height="500" class="zone"/>
+  <text x="24" y="30" class="zone-label">External Sources</text>
+
+  <!-- Zone: Ingestion -->
+  <rect x="280" y="10" width="220" height="500" class="zone"/>
+  <text x="294" y="30" class="zone-label">Ingestion Layer</text>
+
+  <!-- Zone: Storage -->
+  <rect x="540" y="10" width="200" height="500" class="zone"/>
+  <text x="554" y="30" class="zone-label">Storage</text>
+
+  <!-- Zone: Application -->
+  <rect x="780" y="10" width="270" height="500" class="zone"/>
+  <text x="794" y="30" class="zone-label">Application</text>
+
+  <!-- === EXTERNAL SOURCE NODES === -->
+  <rect x="24" y="50" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="72" text-anchor="middle" class="label" fill="#93c5fd">CourtListener API</text>
+  <text x="124" y="88" text-anchor="middle" class="tiny">Judges, opinions, courts</text>
+
+  <rect x="24" y="120" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="142" text-anchor="middle" class="label" fill="#93c5fd">PACER / RECAP</text>
+  <text x="124" y="158" text-anchor="middle" class="tiny">Federal case records</text>
+
+  <rect x="24" y="190" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="212" text-anchor="middle" class="label" fill="#93c5fd">US Sentencing Commission</text>
+  <text x="124" y="228" text-anchor="middle" class="tiny">Sentencing datasets (CSV)</text>
+
+  <rect x="24" y="260" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="282" text-anchor="middle" class="label" fill="#93c5fd">Ballotpedia API</text>
+  <text x="124" y="298" text-anchor="middle" class="tiny">Election & appointment data</text>
+
+  <rect x="24" y="330" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="352" text-anchor="middle" class="label" fill="#93c5fd">FJC Database</text>
+  <text x="124" y="368" text-anchor="middle" class="tiny">Judge bios, ABA ratings</text>
+
+  <rect x="24" y="400" width="200" height="50" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="124" y="422" text-anchor="middle" class="label" fill="#93c5fd">State Court Systems</text>
+  <text x="124" y="438" text-anchor="middle" class="tiny">Per-state scrapers (Phase 2)</text>
+
+  <!-- === INGESTION NODES === -->
+  <rect x="294" y="60" width="190" height="55" rx="8" class="node" fill="#422006"/>
+  <text x="389" y="82" text-anchor="middle" class="label" fill="#fbbf24">API Fetcher</text>
+  <text x="389" y="100" text-anchor="middle" class="tiny">REST / bulk download</text>
+
+  <rect x="294" y="145" width="190" height="55" rx="8" class="node" fill="#422006"/>
+  <text x="389" y="167" text-anchor="middle" class="label" fill="#fbbf24">Data Normalizer</text>
+  <text x="389" y="185" text-anchor="middle" class="tiny">Schema mapping, dedup</text>
+
+  <rect x="294" y="230" width="190" height="55" rx="8" class="node" fill="#422006"/>
+  <text x="389" y="252" text-anchor="middle" class="label" fill="#fbbf24">Entity Linker</text>
+  <text x="389" y="270" text-anchor="middle" class="tiny">Judge ↔ Cases ↔ Outcomes</text>
+
+  <rect x="294" y="315" width="190" height="55" rx="8" class="node" fill="#422006"/>
+  <text x="389" y="337" text-anchor="middle" class="label" fill="#fbbf24">Scoring Engine</text>
+  <text x="389" y="355" text-anchor="middle" class="tiny">Accountability Score calc</text>
+
+  <rect x="294" y="410" width="190" height="70" rx="8" class="node" fill="#422006"/>
+  <text x="389" y="435" text-anchor="middle" class="label" fill="#fbbf24">Nightly Cron Jobs</text>
+  <text x="389" y="453" text-anchor="middle" class="tiny">Re-fetch → normalize →</text>
+  <text x="389" y="466" text-anchor="middle" class="tiny">re-score → update DB</text>
+
+  <!-- === STORAGE NODES === -->
+  <rect x="554" y="70" width="170" height="55" rx="8" class="node" fill="#052e16"/>
+  <text x="639" y="92" text-anchor="middle" class="label" fill="#86efac">PostgreSQL</text>
+  <text x="639" y="110" text-anchor="middle" class="tiny">Judges, cases, scores</text>
+
+  <rect x="554" y="155" width="170" height="55" rx="8" class="node" fill="#052e16"/>
+  <text x="639" y="177" text-anchor="middle" class="label" fill="#86efac">Search Index</text>
+  <text x="639" y="195" text-anchor="middle" class="tiny">Full-text (pg_trgm)</text>
+
+  <rect x="554" y="250" width="170" height="55" rx="8" class="node" fill="#052e16"/>
+  <text x="639" y="272" text-anchor="middle" class="label" fill="#86efac">Reviews Table</text>
+  <text x="639" y="290" text-anchor="middle" class="tiny">Community submissions</text>
+
+  <rect x="554" y="345" width="170" height="55" rx="8" class="node" fill="#052e16"/>
+  <text x="639" y="367" text-anchor="middle" class="label" fill="#86efac">Cache Layer</text>
+  <text x="639" y="385" text-anchor="middle" class="tiny">Redis / edge cache</text>
+
+  <rect x="554" y="430" width="170" height="55" rx="8" class="node" fill="#052e16"/>
+  <text x="639" y="452" text-anchor="middle" class="label" fill="#86efac">File Storage</text>
+  <text x="639" y="470" text-anchor="middle" class="tiny">Bulk data snapshots</text>
+
+  <!-- === APPLICATION NODES === -->
+  <rect x="794" y="50" width="240" height="55" rx="8" class="node" fill="#2e1065"/>
+  <text x="914" y="72" text-anchor="middle" class="label" fill="#c4b5fd">Next.js Frontend</text>
+  <text x="914" y="90" text-anchor="middle" class="tiny">Search, profiles, map view</text>
+
+  <rect x="794" y="130" width="240" height="55" rx="8" class="node" fill="#2e1065"/>
+  <text x="914" y="152" text-anchor="middle" class="label" fill="#c4b5fd">API Routes (/api/*)</text>
+  <text x="914" y="170" text-anchor="middle" class="tiny">Judge data, search, reviews</text>
+
+  <rect x="794" y="210" width="240" height="55" rx="8" class="node" fill="#450a0a"/>
+  <text x="914" y="232" text-anchor="middle" class="label" fill="#fca5a5">Judge Profile Page</text>
+  <text x="914" y="250" text-anchor="middle" class="tiny">Score, stats, reviews, election</text>
+
+  <rect x="794" y="290" width="240" height="55" rx="8" class="node" fill="#450a0a"/>
+  <text x="914" y="312" text-anchor="middle" class="label" fill="#fca5a5">Community Reviews</text>
+  <text x="914" y="330" text-anchor="middle" class="tiny">Submit, vote, "re-elect?" poll</text>
+
+  <rect x="794" y="370" width="240" height="55" rx="8" class="node" fill="#450a0a"/>
+  <text x="914" y="392" text-anchor="middle" class="label" fill="#fca5a5">US Map / State View</text>
+  <text x="914" y="410" text-anchor="middle" class="tiny">Click state → see judges</text>
+
+  <rect x="794" y="450" width="240" height="50" rx="8" class="node" fill="#450a0a"/>
+  <text x="914" y="472" text-anchor="middle" class="label" fill="#fca5a5">Election Alerts</text>
+  <text x="914" y="488" text-anchor="middle" class="tiny">Upcoming judge elections</text>
+
+  <!-- === EDGES === -->
+  <!-- Sources → Fetcher -->
+  <path d="M224,75 L290,82" class="edge-blue" marker-end="url(#arr-blue)"/>
+  <path d="M224,145 L290,85" class="edge-blue" marker-end="url(#arr-blue)"/>
+  <path d="M224,215 L290,88" class="edge-blue" marker-end="url(#arr-blue)"/>
+  <path d="M224,285 L290,90" class="edge-blue" marker-end="url(#arr-blue)"/>
+  <path d="M224,355 L290,92" class="edge-blue" marker-end="url(#arr-blue)"/>
+
+  <!-- Fetcher → Normalizer → Linker → Scoring -->
+  <path d="M389,115 L389,141" class="edge-amber" marker-end="url(#arr-amber)"/>
+  <path d="M389,200 L389,226" class="edge-amber" marker-end="url(#arr-amber)"/>
+  <path d="M389,285 L389,311" class="edge-amber" marker-end="url(#arr-amber)"/>
+
+  <!-- Scoring → DB -->
+  <path d="M484,340 L550,100" class="edge-green" marker-end="url(#arr-green)"/>
+  <!-- Normalizer → Search Index -->
+  <path d="M484,172 L550,180" class="edge-green" marker-end="url(#arr-green)"/>
+
+  <!-- DB → API Routes -->
+  <path d="M724,97 L790,155" class="edge-purple" marker-end="url(#arr-purple)"/>
+  <!-- Cache → Frontend -->
+  <path d="M724,370 L790,75" class="edge-purple" marker-end="url(#arr-purple)"/>
+  <!-- Reviews Table → Community -->
+  <path d="M724,277 L790,310" class="edge-purple" marker-end="url(#arr-purple)"/>
+
+  <!-- Cron → Fetcher (loop) -->
+  <path d="M350,410 L350,115" class="edge-amber" marker-end="url(#arr-amber)" stroke-dasharray="4 3"/>
+
+  <!-- State courts dashed (Phase 2) -->
+  <path d="M224,425 L290,95" class="edge-blue" marker-end="url(#arr-blue)" stroke-dasharray="4 3" opacity="0.5"/>
+</svg>
+
+<!-- ==================== DIAGRAM 2: DATA FLOW PIPELINE ==================== -->
+<h2>2. Data Ingestion Pipeline — Step by Step</h2>
+<p class="section-text">Each data source follows a specific path. The pipeline runs nightly to keep scores fresh. Federal data is clean and API-accessible; state data requires per-state scrapers (Phase 2).</p>
+
+<svg viewBox="0 0 1060 380" xmlns="http://www.w3.org/2000/svg">
+  <!-- Step boxes -->
+  <rect x="20" y="40" width="160" height="70" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="100" y="62" text-anchor="middle" class="label" fill="#93c5fd">① Fetch</text>
+  <text x="100" y="80" text-anchor="middle" class="tiny">CourtListener /people/</text>
+  <text x="100" y="93" text-anchor="middle" class="tiny">/positions/ /courts/</text>
+
+  <rect x="220" y="40" width="160" height="70" rx="8" class="node" fill="#422006"/>
+  <text x="300" y="62" text-anchor="middle" class="label" fill="#fbbf24">② Normalize</text>
+  <text x="300" y="80" text-anchor="middle" class="tiny">Map to unified schema</text>
+  <text x="300" y="93" text-anchor="middle" class="tiny">Dedup by name + court</text>
+
+  <rect x="420" y="40" width="160" height="70" rx="8" class="node" fill="#422006"/>
+  <text x="500" y="62" text-anchor="middle" class="label" fill="#fbbf24">③ Link</text>
+  <text x="500" y="80" text-anchor="middle" class="tiny">Match judge → cases</text>
+  <text x="500" y="93" text-anchor="middle" class="tiny">Match cases → outcomes</text>
+
+  <rect x="620" y="40" width="160" height="70" rx="8" class="node" fill="#450a0a"/>
+  <text x="700" y="62" text-anchor="middle" class="label" fill="#fca5a5">④ Score</text>
+  <text x="700" y="80" text-anchor="middle" class="tiny">Calculate accountability</text>
+  <text x="700" y="93" text-anchor="middle" class="tiny">score (0-100)</text>
+
+  <rect x="820" y="40" width="160" height="70" rx="8" class="node" fill="#052e16"/>
+  <text x="900" y="62" text-anchor="middle" class="label" fill="#86efac">⑤ Store</text>
+  <text x="900" y="80" text-anchor="middle" class="tiny">Upsert to PostgreSQL</text>
+  <text x="900" y="93" text-anchor="middle" class="tiny">Invalidate cache</text>
+
+  <!-- Arrows -->
+  <path d="M180,75 L216,75" class="edge" marker-end="url(#arr)"/>
+  <path d="M380,75 L416,75" class="edge" marker-end="url(#arr)"/>
+  <path d="M580,75 L616,75" class="edge" marker-end="url(#arr)"/>
+  <path d="M780,75 L816,75" class="edge" marker-end="url(#arr)"/>
+
+  <!-- Data source detail rows -->
+  <text x="20" y="150" class="label">Data Source Details:</text>
+
+  <!-- Row headers -->
+  <text x="20" y="180" class="small" font-weight="600">Source</text>
+  <text x="250" y="180" class="small" font-weight="600">What We Get</text>
+  <text x="520" y="180" class="small" font-weight="600">Method</text>
+  <text x="720" y="180" class="small" font-weight="600">Reliability</text>
+  <text x="880" y="180" class="small" font-weight="600">Phase</text>
+  <line x1="20" y1="188" x2="1020" y2="188" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- CourtListener -->
+  <text x="20" y="210" class="small" fill="#93c5fd" font-weight="600">CourtListener</text>
+  <text x="250" y="210" class="small">Judge bios, positions, opinions, courts</text>
+  <text x="520" y="210" class="small">REST API (free, token required)</text>
+  <rect x="720" y="198" width="50" height="18" rx="4" fill="rgba(34,197,94,0.15)"/>
+  <text x="745" y="212" text-anchor="middle" class="tiny" fill="#22c55e" font-weight="600">HIGH</text>
+  <text x="880" y="210" class="small">MVP</text>
+
+  <!-- PACER -->
+  <text x="20" y="235" class="small" fill="#93c5fd" font-weight="600">PACER / RECAP</text>
+  <text x="250" y="235" class="small">Federal case dockets, filings</text>
+  <text x="520" y="235" class="small">API ($0.10/pg, free &lt;$30/qtr)</text>
+  <rect x="720" y="223" width="50" height="18" rx="4" fill="rgba(34,197,94,0.15)"/>
+  <text x="745" y="237" text-anchor="middle" class="tiny" fill="#22c55e" font-weight="600">HIGH</text>
+  <text x="880" y="235" class="small">MVP</text>
+
+  <!-- USSC -->
+  <text x="20" y="260" class="small" fill="#93c5fd" font-weight="600">US Sentencing Comm.</text>
+  <text x="250" y="260" class="small">Federal sentencing data by judge</text>
+  <text x="520" y="260" class="small">Bulk CSV download</text>
+  <rect x="720" y="248" width="50" height="18" rx="4" fill="rgba(34,197,94,0.15)"/>
+  <text x="745" y="262" text-anchor="middle" class="tiny" fill="#22c55e" font-weight="600">HIGH</text>
+  <text x="880" y="260" class="small">MVP</text>
+
+  <!-- Ballotpedia -->
+  <text x="20" y="285" class="small" fill="#93c5fd" font-weight="600">Ballotpedia</text>
+  <text x="250" y="285" class="small">Election dates, appointment info</text>
+  <text x="520" y="285" class="small">API / scrape</text>
+  <rect x="720" y="273" width="50" height="18" rx="4" fill="rgba(245,158,11,0.15)"/>
+  <text x="745" y="287" text-anchor="middle" class="tiny" fill="#f59e0b" font-weight="600">MED</text>
+  <text x="880" y="285" class="small">MVP</text>
+
+  <!-- FJC -->
+  <text x="20" y="310" class="small" fill="#93c5fd" font-weight="600">FJC Database</text>
+  <text x="250" y="310" class="small">Judge bios, education, ABA ratings</text>
+  <text x="520" y="310" class="small">CourtListener integration</text>
+  <rect x="720" y="298" width="50" height="18" rx="4" fill="rgba(34,197,94,0.15)"/>
+  <text x="745" y="312" text-anchor="middle" class="tiny" fill="#22c55e" font-weight="600">HIGH</text>
+  <text x="880" y="310" class="small">MVP</text>
+
+  <!-- State Courts -->
+  <text x="20" y="335" class="small" fill="#6b7280" font-weight="600">State Courts</text>
+  <text x="250" y="335" class="small" fill="#6b7280">State/county case records</text>
+  <text x="520" y="335" class="small" fill="#6b7280">Per-state scrapers (50 systems)</text>
+  <rect x="720" y="323" width="50" height="18" rx="4" fill="rgba(220,38,38,0.15)"/>
+  <text x="745" y="337" text-anchor="middle" class="tiny" fill="#dc2626" font-weight="600">LOW</text>
+  <text x="880" y="335" class="small" fill="#6b7280">Phase 2</text>
+
+  <!-- Recidivism -->
+  <text x="20" y="360" class="small" fill="#6b7280" font-weight="600">Recidivism Data</text>
+  <text x="250" y="360" class="small" fill="#6b7280">Re-arrest after release decisions</text>
+  <text x="520" y="360" class="small" fill="#6b7280">DOJ/BJS datasets + cross-ref</text>
+  <rect x="720" y="348" width="50" height="18" rx="4" fill="rgba(220,38,38,0.15)"/>
+  <text x="745" y="362" text-anchor="middle" class="tiny" fill="#dc2626" font-weight="600">LOW</text>
+  <text x="880" y="360" class="small" fill="#6b7280">Phase 2</text>
+</svg>
+
+<!-- ==================== DIAGRAM 3: SCORING ENGINE ==================== -->
+<h2>3. Accountability Score — How It's Calculated</h2>
+<p class="section-text">The Accountability Score (0-100) is a weighted composite of four factors. Each factor is normalized to 0-100, then weighted. The score intentionally surfaces judges whose decisions lead to worse public safety outcomes.</p>
+
+<svg viewBox="0 0 1060 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Input factors -->
+  <rect x="20" y="20" width="220" height="60" rx="8" class="node" fill="#052e16"/>
+  <text x="130" y="42" text-anchor="middle" class="label" fill="#86efac">Reversal Rate (25%)</text>
+  <text x="130" y="60" text-anchor="middle" class="tiny">% decisions overturned on appeal</text>
+  <text x="130" y="73" text-anchor="middle" class="tiny">Lower = better</text>
+
+  <rect x="20" y="100" width="220" height="60" rx="8" class="node" fill="#1e3a5f"/>
+  <text x="130" y="122" text-anchor="middle" class="label" fill="#93c5fd">Guideline Adherence (25%)</text>
+  <text x="130" y="140" text-anchor="middle" class="tiny">Deviation from sentencing guidelines</text>
+  <text x="130" y="153" text-anchor="middle" class="tiny">Closer to 0% = better</text>
+
+  <rect x="20" y="180" width="220" height="60" rx="8" class="node" fill="#450a0a"/>
+  <text x="130" y="202" text-anchor="middle" class="label" fill="#fca5a5">Recidivism Impact (30%)</text>
+  <text x="130" y="220" text-anchor="middle" class="tiny">% of released who reoffended</text>
+  <text x="130" y="233" text-anchor="middle" class="tiny">Lower = better (Phase 2 data)</text>
+
+  <rect x="20" y="260" width="220" height="50" rx="8" class="node" fill="#2e1065"/>
+  <text x="130" y="282" text-anchor="middle" class="label" fill="#c4b5fd">Community Score (20%)</text>
+  <text x="130" y="298" text-anchor="middle" class="tiny">Reviews + "would re-elect" poll</text>
+
+  <!-- Scoring engine box -->
+  <rect x="340" y="80" width="200" height="160" rx="12" class="node" fill="#422006" stroke="#f59e0b"/>
+  <text x="440" y="120" text-anchor="middle" class="label" fill="#fbbf24" font-size="15">Scoring Engine</text>
+  <line x1="360" y1="132" x2="520" y2="132" stroke="#5a3a0a" stroke-width="1"/>
+  <text x="440" y="152" text-anchor="middle" class="tiny">Normalize each 0-100</text>
+  <text x="440" y="168" text-anchor="middle" class="tiny">Apply weights</text>
+  <text x="440" y="184" text-anchor="middle" class="tiny">Peer comparison</text>
+  <text x="440" y="200" text-anchor="middle" class="tiny">Composite = weighted sum</text>
+  <text x="440" y="220" text-anchor="middle" class="tiny">Clamp to 0-100</text>
+
+  <!-- Arrows to engine -->
+  <path d="M240,50 L336,130" class="edge-green" marker-end="url(#arr-green)"/>
+  <path d="M240,130 L336,150" class="edge-blue" marker-end="url(#arr-blue)"/>
+  <path d="M240,210 L336,170" class="edge-red" marker-end="url(#arr-red)"/>
+  <path d="M240,285 L336,190" class="edge-purple" marker-end="url(#arr-purple)"/>
+
+  <!-- Output -->
+  <rect x="640" y="110" width="180" height="100" rx="12" class="node" fill="#450a0a" stroke="#dc2626"/>
+  <text x="730" y="140" text-anchor="middle" class="title" fill="#dc2626" font-size="32">78</text>
+  <text x="730" y="162" text-anchor="middle" class="label" fill="#fca5a5">Accountability Score</text>
+  <text x="730" y="180" text-anchor="middle" class="tiny">0 = Critical | 100 = Excellent</text>
+  <text x="730" y="196" text-anchor="middle" class="tiny">Updates nightly</text>
+
+  <path d="M540,160 L636,160" class="edge-red" marker-end="url(#arr-red)" stroke-width="2.5"/>
+
+  <!-- Score color bands -->
+  <rect x="880" y="50" width="160" height="30" rx="6" class="node" fill="#052e16"/>
+  <text x="960" y="70" text-anchor="middle" class="small" fill="#22c55e">75-100: Excellent/Good</text>
+
+  <rect x="880" y="90" width="160" height="30" rx="6" class="node" fill="#422006"/>
+  <text x="960" y="110" text-anchor="middle" class="small" fill="#eab308">50-74: Fair</text>
+
+  <rect x="880" y="130" width="160" height="30" rx="6" class="node" fill="#431407"/>
+  <text x="960" y="150" text-anchor="middle" class="small" fill="#f97316">25-49: Concerning</text>
+
+  <rect x="880" y="170" width="160" height="30" rx="6" class="node" fill="#450a0a"/>
+  <text x="960" y="190" text-anchor="middle" class="small" fill="#dc2626">0-24: Poor/Critical</text>
+
+  <text x="960" y="230" text-anchor="middle" class="small" font-weight="600">Score Tiers</text>
+</svg>
+
+<!-- ==================== DIAGRAM 4: USER FLOW ==================== -->
+<h2>4. User Experience Flow</h2>
+<p class="section-text">Three main user journeys: search/discover, deep-dive on a judge, and community participation. The election alert system drives civic engagement.</p>
+
+<svg viewBox="0 0 1060 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Row 1: Discovery -->
+  <rect x="20" y="20" width="140" height="50" rx="8" class="node" fill="#2e1065"/>
+  <text x="90" y="42" text-anchor="middle" class="label" fill="#c4b5fd">Landing Page</text>
+  <text x="90" y="58" text-anchor="middle" class="tiny">US Map + worst scores</text>
+
+  <rect x="200" y="20" width="140" height="50" rx="8" class="node" fill="#2e1065"/>
+  <text x="270" y="42" text-anchor="middle" class="label" fill="#c4b5fd">Search/Filter</text>
+  <text x="270" y="58" text-anchor="middle" class="tiny">Name, state, court</text>
+
+  <rect x="380" y="20" width="140" height="50" rx="8" class="node" fill="#2e1065"/>
+  <text x="450" y="42" text-anchor="middle" class="label" fill="#c4b5fd">Judge List</text>
+  <text x="450" y="58" text-anchor="middle" class="tiny">Cards + score rings</text>
+
+  <rect x="560" y="20" width="160" height="50" rx="8" class="node" fill="#450a0a"/>
+  <text x="640" y="42" text-anchor="middle" class="label" fill="#fca5a5">Judge Profile</text>
+  <text x="640" y="58" text-anchor="middle" class="tiny">Stats, score, analysis</text>
+
+  <path d="M160,45 L196,45" class="edge" marker-end="url(#arr)"/>
+  <path d="M340,45 L376,45" class="edge" marker-end="url(#arr)"/>
+  <path d="M520,45 L556,45" class="edge" marker-end="url(#arr)"/>
+
+  <!-- Row 2: Community -->
+  <rect x="560" y="90" width="160" height="50" rx="8" class="node" fill="#450a0a"/>
+  <text x="640" y="112" text-anchor="middle" class="label" fill="#fca5a5">Community Reviews</text>
+  <text x="640" y="128" text-anchor="middle" class="tiny">Read / submit / vote</text>
+
+  <rect x="760" y="90" width="160" height="50" rx="8" class="node" fill="#450a0a"/>
+  <text x="840" y="112" text-anchor="middle" class="label" fill="#fca5a5">Re-Elect Poll</text>
+  <text x="840" y="128" text-anchor="middle" class="tiny">"Would you re-elect?"</text>
+
+  <path d="M640,70 L640,86" class="edge" marker-end="url(#arr)"/>
+  <path d="M720,115 L756,115" class="edge" marker-end="url(#arr)"/>
+
+  <!-- Row 3: Civic Action -->
+  <rect x="560" y="160" width="160" height="50" rx="8" class="node" fill="#422006"/>
+  <text x="640" y="182" text-anchor="middle" class="label" fill="#fbbf24">Election Info</text>
+  <text x="640" y="198" text-anchor="middle" class="tiny">When is their election?</text>
+
+  <rect x="760" y="160" width="160" height="50" rx="8" class="node" fill="#422006"/>
+  <text x="840" y="182" text-anchor="middle" class="label" fill="#fbbf24">Share / Embed</text>
+  <text x="840" y="198" text-anchor="middle" class="tiny">Social cards, link share</text>
+
+  <rect x="760" y="230" width="160" height="40" rx="8" class="node" fill="#052e16"/>
+  <text x="840" y="255" text-anchor="middle" class="label" fill="#86efac">Email Alerts</text>
+
+  <path d="M640,140 L640,156" class="edge" marker-end="url(#arr)"/>
+  <path d="M720,185 L756,185" class="edge" marker-end="url(#arr)"/>
+  <path d="M840,210 L840,226" class="edge" marker-end="url(#arr)"/>
+
+  <!-- Side: Key pages -->
+  <rect x="20" y="100" width="220" height="150" rx="8" class="node" fill="#141414"/>
+  <text x="130" y="122" text-anchor="middle" class="label">Key Pages (MVP)</text>
+  <line x1="40" y1="132" x2="220" y2="132" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="150" class="small">/ .................. Homepage + map</text>
+  <text x="40" y="168" class="small">/search ............ Judge search</text>
+  <text x="40" y="186" class="small">/judge/:id ......... Judge profile</text>
+  <text x="40" y="204" class="small">/state/:code ....... State overview</text>
+  <text x="40" y="222" class="small">/about ............. Methodology</text>
+  <text x="40" y="240" class="small">/elections ......... Upcoming votes</text>
+</svg>
+
+<!-- ==================== SECTION 5: PHASED ROADMAP ==================== -->
+<h2>5. Phased Roadmap</h2>
+
+<svg viewBox="0 0 1060 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Phase 1 -->
+  <rect x="20" y="20" width="240" height="160" rx="10" class="node" fill="#052e16" stroke="#22c55e"/>
+  <text x="140" y="44" text-anchor="middle" class="label" fill="#22c55e" font-size="14">Phase 1: MVP</text>
+  <text x="140" y="60" text-anchor="middle" class="tiny" fill="#22c55e">2-3 weeks</text>
+  <line x1="40" y1="68" x2="240" y2="68" stroke="#0a3d1a" stroke-width="1"/>
+  <text x="36" y="86" class="small">✓ Federal judges only</text>
+  <text x="36" y="102" class="small">✓ CourtListener + USSC data</text>
+  <text x="36" y="118" class="small">✓ Search + judge profiles</text>
+  <text x="36" y="134" class="small">✓ Accountability Score v1</text>
+  <text x="36" y="150" class="small">✓ Basic community reviews</text>
+  <text x="36" y="166" class="small">✓ Deploy to Vercel</text>
+
+  <!-- Phase 2 -->
+  <rect x="290" y="20" width="240" height="160" rx="10" class="node" fill="#422006" stroke="#f59e0b"/>
+  <text x="410" y="44" text-anchor="middle" class="label" fill="#fbbf24" font-size="14">Phase 2: Expand</text>
+  <text x="410" y="60" text-anchor="middle" class="tiny" fill="#fbbf24">1-2 months</text>
+  <line x1="310" y1="68" x2="510" y2="68" stroke="#5a3a0a" stroke-width="1"/>
+  <text x="306" y="86" class="small">○ Top 10 state court systems</text>
+  <text x="306" y="102" class="small">○ US map view</text>
+  <text x="306" y="118" class="small">○ Election alert system</text>
+  <text x="306" y="134" class="small">○ Recidivism cross-reference</text>
+  <text x="306" y="150" class="small">○ Social sharing / OG cards</text>
+  <text x="306" y="166" class="small">○ User accounts + moderation</text>
+
+  <!-- Phase 3 -->
+  <rect x="560" y="20" width="240" height="160" rx="10" class="node" fill="#450a0a" stroke="#dc2626"/>
+  <text x="680" y="44" text-anchor="middle" class="label" fill="#fca5a5" font-size="14">Phase 3: Scale</text>
+  <text x="680" y="60" text-anchor="middle" class="tiny" fill="#fca5a5">3-6 months</text>
+  <line x1="580" y1="68" x2="780" y2="68" stroke="#5a0a0a" stroke-width="1"/>
+  <text x="576" y="86" class="small">○ All 50 states</text>
+  <text x="576" y="102" class="small">○ News article linking</text>
+  <text x="576" y="118" class="small">○ Prosecutor scorecards</text>
+  <text x="576" y="134" class="small">○ Historical trend analysis</text>
+  <text x="576" y="150" class="small">○ API for journalists/orgs</text>
+  <text x="576" y="166" class="small">○ Mobile app</text>
+
+  <!-- Future -->
+  <rect x="830" y="20" width="210" height="160" rx="10" class="node" fill="#141414" stroke="#6b7280"/>
+  <text x="935" y="44" text-anchor="middle" class="label" fill="#9ca3af" font-size="14">Future Vision</text>
+  <text x="935" y="60" text-anchor="middle" class="tiny" fill="#6b7280">6+ months</text>
+  <line x1="850" y1="68" x2="1020" y2="68" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="846" y="86" class="small" fill="#6b7280">○ AI case analysis</text>
+  <text x="846" y="102" class="small" fill="#6b7280">○ Victim impact reports</text>
+  <text x="846" y="118" class="small" fill="#6b7280">○ Lobbying/donor links</text>
+  <text x="846" y="134" class="small" fill="#6b7280">○ Nonprofit partnerships</text>
+  <text x="846" y="150" class="small" fill="#6b7280">○ Monetize: civic orgs, PACs</text>
+  <text x="846" y="166" class="small" fill="#6b7280">○ White-label for states</text>
+
+  <!-- Phase arrows -->
+  <path d="M260,100 L286,100" class="edge-green" marker-end="url(#arr-green)"/>
+  <path d="M530,100 L556,100" class="edge-amber" marker-end="url(#arr-amber)"/>
+  <path d="M800,100 L826,100" class="edge" marker-end="url(#arr)"/>
+</svg>
+
+<!-- ==================== SECTION 6: TECH STACK ==================== -->
+<h2>6. Tech Stack</h2>
+
+<svg viewBox="0 0 1060 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="10" width="190" height="150" rx="10" class="node" fill="#2e1065"/>
+  <text x="115" y="34" text-anchor="middle" class="label" fill="#c4b5fd">Frontend</text>
+  <line x1="40" y1="42" x2="190" y2="42" stroke="#3b1f8a" stroke-width="1"/>
+  <text x="36" y="60" class="small">Next.js 16 (App Router)</text>
+  <text x="36" y="78" class="small">TypeScript</text>
+  <text x="36" y="96" class="small">Tailwind CSS</text>
+  <text x="36" y="114" class="small">React Server Components</text>
+  <text x="36" y="132" class="small">Vercel deployment</text>
+
+  <rect x="240" y="10" width="190" height="150" rx="10" class="node" fill="#052e16"/>
+  <text x="335" y="34" text-anchor="middle" class="label" fill="#86efac">Backend</text>
+  <line x1="260" y1="42" x2="410" y2="42" stroke="#0a3d1a" stroke-width="1"/>
+  <text x="256" y="60" class="small">Next.js API Routes</text>
+  <text x="256" y="78" class="small">Supabase (PostgreSQL)</text>
+  <text x="256" y="96" class="small">Supabase Auth</text>
+  <text x="256" y="114" class="small">Redis (Upstash)</text>
+  <text x="256" y="132" class="small">Edge Functions</text>
+
+  <rect x="460" y="10" width="190" height="150" rx="10" class="node" fill="#422006"/>
+  <text x="555" y="34" text-anchor="middle" class="label" fill="#fbbf24">Data Pipeline</text>
+  <line x1="480" y1="42" x2="630" y2="42" stroke="#5a3a0a" stroke-width="1"/>
+  <text x="476" y="60" class="small">Node.js cron scripts</text>
+  <text x="476" y="78" class="small">CourtListener SDK</text>
+  <text x="476" y="96" class="small">CSV parsers (USSC)</text>
+  <text x="476" y="114" class="small">Playwright (scrapers)</text>
+  <text x="476" y="132" class="small">GitHub Actions (nightly)</text>
+
+  <rect x="680" y="10" width="190" height="150" rx="10" class="node" fill="#1e3a5f"/>
+  <text x="775" y="34" text-anchor="middle" class="label" fill="#93c5fd">Infrastructure</text>
+  <line x1="700" y1="42" x2="850" y2="42" stroke="#1a3a5a" stroke-width="1"/>
+  <text x="696" y="60" class="small">Vercel (hosting)</text>
+  <text x="696" y="78" class="small">Supabase (DB + auth)</text>
+  <text x="696" y="96" class="small">Upstash (cache)</text>
+  <text x="696" y="114" class="small">GitHub (CI/CD)</text>
+  <text x="696" y="132" class="small">Cloudflare (CDN)</text>
+
+  <rect x="900" y="10" width="140" height="150" rx="10" class="node" fill="#141414"/>
+  <text x="970" y="34" text-anchor="middle" class="label" fill="#9ca3af">Cost (MVP)</text>
+  <line x1="920" y1="42" x2="1020" y2="42" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="916" y="60" class="small" fill="#22c55e">Vercel: $0 (hobby)</text>
+  <text x="916" y="78" class="small" fill="#22c55e">Supabase: $0 (free)</text>
+  <text x="916" y="96" class="small" fill="#22c55e">CourtListener: $0</text>
+  <text x="916" y="114" class="small" fill="#22c55e">Upstash: $0 (free)</text>
+  <text x="916" y="140" class="small" fill="#22c55e" font-weight="600">Total: $0/mo 🎯</text>
+</svg>
+
+</main>
