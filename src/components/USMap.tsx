@@ -7,6 +7,7 @@ interface StateData {
   code: string;
   name: string;
   judgeCount: number;
+  avgScore: number | null;
 }
 
 interface USMapProps {
@@ -28,14 +29,14 @@ const STATE_NAMES: Record<string, string> = {
   WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',
 };
 
-function getHeatColor(count: number, max: number): string {
-  if (count === 0) return '#1f1f1f';
-  const intensity = Math.min(1, count / Math.max(max * 0.5, 1));
-  if (intensity < 0.2) return '#451a03';
-  if (intensity < 0.4) return '#7c2d12';
-  if (intensity < 0.6) return '#b91c1c';
-  if (intensity < 0.8) return '#dc2626';
-  return '#ef4444';
+function getScoreColor(avgScore: number | null, judgeCount: number): string {
+  if (judgeCount === 0 || avgScore === null) return '#1f1f1f'; // no data
+  if (avgScore >= 65) return '#166534'; // dark green — good
+  if (avgScore >= 55) return '#15803d'; // green — fair-good
+  if (avgScore >= 50) return '#a16207'; // amber — fair
+  if (avgScore >= 45) return '#b45309'; // orange — concerning
+  if (avgScore >= 40) return '#b91c1c'; // red — poor
+  return '#dc2626'; // bright red — critical
 }
 
 export default function USMap({ stateData, onStateClick }: USMapProps) {
@@ -62,6 +63,14 @@ export default function USMap({ stateData, onStateClick }: USMapProps) {
               {hoveredData.judgeCount}
             </span>
             {' judge'}{hoveredData.judgeCount !== 1 ? 's' : ''}
+            {hoveredData.avgScore !== null && (
+              <span className={`ml-2 font-semibold ${
+                hoveredData.avgScore >= 55 ? 'text-green-400' :
+                hoveredData.avgScore >= 45 ? 'text-amber-400' : 'text-red-400'
+              }`}>
+                Avg Score: {hoveredData.avgScore}
+              </span>
+            )}
           </div>
         ) : (
           <div className="text-sm text-[var(--text-muted)] hidden md:block">
@@ -79,7 +88,8 @@ export default function USMap({ stateData, onStateClick }: USMapProps) {
           const data = dataMap.get(code);
           const count = data?.judgeCount || 0;
           const isHovered = hoveredState === code;
-          const fill = isHovered ? '#ef4444' : getHeatColor(count, maxCount);
+          const avgScore = data?.avgScore ?? null;
+          const fill = isHovered ? '#ef4444' : getScoreColor(avgScore, count);
           
           return (
             <path
@@ -104,23 +114,23 @@ export default function USMap({ stateData, onStateClick }: USMapProps) {
       <div className="flex items-center justify-center gap-4 mt-3">
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-sm" style={{ background: '#1f1f1f', border: '1px solid #444' }} />
-          <span className="text-xs text-[var(--text-muted)]">0</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm" style={{ background: '#451a03' }} />
-          <span className="text-xs text-[var(--text-muted)]">1-2</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm" style={{ background: '#7c2d12' }} />
-          <span className="text-xs text-[var(--text-muted)]">3-4</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm" style={{ background: '#b91c1c' }} />
-          <span className="text-xs text-[var(--text-muted)]">5-7</span>
+          <span className="text-xs text-[var(--text-muted)]">No data</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-sm" style={{ background: '#dc2626' }} />
-          <span className="text-xs text-[var(--text-muted)]">8+</span>
+          <span className="text-xs text-[var(--text-muted)]">Critical</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm" style={{ background: '#b45309' }} />
+          <span className="text-xs text-[var(--text-muted)]">Concerning</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm" style={{ background: '#a16207' }} />
+          <span className="text-xs text-[var(--text-muted)]">Fair</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm" style={{ background: '#15803d' }} />
+          <span className="text-xs text-[var(--text-muted)]">Good</span>
         </div>
       </div>
 

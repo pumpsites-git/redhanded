@@ -26,19 +26,29 @@ export default function Home() {
   });
   const [loading, setLoading] = useState(true);
 
-  const [stateJudgeCounts, setStateJudgeCounts] = useState<{code:string;name:string;judgeCount:number}[]>([]);
+  const [stateJudgeCounts, setStateJudgeCounts] = useState<{code:string;name:string;judgeCount:number;avgScore:number|null}[]>([]);
 
   // Load stats and states on mount
   useEffect(() => {
     fetchStats().then(setOverview);
     fetchStates().then(s => {
       setStates(s);
-      // Build state counts for map
+      // Build state counts + avg scores for map
       fetchJudges({ limit: 500 }).then(({ judges: allJ }) => {
-        const counts = new Map<string, number>();
-        allJ.forEach(j => counts.set(j.state, (counts.get(j.state) || 0) + 1));
+        const stateMap = new Map<string, { count: number; scores: number[] }>();
+        allJ.forEach(j => {
+          const entry = stateMap.get(j.state) || { count: 0, scores: [] };
+          entry.count++;
+          if (j.accountabilityScore != null) entry.scores.push(j.accountabilityScore);
+          stateMap.set(j.state, entry);
+        });
         setStateJudgeCounts(
-          Array.from(counts.entries()).map(([code, count]) => ({ code, name: code, judgeCount: count }))
+          Array.from(stateMap.entries()).map(([code, { count, scores }]) => ({
+            code,
+            name: code,
+            judgeCount: count,
+            avgScore: scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null,
+          }))
         );
       });
     });
