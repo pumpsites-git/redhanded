@@ -1,12 +1,36 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { allJudges } from '@/lib/judges';
+import { fetchJudgeById } from '@/lib/judges';
+import { Judge } from '@/lib/types';
+import ScoreRing from '@/components/ScoreRing';
 
 export default function JudgeProfile() {
   const params = useParams();
-  const judge = allJudges.find(j => j.clId === Number(params.id));
+  const [judge, setJudge] = useState<Judge | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const id = Number(params.id);
+    if (!isNaN(id)) {
+      fetchJudgeById(id).then(j => {
+        setJudge(j);
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+    }
+  }, [params.id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-4xl animate-pulse">⚖️</div>
+      </div>
+    );
+  }
 
   if (!judge) {
     return (
@@ -23,6 +47,7 @@ export default function JudgeProfile() {
   }
 
   const clProfileUrl = `https://www.courtlistener.com/person/${judge.slug}/`;
+  const hasScore = judge.accountabilityScore !== null && judge.accountabilityScore !== undefined;
 
   return (
     <div className="min-h-screen">
@@ -37,10 +62,14 @@ export default function JudgeProfile() {
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         {/* Judge Header */}
         <div className="bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border)] red-glow">
-          <div className="flex items-start gap-6">
-            <div className="w-20 h-20 rounded-full bg-[var(--bg-secondary)] border-2 border-[var(--border)] flex items-center justify-center text-3xl shrink-0">
-              ⚖️
-            </div>
+          <div className="flex flex-col md:flex-row items-start gap-6">
+            {hasScore ? (
+              <ScoreRing score={judge.accountabilityScore!} size={120} strokeWidth={8} />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-[var(--bg-secondary)] border-2 border-[var(--border)] flex items-center justify-center text-3xl shrink-0">
+                ⚖️
+              </div>
+            )}
 
             <div className="flex-1">
               <h1 className="text-2xl font-bold text-[var(--text-primary)]">{judge.name}</h1>
@@ -83,46 +112,17 @@ export default function JudgeProfile() {
           <div className="bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">📋 Background</h2>
             <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-sm text-[var(--text-muted)]">Court</span>
-                <span className="text-sm text-[var(--text-primary)] text-right max-w-[60%]">{judge.courtFull}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-[var(--text-muted)]">Jurisdiction</span>
-                <span className="text-sm text-[var(--text-primary)]">{judge.jurisdiction}</span>
-              </div>
-              {judge.education && (
-                <div className="flex justify-between">
-                  <span className="text-sm text-[var(--text-muted)]">Law School</span>
-                  <span className="text-sm text-[var(--text-primary)]">{judge.education}</span>
-                </div>
-              )}
-              {judge.yearStarted && (
-                <div className="flex justify-between">
-                  <span className="text-sm text-[var(--text-muted)]">Appointed</span>
-                  <span className="text-sm text-[var(--text-primary)]">{judge.yearStarted}</span>
-                </div>
-              )}
-              {judge.appointedBy && (
-                <div className="flex justify-between">
-                  <span className="text-sm text-[var(--text-muted)]">Appointed By</span>
-                  <span className="text-sm text-[var(--text-primary)]">{judge.appointedBy}</span>
-                </div>
-              )}
+              <DetailRow label="Court" value={judge.courtFull} />
+              <DetailRow label="Jurisdiction" value={judge.jurisdiction} />
+              {judge.education && <DetailRow label="Law School" value={judge.education} />}
+              {judge.yearStarted && <DetailRow label="Appointed" value={String(judge.yearStarted)} />}
+              {judge.appointedBy && <DetailRow label="Appointed By" value={judge.appointedBy} />}
               {judge.party && (
                 <div className="flex justify-between">
                   <span className="text-sm text-[var(--text-muted)]">Party</span>
                   <span className={`text-sm font-medium ${
                     judge.party === 'Republican' ? 'text-red-400' : 'text-blue-400'
                   }`}>{judge.party}</span>
-                </div>
-              )}
-              {judge.confirmationVotesYes !== null && (
-                <div className="flex justify-between">
-                  <span className="text-sm text-[var(--text-muted)]">Confirmation Vote</span>
-                  <span className="text-sm text-[var(--text-primary)]">
-                    {judge.confirmationVotesYes}-{judge.confirmationVotesNo}
-                  </span>
                 </div>
               )}
             </div>
@@ -132,17 +132,31 @@ export default function JudgeProfile() {
           <div className="bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">📊 Accountability Score</h2>
 
-            <div className="p-6 rounded-lg bg-[var(--bg-secondary)] text-center">
-              <div className="text-4xl mb-2">📊</div>
-              <div className="text-xl font-bold text-amber-400">Data Collection In Progress</div>
-              <p className="text-sm text-[var(--text-muted)] mt-2">
-                We&apos;re collecting case outcome data from PACER and the US Sentencing Commission to calculate
-                this judge&apos;s accountability score. Check back soon.
-              </p>
-            </div>
+            {hasScore && judge.stats ? (
+              <div className="space-y-4">
+                <div className="flex justify-center">
+                  <ScoreRing score={judge.accountabilityScore!} size={100} strokeWidth={8} />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <StatBox label="Total Cases" value={judge.stats.totalCases.toLocaleString()} />
+                  <StatBox label="Reversal Rate" value={`${judge.stats.reversalRate}%`}
+                    color={judge.stats.reversalRate > 5 ? 'text-red-400' : 'text-green-400'} />
+                  <StatBox label="vs Guidelines" value={`${judge.stats.avgSentenceVsGuideline > 0 ? '+' : ''}${judge.stats.avgSentenceVsGuideline}%`} />
+                  <StatBox label="Cases/Year" value={String(judge.stats.caseloadPerYear)} />
+                </div>
+              </div>
+            ) : (
+              <div className="p-6 rounded-lg bg-[var(--bg-secondary)] text-center">
+                <div className="text-4xl mb-2">📊</div>
+                <div className="text-xl font-bold text-amber-400">Data Collection In Progress</div>
+                <p className="text-sm text-[var(--text-muted)] mt-2">
+                  We&apos;re collecting case outcome data to calculate this judge&apos;s accountability score.
+                </p>
+              </div>
+            )}
 
             <div className="mt-4 p-4 rounded-lg bg-[var(--bg-secondary)]">
-              <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Score Components (coming soon):</h3>
+              <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Score Components:</h3>
               <div className="space-y-2 text-xs text-[var(--text-muted)]">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500" />
@@ -150,7 +164,7 @@ export default function JudgeProfile() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  <span>Guideline Adherence (25%) — Sentencing vs. recommended guidelines</span>
+                  <span>Guideline Adherence (25%) — Sentencing vs. recommended</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-orange-500" />
@@ -165,7 +179,7 @@ export default function JudgeProfile() {
           </div>
         </div>
 
-        {/* Community Reviews placeholder */}
+        {/* Community Reviews */}
         <div className="bg-[var(--bg-card)] rounded-xl p-6 border border-[var(--border)]">
           <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">💬 Community Reviews</h2>
           <div className="text-center py-8">
@@ -195,6 +209,25 @@ export default function JudgeProfile() {
           </div>
         </div>
       </main>
+    </div>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value?: string | null }) {
+  if (!value) return null;
+  return (
+    <div className="flex justify-between">
+      <span className="text-sm text-[var(--text-muted)]">{label}</span>
+      <span className="text-sm text-[var(--text-primary)] text-right max-w-[60%]">{value}</span>
+    </div>
+  );
+}
+
+function StatBox({ label, value, color }: { label: string; value: string; color?: string }) {
+  return (
+    <div className="p-3 rounded-lg bg-[var(--bg-secondary)] text-center">
+      <div className={`text-lg font-bold ${color || 'text-[var(--text-primary)]'}`}>{value}</div>
+      <div className="text-xs text-[var(--text-muted)]">{label}</div>
     </div>
   );
 }

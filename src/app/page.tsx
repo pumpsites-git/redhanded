@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { allJudges, getStates } from '@/lib/judges';
+import { useState, useMemo, useEffect, useCallback } from 'react';
+import { fetchJudges, fetchStats, fetchStates } from '@/lib/judges';
+import { Judge } from '@/lib/types';
 import JudgeCard from '@/components/JudgeCard';
 import SearchBar from '@/components/SearchBar';
 import StatsOverview from '@/components/StatsOverview';
@@ -12,51 +13,45 @@ export default function Home() {
   const [query, setQuery] = useState('');
   const [stateFilter, setStateFilter] = useState('');
   const [partyFilter, setPartyFilter] = useState('');
-  const [sortBy, setSortBy] = useState<'years' | 'name' | 'state'>('years');
+  const [sortBy, setSortBy] = useState<'years' | 'name' | 'state' | 'score'>('years');
   const [page, setPage] = useState(0);
 
-  const states = useMemo(() => getStates(), []);
+  const [judges, setJudges] = useState<Judge[]>([]);
+  const [total, setTotal] = useState(0);
+  const [states, setStates] = useState<string[]>([]);
+  const [overview, setOverview] = useState({
+    totalJudges: 0, totalStates: 0, totalCourts: 0,
+    partyBreakdown: { dem: 0, rep: 0, other: 0 },
+  });
+  const [loading, setLoading] = useState(true);
 
-  const overview = useMemo(() => {
-    const dem = allJudges.filter(j => j.party === 'Democratic').length;
-    const rep = allJudges.filter(j => j.party === 'Republican').length;
-    return {
-      totalJudges: allJudges.length,
-      totalStates: new Set(allJudges.map(j => j.state)).size,
-      totalCourts: new Set(allJudges.map(j => j.court)).size,
-      partyBreakdown: { dem, rep, other: allJudges.length - dem - rep },
-    };
+  // Load stats and states on mount
+  useEffect(() => {
+    fetchStats().then(setOverview);
+    fetchStates().then(setStates);
   }, []);
 
-  const filtered = useMemo(() => {
-    let judges = [...allJudges];
+  // Load judges on filter/sort/page change
+  const loadJudges = useCallback(async () => {
+    setLoading(true);
+    const result = await fetchJudges({
+      query: query || undefined,
+      state: stateFilter || undefined,
+      party: partyFilter || undefined,
+      sortBy,
+      limit: JUDGES_PER_PAGE,
+      offset: page * JUDGES_PER_PAGE,
+    });
+    setJudges(result.judges);
+    setTotal(result.total);
+    setLoading(false);
+  }, [query, stateFilter, partyFilter, sortBy, page]);
 
-    if (query) {
-      const q = query.toLowerCase();
-      judges = judges.filter(j =>
-        j.name.toLowerCase().includes(q) ||
-        j.court.toLowerCase().includes(q) ||
-        j.courtFull.toLowerCase().includes(q) ||
-        j.state.toLowerCase().includes(q) ||
-        (j.education && j.education.toLowerCase().includes(q)) ||
-        (j.party && j.party.toLowerCase().includes(q))
-      );
-    }
+  useEffect(() => {
+    loadJudges();
+  }, [loadJudges]);
 
-    if (stateFilter) judges = judges.filter(j => j.state === stateFilter);
-    if (partyFilter) judges = judges.filter(j => j.party === partyFilter);
-
-    switch (sortBy) {
-      case 'name': judges.sort((a, b) => a.name.localeCompare(b.name)); break;
-      case 'state': judges.sort((a, b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name)); break;
-      case 'years': default: judges.sort((a, b) => b.yearsServing - a.yearsServing); break;
-    }
-
-    return judges;
-  }, [query, stateFilter, partyFilter, sortBy]);
-
-  const paginated = filtered.slice(page * JUDGES_PER_PAGE, (page + 1) * JUDGES_PER_PAGE);
-  const totalPages = Math.ceil(filtered.length / JUDGES_PER_PAGE);
+  const totalPages = Math.ceil(total / JUDGES_PER_PAGE);
 
   return (
     <div className="min-h-screen">
@@ -84,18 +79,16 @@ export default function Home() {
           states={states}
         />
 
-        {/* Data notice */}
         <div className="bg-amber-900/10 border border-amber-800/30 rounded-lg p-4">
           <p className="text-sm text-amber-400">
-            📊 <strong>Live Data:</strong> {allJudges.length} federal judges loaded from CourtListener.
-            Accountability scores are pending — case outcome data (reversal rates, sentencing patterns)
-            is being collected from PACER and the US Sentencing Commission.
+            📊 <strong>Live Database:</strong> {overview.totalJudges} federal judges loaded from CourtListener via Supabase.
+            Accountability scores are being calculated as case data is collected.
           </p>
         </div>
 
         <div className="flex items-center justify-between">
           <span className="text-sm text-[var(--text-muted)]">
-            {filtered.length} judge{filtered.length !== 1 ? 's' : ''} found
+            {total} judge{total !== 1 ? 's' : ''} found
             {totalPages > 1 && ` · Page ${page + 1} of ${totalPages}`}
           </span>
           <div className="flex items-center gap-2">
@@ -108,24 +101,31 @@ export default function Home() {
               <option value="years">Most Experience</option>
               <option value="name">Name A-Z</option>
               <option value="state">State</option>
+              <option value="score">Accountability Score</option>
             </select>
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {paginated.map((judge) => (
-            <JudgeCard key={judge.id} judge={judge} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-16">
+            <div className="text-4xl mb-4 animate-pulse">⚖️</div>
+            <p className="text-[var(--text-secondary)]">Loading judges...</p>
+          </div>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2">
+            {judges.map((judge) => (
+              <JudgeCard key={judge.id} judge={judge} />
+            ))}
+          </div>
+        )}
 
-        {filtered.length === 0 && (
+        {!loading && judges.length === 0 && (
           <div className="text-center py-16">
             <div className="text-4xl mb-4">🔍</div>
             <p className="text-[var(--text-secondary)]">No judges match your search criteria</p>
           </div>
         )}
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2">
             <button
@@ -154,7 +154,7 @@ export default function Home() {
               🔴 RedHanded — All data sourced from public court records via CourtListener
             </p>
             <p className="text-xs text-[var(--text-muted)]">
-              Federal judge data updated from CourtListener API. Accountability scores pending case outcome data collection.
+              Federal judge data powered by Supabase. Accountability scores calculated from reversal rates, sentencing patterns, and community input.
             </p>
           </div>
         </footer>

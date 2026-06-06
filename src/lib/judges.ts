@@ -1,82 +1,229 @@
-import rawJudges from '@/data/judges.json';
+import { supabase } from './supabase';
 import { Judge } from './types';
 
-// Load and type-cast the real CourtListener data
-export const allJudges: Judge[] = (rawJudges as Judge[]).map(j => ({
-  ...j,
-  // Placeholder accountability score (seeded from available data)
-  // Real scoring engine will use case outcomes, reversal rates, etc.
-  accountabilityScore: generatePlaceholderScore(j),
-}));
+// For static/build-time fallback
+import rawJudges from '@/data/judges.json';
 
 /**
- * Temporary placeholder score based on available metadata.
- * This will be replaced by the real scoring engine that uses:
- * - Reversal rates (from PACER appeals data)
- * - Sentencing vs guidelines (from USSC data)
- * - Recidivism impact (from DOJ data)
- * - Community reviews
- * 
- * For now, we show "Data Collection" status for judges without
- * enough case data to compute a meaningful score.
+ * Fetch judges from Supabase with search, filter, sort, and pagination.
+ * Falls back to static JSON if Supabase is unavailable.
  */
-function generatePlaceholderScore(judge: Judge): number | undefined {
-  // We don't have real case data yet — return undefined
-  // to show "Pending" in the UI instead of fake numbers
-  return undefined;
-}
-
-// Get unique states from the dataset
-export function getStates(): string[] {
-  return [...new Set(allJudges.map(j => j.state))].sort();
-}
-
-// Get unique courts
-export function getCourts(): string[] {
-  return [...new Set(allJudges.map(j => j.court))].sort();
-}
-
-// Search and filter judges
-export function searchJudges(opts: {
+export async function fetchJudges(opts: {
   query?: string;
   state?: string;
   party?: string;
-  abaRating?: string;
-  sortBy?: 'name' | 'years' | 'state' | 'court';
+  sortBy?: 'years' | 'name' | 'state' | 'score';
   limit?: number;
   offset?: number;
-}): { judges: Judge[]; total: number } {
-  let filtered = [...allJudges];
-
-  if (opts.query) {
-    const q = opts.query.toLowerCase();
-    filtered = filtered.filter(j =>
-      j.name.toLowerCase().includes(q) ||
-      j.court.toLowerCase().includes(q) ||
-      j.courtFull.toLowerCase().includes(q) ||
-      j.state.toLowerCase().includes(q) ||
-      (j.education && j.education.toLowerCase().includes(q)) ||
-      (j.party && j.party.toLowerCase().includes(q))
-    );
-  }
-
-  if (opts.state) filtered = filtered.filter(j => j.state === opts.state);
-  if (opts.party) filtered = filtered.filter(j => j.party === opts.party);
-  if (opts.abaRating) filtered = filtered.filter(j => j.abaRating === opts.abaRating);
-
-  switch (opts.sortBy) {
-    case 'name': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
-    case 'state': filtered.sort((a, b) => a.state.localeCompare(b.state)); break;
-    case 'court': filtered.sort((a, b) => a.court.localeCompare(b.court)); break;
-    case 'years': default: filtered.sort((a, b) => b.yearsServing - a.yearsServing); break;
-  }
-
-  const total = filtered.length;
+}): Promise<{ judges: Judge[]; total: number }> {
   const limit = opts.limit || 20;
   const offset = opts.offset || 0;
 
+  try {
+    let q = supabase
+      .from('judges')
+      .select('*', { count: 'exact' });
+
+    // Full-text search
+    if (opts.query) {
+      q = q.or(`name.ilike.%${opts.query}%,court.ilike.%${opts.query}%,court_full.ilike.%${opts.query}%,state.ilike.%${opts.query}%,education.ilike.%${opts.query}%`);
+    }
+
+    if (opts.state) q = q.eq('state', opts.state);
+    if (opts.party) q = q.eq('party', opts.party);
+
+    // Sorting
+    switch (opts.sortBy) {
+      case 'name':
+        q = q.order('name', { ascending: true });
+        break;
+      case 'state':
+        q = q.order('state', { ascending: true }).order('name', { ascending: true });
+        break;
+      case 'score':
+        q = q.order('accountability_score', { ascending: true, nullsFirst: false });
+        break;
+      case 'years':
+      default:
+        q = q.order('years_serving', { ascending: false });
+        break;
+    }
+
+    q = q.range(offset, offset + limit - 1);
+
+    const { data, error, count } = await q;
+
+    if (error) throw error;
+
+    // Map snake_case DB fields to camelCase
+    const judges: Judge[] = (data || []).map(mapDbToJudge);
+
+    return { judges, total: count || 0 };
+  } catch (err) {
+    console.warn('Supabase unavailable, falling back to static data:', err);
+    return fallbackSearch(opts);
+  }
+}
+
+/**
+ * Fetch a single judge by CourtListener ID
+ */
+export async function fetchJudgeById(clId: number): Promise<Judge | null> {
+  try {
+    const { data, error } = await supabase
+      .from('judges')
+      .select('*')
+      .eq('cl_id', clId)
+      .single();
+
+    if (error || !data) return null;
+    return mapDbToJudge(data);
+  } catch {
+    // Fallback to static
+    const judge = rawJudges.find((j: any) => j.clId === clId);
+    return judge ? (judge as unknown as Judge) : null;
+  }
+}
+
+/**
+ * Fetch aggregate stats
+ */
+export async function fetchStats(): Promise<{
+  totalJudges: number;
+  totalStates: number;
+  totalCourts: number;
+  partyBreakdown: { dem: number; rep: number; other: number };
+}> {
+  try {
+    const { count: total } = await supabase
+      .from('judges')
+      .select('*', { count: 'exact', head: true });
+
+    const { data: stateData } = await supabase
+      .from('judges')
+      .select('state');
+
+    const { data: courtData } = await supabase
+      .from('judges')
+      .select('court');
+
+    const { count: demCount } = await supabase
+      .from('judges')
+      .select('*', { count: 'exact', head: true })
+      .eq('party', 'Democratic');
+
+    const { count: repCount } = await supabase
+      .from('judges')
+      .select('*', { count: 'exact', head: true })
+      .eq('party', 'Republican');
+
+    const states = new Set((stateData || []).map(d => d.state));
+    const courts = new Set((courtData || []).map(d => d.court));
+
+    return {
+      totalJudges: total || 0,
+      totalStates: states.size,
+      totalCourts: courts.size,
+      partyBreakdown: {
+        dem: demCount || 0,
+        rep: repCount || 0,
+        other: (total || 0) - (demCount || 0) - (repCount || 0),
+      },
+    };
+  } catch {
+    // Fallback
+    const dem = rawJudges.filter((j: any) => j.party === 'Democratic').length;
+    const rep = rawJudges.filter((j: any) => j.party === 'Republican').length;
+    return {
+      totalJudges: rawJudges.length,
+      totalStates: new Set(rawJudges.map((j: any) => j.state)).size,
+      totalCourts: new Set(rawJudges.map((j: any) => j.court)).size,
+      partyBreakdown: { dem, rep, other: rawJudges.length - dem - rep },
+    };
+  }
+}
+
+/**
+ * Fetch unique states from DB
+ */
+export async function fetchStates(): Promise<string[]> {
+  try {
+    const { data } = await supabase
+      .from('judges')
+      .select('state');
+    return [...new Set((data || []).map(d => d.state))].sort();
+  } catch {
+    return [...new Set(rawJudges.map((j: any) => j.state))].sort();
+  }
+}
+
+// === HELPERS ===
+
+function mapDbToJudge(row: any): Judge {
   return {
-    judges: filtered.slice(offset, offset + limit),
-    total,
+    id: row.id,
+    clId: row.cl_id,
+    name: row.name,
+    slug: row.slug,
+    gender: row.gender,
+    court: row.court,
+    courtFull: row.court_full,
+    courtId: row.court_id,
+    courtType: row.court_type,
+    jurisdiction: row.jurisdiction,
+    state: row.state,
+    appointedBy: row.appointed_by,
+    party: row.party,
+    yearStarted: row.year_started,
+    yearsServing: row.years_serving,
+    education: row.education,
+    abaRating: row.aba_rating,
+    isActive: row.is_active,
+    confirmationVotesYes: row.confirmation_votes_yes,
+    confirmationVotesNo: row.confirmation_votes_no,
+    race: row.race || [],
+    hasPhoto: row.has_photo,
+    photoUrl: row.photo_url,
+    accountabilityScore: row.accountability_score,
+    stats: row.total_cases ? {
+      totalCases: row.total_cases,
+      sentencingRate: 0,
+      avgSentenceVsGuideline: row.avg_sentence_vs_guideline || 0,
+      reversalRate: row.reversal_rate || 0,
+      bailDenialRate: row.bail_denial_rate || 0,
+      recidivismRate: row.recidivism_rate,
+      caseloadPerYear: row.caseload_per_year || 0,
+      avgCaseResolutionDays: 0,
+    } : undefined,
   };
+}
+
+function fallbackSearch(opts: {
+  query?: string;
+  state?: string;
+  party?: string;
+  sortBy?: string;
+  limit?: number;
+  offset?: number;
+}): { judges: Judge[]; total: number } {
+  let judges = rawJudges as unknown as Judge[];
+
+  if (opts.query) {
+    const q = opts.query.toLowerCase();
+    judges = judges.filter(j =>
+      j.name.toLowerCase().includes(q) ||
+      j.court.toLowerCase().includes(q) ||
+      j.state.toLowerCase().includes(q)
+    );
+  }
+  if (opts.state) judges = judges.filter(j => j.state === opts.state);
+  if (opts.party) judges = judges.filter(j => j.party === opts.party);
+
+  judges.sort((a, b) => b.yearsServing - a.yearsServing);
+
+  const total = judges.length;
+  const limit = opts.limit || 20;
+  const offset = opts.offset || 0;
+
+  return { judges: judges.slice(offset, offset + limit), total };
 }
