@@ -6,6 +6,7 @@ import { Judge } from '@/lib/types';
 import JudgeCard from '@/components/JudgeCard';
 import SearchBar from '@/components/SearchBar';
 import StatsOverview from '@/components/StatsOverview';
+import USMap from '@/components/USMap';
 
 const JUDGES_PER_PAGE = 20;
 
@@ -25,10 +26,22 @@ export default function Home() {
   });
   const [loading, setLoading] = useState(true);
 
+  const [stateJudgeCounts, setStateJudgeCounts] = useState<{code:string;name:string;judgeCount:number}[]>([]);
+
   // Load stats and states on mount
   useEffect(() => {
     fetchStats().then(setOverview);
-    fetchStates().then(setStates);
+    fetchStates().then(s => {
+      setStates(s);
+      // Build state counts for map
+      fetchJudges({ limit: 500 }).then(({ judges: allJ }) => {
+        const counts = new Map<string, number>();
+        allJ.forEach(j => counts.set(j.state, (counts.get(j.state) || 0) + 1));
+        setStateJudgeCounts(
+          Array.from(counts.entries()).map(([code, count]) => ({ code, name: code, judgeCount: count }))
+        );
+      });
+    });
   }, []);
 
   // Load judges on filter/sort/page change
@@ -71,6 +84,11 @@ export default function Home() {
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
         <StatsOverview {...overview} />
+
+        <USMap
+          stateData={stateJudgeCounts}
+          onStateClick={(code) => { setStateFilter(code); setPage(0); }}
+        />
 
         <SearchBar
           onSearch={(q) => { setQuery(q); setPage(0); }}
