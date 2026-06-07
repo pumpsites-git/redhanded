@@ -1,0 +1,660 @@
+{
+  "0": {
+    "name": "Maine",
+    "court_listener_id": "med",
+    "state": "ME",
+    "circuit": 1,
+    "ussc_code": 0
+  },
+  "1": {
+    "name": "Massachusetts",
+    "court_listener_id": "mad",
+    "state": "MA",
+    "circuit": 1,
+    "ussc_code": 1
+  },
+  "2": {
+    "name": "New Hampshire",
+    "court_listener_id": "nhd",
+    "state": "NH",
+    "circuit": 1,
+    "ussc_code": 2
+  },
+  "3": {
+    "name": "Rhode Island",
+    "court_listener_id": "rid",
+    "state": "RI",
+    "circuit": 1,
+    "ussc_code": 3
+  },
+  "4": {
+    "name": "Puerto Rico",
+    "court_listener_id": "prd",
+    "state": "PR",
+    "circuit": 1,
+    "ussc_code": 4
+  },
+  "5": {
+    "name": "Connecticut",
+    "court_listener_id": "ctd",
+    "state": "CT",
+    "circuit": 2,
+    "ussc_code": 5
+  },
+  "6": {
+    "name": "New York Northern",
+    "court_listener_id": "nynd",
+    "state": "NY",
+    "circuit": 2,
+    "ussc_code": 6
+  },
+  "7": {
+    "name": "New York Eastern",
+    "court_listener_id": "nyed",
+    "state": "NY",
+    "circuit": 2,
+    "ussc_code": 7
+  },
+  "8": {
+    "name": "New York Southern",
+    "court_listener_id": "nysd",
+    "state": "NY",
+    "circuit": 2,
+    "ussc_code": 8
+  },
+  "9": {
+    "name": "New York Western",
+    "court_listener_id": "nywb",
+    "state": "NY",
+    "circuit": 2,
+    "ussc_code": 9
+  },
+  "10": {
+    "name": "Vermont",
+    "court_listener_id": "vtd",
+    "state": "VT",
+    "circuit": 2,
+    "ussc_code": 10
+  },
+  "11": {
+    "name": "Delaware",
+    "court_listener_id": "ded",
+    "state": "DE",
+    "circuit": 3,
+    "ussc_code": 11
+  },
+  "12": {
+    "name": "New Jersey",
+    "court_listener_id": "njd",
+    "state": "NJ",
+    "circuit": 3,
+    "ussc_code": 12
+  },
+  "13": {
+    "name": "Pennsylvania Eastern",
+    "court_listener_id": "paed",
+    "state": "PA",
+    "circuit": 3,
+    "ussc_code": 13
+  },
+  "14": {
+    "name": "Pennsylvania Middle",
+    "court_listener_id": "pamd",
+    "state": "PA",
+    "circuit": 3,
+    "ussc_code": 14
+  },
+  "15": {
+    "name": "Pennsylvania Western",
+    "court_listener_id": "pawd",
+    "state": "PA",
+    "circuit": 3,
+    "ussc_code": 15
+  },
+  "16": {
+    "name": "Maryland",
+    "court_listener_id": "mdd",
+    "state": "MD",
+    "circuit": 4,
+    "ussc_code": 16
+  },
+  "17": {
+    "name": "North Carolina Eastern",
+    "court_listener_id": "nced",
+    "state": "NC",
+    "circuit": 4,
+    "ussc_code": 17
+  },
+  "18": {
+    "name": "North Carolina Middle",
+    "court_listener_id": "ncmd",
+    "state": "NC",
+    "circuit": 4,
+    "ussc_code": 18
+  },
+  "19": {
+    "name": "North Carolina Western",
+    "court_listener_id": "ncwd",
+    "state": "NC",
+    "circuit": 4,
+    "ussc_code": 19
+  },
+  "20": {
+    "name": "South Carolina",
+    "court_listener_id": "scd",
+    "state": "SC",
+    "circuit": 4,
+    "ussc_code": 20
+  },
+  "22": {
+    "name": "Virginia Eastern",
+    "court_listener_id": "vaed",
+    "state": "VA",
+    "circuit": 4,
+    "ussc_code": 22
+  },
+  "23": {
+    "name": "Virginia Western",
+    "court_listener_id": "vawd",
+    "state": "VA",
+    "circuit": 4,
+    "ussc_code": 23
+  },
+  "24": {
+    "name": "West Virginia Northern",
+    "court_listener_id": "wvnd",
+    "state": "WV",
+    "circuit": 4,
+    "ussc_code": 24
+  },
+  "25": {
+    "name": "West Virginia Southern",
+    "court_listener_id": "wvsd",
+    "state": "WV",
+    "circuit": 4,
+    "ussc_code": 25
+  },
+  "26": {
+    "name": "Alabama Northern",
+    "court_listener_id": "alnd",
+    "state": "AL",
+    "circuit": 11,
+    "ussc_code": 26
+  },
+  "27": {
+    "name": "Alabama Middle",
+    "court_listener_id": "almd",
+    "state": "AL",
+    "circuit": 11,
+    "ussc_code": 27
+  },
+  "28": {
+    "name": "Alabama Southern",
+    "court_listener_id": "alsd",
+    "state": "AL",
+    "circuit": 11,
+    "ussc_code": 28
+  },
+  "29": {
+    "name": "Florida Northern",
+    "court_listener_id": "flnd",
+    "state": "FL",
+    "circuit": 11,
+    "ussc_code": 29
+  },
+  "30": {
+    "name": "Florida Middle",
+    "court_listener_id": "flmd",
+    "state": "FL",
+    "circuit": 11,
+    "ussc_code": 30
+  },
+  "31": {
+    "name": "Florida Southern",
+    "court_listener_id": "flsd",
+    "state": "FL",
+    "circuit": 11,
+    "ussc_code": 31
+  },
+  "32": {
+    "name": "Georgia Northern",
+    "court_listener_id": "gand",
+    "state": "GA",
+    "circuit": 11,
+    "ussc_code": 32
+  },
+  "33": {
+    "name": "Georgia Middle",
+    "court_listener_id": "gamd",
+    "state": "GA",
+    "circuit": 11,
+    "ussc_code": 33
+  },
+  "34": {
+    "name": "Georgia Southern",
+    "court_listener_id": "gasd",
+    "state": "GA",
+    "circuit": 11,
+    "ussc_code": 34
+  },
+  "35": {
+    "name": "Louisiana Eastern",
+    "court_listener_id": "laed",
+    "state": "LA",
+    "circuit": 5,
+    "ussc_code": 35
+  },
+  "36": {
+    "name": "Louisiana Western",
+    "court_listener_id": "lawd",
+    "state": "LA",
+    "circuit": 5,
+    "ussc_code": 36
+  },
+  "37": {
+    "name": "Mississippi Northern",
+    "court_listener_id": "msnd",
+    "state": "MS",
+    "circuit": 5,
+    "ussc_code": 37
+  },
+  "38": {
+    "name": "Mississippi Southern",
+    "court_listener_id": "mssd",
+    "state": "MS",
+    "circuit": 5,
+    "ussc_code": 38
+  },
+  "39": {
+    "name": "Texas Northern",
+    "court_listener_id": "txnd",
+    "state": "TX",
+    "circuit": 5,
+    "ussc_code": 39
+  },
+  "40": {
+    "name": "Texas Eastern",
+    "court_listener_id": "txed",
+    "state": "TX",
+    "circuit": 5,
+    "ussc_code": 40
+  },
+  "41": {
+    "name": "Texas Southern",
+    "court_listener_id": "txsd",
+    "state": "TX",
+    "circuit": 5,
+    "ussc_code": 41
+  },
+  "42": {
+    "name": "Texas Western",
+    "court_listener_id": "txwd",
+    "state": "TX",
+    "circuit": 5,
+    "ussc_code": 42
+  },
+  "43": {
+    "name": "Kentucky Eastern",
+    "court_listener_id": "kyed",
+    "state": "KY",
+    "circuit": 6,
+    "ussc_code": 43
+  },
+  "44": {
+    "name": "Kentucky Western",
+    "court_listener_id": "kywd",
+    "state": "KY",
+    "circuit": 6,
+    "ussc_code": 44
+  },
+  "45": {
+    "name": "Michigan Eastern",
+    "court_listener_id": "mied",
+    "state": "MI",
+    "circuit": 6,
+    "ussc_code": 45
+  },
+  "46": {
+    "name": "Michigan Western",
+    "court_listener_id": "miwd",
+    "state": "MI",
+    "circuit": 6,
+    "ussc_code": 46
+  },
+  "47": {
+    "name": "Ohio Northern",
+    "court_listener_id": "ohnd",
+    "state": "OH",
+    "circuit": 6,
+    "ussc_code": 47
+  },
+  "48": {
+    "name": "Ohio Southern",
+    "court_listener_id": "ohsd",
+    "state": "OH",
+    "circuit": 6,
+    "ussc_code": 48
+  },
+  "49": {
+    "name": "Tennessee Eastern",
+    "court_listener_id": "tned",
+    "state": "TN",
+    "circuit": 6,
+    "ussc_code": 49
+  },
+  "50": {
+    "name": "Tennessee Middle",
+    "court_listener_id": "tnmd",
+    "state": "TN",
+    "circuit": 6,
+    "ussc_code": 50
+  },
+  "51": {
+    "name": "Tennessee Western",
+    "court_listener_id": "tnwd",
+    "state": "TN",
+    "circuit": 6,
+    "ussc_code": 51
+  },
+  "52": {
+    "name": "Illinois Northern",
+    "court_listener_id": "ilnd",
+    "state": "IL",
+    "circuit": 7,
+    "ussc_code": 52
+  },
+  "53": {
+    "name": "Illinois Central",
+    "court_listener_id": "ilcd",
+    "state": "IL",
+    "circuit": 7,
+    "ussc_code": 53
+  },
+  "54": {
+    "name": "Illinois Southern",
+    "court_listener_id": "ilsd",
+    "state": "IL",
+    "circuit": 7,
+    "ussc_code": 54
+  },
+  "55": {
+    "name": "Indiana Northern",
+    "court_listener_id": "innd",
+    "state": "IN",
+    "circuit": 7,
+    "ussc_code": 55
+  },
+  "56": {
+    "name": "Indiana Southern",
+    "court_listener_id": "insd",
+    "state": "IN",
+    "circuit": 7,
+    "ussc_code": 56
+  },
+  "57": {
+    "name": "Wisconsin Eastern",
+    "court_listener_id": "wied",
+    "state": "WI",
+    "circuit": 7,
+    "ussc_code": 57
+  },
+  "58": {
+    "name": "Wisconsin Western",
+    "court_listener_id": "wiwd",
+    "state": "WI",
+    "circuit": 7,
+    "ussc_code": 58
+  },
+  "60": {
+    "name": "Arkansas Eastern",
+    "court_listener_id": "ared",
+    "state": "AR",
+    "circuit": 8,
+    "ussc_code": 60
+  },
+  "61": {
+    "name": "Arkansas Western",
+    "court_listener_id": "arwd",
+    "state": "AR",
+    "circuit": 8,
+    "ussc_code": 61
+  },
+  "62": {
+    "name": "Iowa Northern",
+    "court_listener_id": "iand",
+    "state": "IA",
+    "circuit": 8,
+    "ussc_code": 62
+  },
+  "63": {
+    "name": "Iowa Southern",
+    "court_listener_id": "iasd",
+    "state": "IA",
+    "circuit": 8,
+    "ussc_code": 63
+  },
+  "64": {
+    "name": "Minnesota",
+    "court_listener_id": "mnd",
+    "state": "MN",
+    "circuit": 8,
+    "ussc_code": 64
+  },
+  "65": {
+    "name": "Missouri Eastern",
+    "court_listener_id": "moed",
+    "state": "MO",
+    "circuit": 8,
+    "ussc_code": 65
+  },
+  "66": {
+    "name": "Missouri Western",
+    "court_listener_id": "mowd",
+    "state": "MO",
+    "circuit": 8,
+    "ussc_code": 66
+  },
+  "67": {
+    "name": "Nebraska",
+    "court_listener_id": "ned",
+    "state": "NE",
+    "circuit": 8,
+    "ussc_code": 67
+  },
+  "68": {
+    "name": "North Dakota",
+    "court_listener_id": "ndd",
+    "state": "ND",
+    "circuit": 8,
+    "ussc_code": 68
+  },
+  "69": {
+    "name": "South Dakota",
+    "court_listener_id": "sdd",
+    "state": "SD",
+    "circuit": 8,
+    "ussc_code": 69
+  },
+  "70": {
+    "name": "Arizona",
+    "court_listener_id": "azd",
+    "state": "AZ",
+    "circuit": 9,
+    "ussc_code": 70
+  },
+  "71": {
+    "name": "California Northern",
+    "court_listener_id": "cand",
+    "state": "CA",
+    "circuit": 9,
+    "ussc_code": 71
+  },
+  "72": {
+    "name": "California Eastern",
+    "court_listener_id": "caed",
+    "state": "CA",
+    "circuit": 9,
+    "ussc_code": 72
+  },
+  "73": {
+    "name": "California Central",
+    "court_listener_id": "cacd",
+    "state": "CA",
+    "circuit": 9,
+    "ussc_code": 73
+  },
+  "74": {
+    "name": "California Southern",
+    "court_listener_id": "casd",
+    "state": "CA",
+    "circuit": 9,
+    "ussc_code": 74
+  },
+  "75": {
+    "name": "Hawaii",
+    "court_listener_id": "hid",
+    "state": "HI",
+    "circuit": 9,
+    "ussc_code": 75
+  },
+  "76": {
+    "name": "Idaho",
+    "court_listener_id": "idd",
+    "state": "ID",
+    "circuit": 9,
+    "ussc_code": 76
+  },
+  "77": {
+    "name": "Montana",
+    "court_listener_id": "mtd",
+    "state": "MT",
+    "circuit": 9,
+    "ussc_code": 77
+  },
+  "78": {
+    "name": "Nevada",
+    "court_listener_id": "nvd",
+    "state": "NV",
+    "circuit": 9,
+    "ussc_code": 78
+  },
+  "79": {
+    "name": "Oregon",
+    "court_listener_id": "ord",
+    "state": "OR",
+    "circuit": 9,
+    "ussc_code": 79
+  },
+  "80": {
+    "name": "Washington Eastern",
+    "court_listener_id": "waed",
+    "state": "WA",
+    "circuit": 9,
+    "ussc_code": 80
+  },
+  "81": {
+    "name": "Washington Western",
+    "court_listener_id": "wawd",
+    "state": "WA",
+    "circuit": 9,
+    "ussc_code": 81
+  },
+  "82": {
+    "name": "Colorado",
+    "court_listener_id": "cod",
+    "state": "CO",
+    "circuit": 10,
+    "ussc_code": 82
+  },
+  "83": {
+    "name": "Kansas",
+    "court_listener_id": "ksd",
+    "state": "KS",
+    "circuit": 10,
+    "ussc_code": 83
+  },
+  "84": {
+    "name": "New Mexico",
+    "court_listener_id": "nmd",
+    "state": "NM",
+    "circuit": 10,
+    "ussc_code": 84
+  },
+  "85": {
+    "name": "Oklahoma Northern",
+    "court_listener_id": "oknd",
+    "state": "OK",
+    "circuit": 10,
+    "ussc_code": 85
+  },
+  "86": {
+    "name": "Oklahoma Eastern",
+    "court_listener_id": "oked",
+    "state": "OK",
+    "circuit": 10,
+    "ussc_code": 86
+  },
+  "87": {
+    "name": "Oklahoma Western",
+    "court_listener_id": "okwd",
+    "state": "OK",
+    "circuit": 10,
+    "ussc_code": 87
+  },
+  "88": {
+    "name": "Utah",
+    "court_listener_id": "utd",
+    "state": "UT",
+    "circuit": 10,
+    "ussc_code": 88
+  },
+  "89": {
+    "name": "Wyoming",
+    "court_listener_id": "wyd",
+    "state": "WY",
+    "circuit": 10,
+    "ussc_code": 89
+  },
+  "90": {
+    "name": "District of Columbia",
+    "court_listener_id": "dcd",
+    "state": "DC",
+    "circuit": 0,
+    "ussc_code": 90
+  },
+  "91": {
+    "name": "Virgin Islands",
+    "court_listener_id": "vid",
+    "state": "VI",
+    "circuit": 3,
+    "ussc_code": 91
+  },
+  "93": {
+    "name": "Guam",
+    "court_listener_id": "gud",
+    "state": "GU",
+    "circuit": 9,
+    "ussc_code": 93
+  },
+  "94": {
+    "name": "Northern Mariana Islands",
+    "court_listener_id": "nmid",
+    "state": "MP",
+    "circuit": 9,
+    "ussc_code": 94
+  },
+  "95": {
+    "name": "Alaska",
+    "court_listener_id": "akd",
+    "state": "AK",
+    "circuit": 9,
+    "ussc_code": 95
+  },
+  "96": {
+    "name": "Louisiana Middle",
+    "court_listener_id": "lamd",
+    "state": "LA",
+    "circuit": 5,
+    "ussc_code": 96
+  }
+}
