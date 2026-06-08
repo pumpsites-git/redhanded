@@ -1,0 +1,143 @@
+{
+  "year": 2024,
+  "total_cases": 307173,
+  "release_decisions": {
+    "ROR": 160770,
+    "NMR/RUS": 43927,
+    "Bail Set": 41443,
+    "Disposed at arraign": 39552,
+    "Remanded": 10087,
+    "Unknown": 7822,
+    "": 3572
+  },
+  "release_outcomes": {
+    "ROR": 160770,
+    "": 50946,
+    "NMR/RUS": 43927,
+    "BailNotPaid w/in 5days": 35496,
+    "Remanded": 10087,
+    "BailPaid @arraign": 3468,
+    "BailPaid w/in 1-5days": 2479
+  },
+  "bail_set_count": 35032,
+  "bail_made_count": 0,
+  "bail_not_made_count": 0,
+  "bail_amounts": [],
+  "offense_class": {
+    "A Misdemeanor": 149564,
+    "D Felony": 48570,
+    "E Felony": 43988,
+    "Unclassified Misdemeanor": 17630,
+    "C Felony": 17545,
+    "B Felony": 15923,
+    "B Misdemeanor": 11169,
+    "A-II Felony": 1099,
+    "A-I Felony Non Reducible": 903,
+    "A-I Felony Reducible": 437,
+    "": 344,
+    "Local Law Felony": 1
+  },
+  "offense_vfo": {
+    "Not VFO": 265729,
+    "VFO": 39626,
+    "Underlying VFO Charge": 904,
+    "VFO-like class A-1 offenses": 570,
+    "": 344
+  },
+  "disposition": {
+    "Dismissed": 128039,
+    "Conviction": 103869,
+    "Pending": 50114,
+    "Covered by/Consolidated": 21266,
+    "Other/Unknown Favorable": 2534,
+    "No True Bill": 595,
+    "YO Adjudication": 547,
+    "Acquitted": 197,
+    "Removed to Family Court": 12
+  },
+  "sentence": {
+    "": 202757,
+    "Conditional Discharge": 34232,
+    "Fine": 29375,
+    "Time Served": 13781,
+    "Jail": 11736,
+    "Probation": 7115,
+    "Prison": 5395,
+    "Jail+Probation": 1734,
+    "Other": 1048
+  },
+  "counties": {
+    "Kings": 50154,
+    "Queens": 39773,
+    "New York": 36121,
+    "Bronx": 28811,
+    "Suffolk": 17484,
+    "Erie": 13351,
+    "Nassau": 13033,
+    "Westchester": 10775,
+    "Monroe": 8771,
+    "Richmond": 7431,
+    "Onondaga": 7206,
+    "Albany": 5147,
+    "Orange": 5067,
+    "Broome": 4679,
+    "Niagara": 3772,
+    "Oneida": 3638,
+    "Schenectady": 3269,
+    "Chautauqua": 3154,
+    "Dutchess": 3105,
+    "Saratoga": 2727,
+    "Rockland": 2719,
+    "Ulster": 2581,
+    "Oswego": 2007,
+    "Chemung": 1843,
+    "Rensselaer": 1836,
+    "Jefferson": 1680,
+    "Steuben": 1596,
+    "Cattaraugus": 1536,
+    "St. Lawrence": 1483,
+    "Warren": 1414
+  },
+  "regions": {
+    "NYC": 162290,
+    "Non-NYC": 144485,
+    "": 344,
+    "NYS unknown county or Out of NYS": 54
+  },
+  "sex": {
+    "Male": 239133,
+    "Female": 67615,
+    "Unknown": 425
+  },
+  "race": {
+    "Black": 118763,
+    "White": 85772,
+    "Hispanic": 84891,
+    "Asian": 11947,
+    "Other": 2586,
+    "Unknown": 1828,
+    "Native American": 1386
+  },
+  "supervision_conditions": {
+    "pretrial_supervision": 0,
+    "electronic_monitoring": 0,
+    "travel_restrictions": 0,
+    "no_firearms": 0,
+    "contact_pretrial_service": 0
+  },
+  "rearrest": {
+    "rearr_vfo": 10974,
+    "rearr_nonvfo": 33218,
+    "rearr_misd": 45595,
+    "rearr_fire": 1477
+  },
+  "detained_at_arraign": 0,
+  "disposed_at_arraign": 39552,
+  "bail_stats": {
+    "count": 35032,
+    "median": 5000.0,
+    "mean": 17996.453242749485,
+    "min": 1.0,
+    "max": 10000000.0
+  }
+}

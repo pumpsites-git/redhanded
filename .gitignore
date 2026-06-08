@@ -1,3 +1,12 @@
 node_modules/\n.next/\n.env.local\n*.png\nscreenshot*.mjs
 node_modules/
 .next/
+
+# Large raw data files — excluded from repo (too large for GitHub)
+data/state-courts/new-york/pretrial_raw/
+data/state-courts/new-york/pretrial_release_data.zip
+data/state-courts/new-york/*.xlsx
+data/state-courts/illinois/cook-county-felonies.json
+data/state-courts/illinois/cook-county-dispositions.json
+data/state-courts/illinois/cook-county-sentencing.json
+data/state-courts/illinois/cook-county-intake.json

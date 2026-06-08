@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: '/offenders', label: 'Offenders', icon: '🔍' },
   { href: '/insights', label: 'Insights', icon: '💡' },
   { href: '/methodology', label: 'Methodology', icon: '📐' },
+  { href: '/state-deep-dives', label: 'Deep Dives', icon: '🔬' },
 ];
 
 export default function NavBar() {

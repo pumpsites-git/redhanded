@@ -1,0 +1,1942 @@
+{
+  "source": "New York State Criminal Justice Data",
+  "data_sources": [
+    "DCJS Supplemental Pretrial Release Data File (2019-2024)",
+    "NY Open Data: Jail Population by County (2024-2025)",
+    "NY Open Data: Adult Arrests by County (2024-2025)",
+    "NY Open Data: Crime Index (2024)",
+    "NY Open Data: Recidivism (2019-2021, latest available)"
+  ],
+  "primary_year": 2024,
+  "pretrial_data_2024": {
+    "total_arraignments": 307173,
+    "release_decisions": {
+      "ROR_released_own_recognizance": 160770,
+      "NMR_non_monetary_release": 43927,
+      "bail_set": 41443,
+      "remanded": 10087,
+      "disposed_at_arraignment": 39552,
+      "unknown": 7822
+    },
+    "release_rates": {
+      "ror_pct": 52.3,
+      "nmr_pct": 14.3,
+      "bail_set_pct": 13.5,
+      "remanded_pct": 3.3,
+      "total_released_pct": 66.6
+    },
+    "bail_statistics": {
+      "cases_with_bail_amount": 35032,
+      "bail_made": 0,
+      "bail_not_made": 0,
+      "median_bail_amount": 5000.0,
+      "mean_bail_amount": 17996.453242749485,
+      "min_bail_amount": 1.0,
+      "max_bail_amount": 10000000.0
+    },
+    "offense_breakdown": {
+      "by_class": {
+        "A Misdemeanor": 149564,
+        "D Felony": 48570,
+        "E Felony": 43988,
+        "Unclassified Misdemeanor": 17630,
+        "C Felony": 17545,
+        "B Felony": 15923,
+        "B Misdemeanor": 11169,
+        "A-II Felony": 1099,
+        "A-I Felony Non Reducible": 903,
+        "A-I Felony Reducible": 437,
+        "": 344,
+        "Local Law Felony": 1
+      },
+      "violent_felony_offense": {
+        "Not VFO": 265729,
+        "VFO": 39626,
+        "Underlying VFO Charge": 904,
+        "VFO-like class A-1 offenses": 570,
+        "": 344
+      },
+      "vfo_count": 39626,
+      "non_vfo_count": 265729
+    },
+    "dispositions": {
+      "Dismissed": 128039,
+      "Conviction": 103869,
+      "Pending": 50114,
+      "Covered by/Consolidated": 21266,
+      "Other/Unknown Favorable": 2534,
+      "No True Bill": 595,
+      "YO Adjudication": 547,
+      "Acquitted": 197,
+      "Removed to Family Court": 12
+    },
+    "sentences": {
+      "": 202757,
+      "Conditional Discharge": 34232,
+      "Fine": 29375,
+      "Time Served": 13781,
+      "Jail": 11736,
+      "Probation": 7115,
+      "Prison": 5395,
+      "Jail+Probation": 1734,
+      "Other": 1048
+    },
+    "demographics": {
+      "by_sex": {
+        "Male": 239133,
+        "Female": 67615,
+        "Unknown": 425
+      },
+      "by_race": {
+        "Black": 118763,
+        "White": 85772,
+        "Hispanic": 84891,
+        "Asian": 11947,
+        "Other": 2586,
+        "Unknown": 1828,
+        "Native American": 1386
+      }
+    },
+    "regions": {
+      "NYC": 162290,
+      "Non-NYC": 144485,
+      "": 344,
+      "NYS unknown county or Out of NYS": 54
+    },
+    "supervision_conditions": {
+      "pretrial_supervision": 0,
+      "electronic_monitoring": 0,
+      "travel_restrictions": 0,
+      "no_firearms": 0,
+      "contact_pretrial_service": 0
+    },
+    "rearrest_indicators": {
+      "rearr_vfo": 10974,
+      "rearr_nonvfo": 33218,
+      "rearr_misd": 45595,
+      "rearr_fire": 1477
+    },
+    "top_counties_by_cases": {
+      "Kings": 50154,
+      "Queens": 39773,
+      "New York": 36121,
+      "Bronx": 28811,
+      "Suffolk": 17484,
+      "Erie": 13351,
+      "Nassau": 13033,
+      "Westchester": 10775,
+      "Monroe": 8771,
+      "Richmond": 7431,
+      "Onondaga": 7206,
+      "Albany": 5147,
+      "Orange": 5067,
+      "Broome": 4679,
+      "Niagara": 3772,
+      "Oneida": 3638,
+      "Schenectady": 3269,
+      "Chautauqua": 3154,
+      "Dutchess": 3105,
+      "Saratoga": 2727
+    }
+  },
+  "jail_population_2024": {
+    "total_facilities": 67,
+    "total_census": 26788,
+    "total_sentenced": 4580,
+    "total_unsentenced": 19090,
+    "technical_parole_violators": 499,
+    "state_readies": 489,
+    "by_facility": {
+      "All NYC Facilities": {
+        "census": 6353,
+        "sentenced": 543,
+        "unsentenced": 5613,
+        "technical_parole_violators": 21,
+        "state_readies": 75
+      },
+      "All Non-NYC Facilities": {
+        "census": 10217,
+        "sentenced": 2017,
+        "unsentenced": 6739,
+        "technical_parole_violators": 239,
+        "state_readies": 205
+      },
+      "Albany County Jail": {
+        "census": 478,
+        "sentenced": 28,
+        "unsentenced": 299,
+        "technical_parole_violators": 13,
+        "state_readies": 14
+      },
+      "Allegany County Jail": {
+        "census": 65,
+        "sentenced": 11,
+        "unsentenced": 42,
+        "technical_parole_violators": 1,
+        "state_readies": 0
+      },
+      "Broome County Jail": {
+        "census": 323,
+        "sentenced": 56,
+        "unsentenced": 235,
+        "technical_parole_violators": 5,
+        "state_readies": 6
+      },
+      "Cattaraugus County Jail": {
+        "census": 122,
+        "sentenced": 28,
+        "unsentenced": 61,
+        "technical_parole_violators": 5,
+        "state_readies": 1
+      },
+      "Cayuga County Jail": {
+        "census": 135,
+        "sentenced": 24,
+        "unsentenced": 89,
+        "technical_parole_violators": 2,
+        "state_readies": 4
+      },
+      "Chautauqua County Jail": {
+        "census": 175,
+        "sentenced": 29,
+        "unsentenced": 112,
+        "technical_parole_violators": 3,
+        "state_readies": 2
+      },
+      "Chemung County Jail": {
+        "census": 107,
+        "sentenced": 36,
+        "unsentenced": 65,
+        "technical_parole_violators": 3,
+        "state_readies": 2
+      },
+      "Chenango County Jail": {
+        "census": 88,
+        "sentenced": 24,
+        "unsentenced": 47,
+        "technical_parole_violators": 1,
+        "state_readies": 7
+      },
+      "Clinton County Jail": {
+        "census": 134,
+        "sentenced": 27,
+        "unsentenced": 65,
+        "technical_parole_violators": 6,
+        "state_readies": 2
+      },
+      "Columbia County Jail": {
+        "census": 40,
+        "sentenced": 3,
+        "unsentenced": 34,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Cortland County Jail": {
+        "census": 60,
+        "sentenced": 13,
+        "unsentenced": 44,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Delaware County Jail": {
+        "census": 89,
+        "sentenced": 7,
+        "unsentenced": 39,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Dutchess County Jail": {
+        "census": 206,
+        "sentenced": 26,
+        "unsentenced": 173,
+        "technical_parole_violators": 4,
+        "state_readies": 4
+      },
+      "Erie County CF": {
+        "census": 424,
+        "sentenced": 107,
+        "unsentenced": 304,
+        "technical_parole_violators": 11,
+        "state_readies": 1
+      },
+      "Erie County Jail": {
+        "census": 323,
+        "sentenced": 37,
+        "unsentenced": 260,
+        "technical_parole_violators": 15,
+        "state_readies": 10
+      },
+      "Erie County Yankee Compound": {
+        "census": 0,
+        "sentenced": 0,
+        "unsentenced": 0,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Essex County Sheriff": {
+        "census": 0,
+        "sentenced": 0,
+        "unsentenced": 0,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Essex County Jail": {
+        "census": 46,
+        "sentenced": 17,
+        "unsentenced": 21,
+        "technical_parole_violators": 2,
+        "state_readies": 1
+      },
+      "Franklin County Jail": {
+        "census": 78,
+        "sentenced": 17,
+        "unsentenced": 53,
+        "technical_parole_violators": 3,
+        "state_readies": 2
+      },
+      "Fulton County Jail": {
+        "census": 89,
+        "sentenced": 27,
+        "unsentenced": 57,
+        "technical_parole_violators": 2,
+        "state_readies": 2
+      },
+      "Genesee County Jail": {
+        "census": 69,
+        "sentenced": 16,
+        "unsentenced": 49,
+        "technical_parole_violators": 1,
+        "state_readies": 2
+      },
+      "Greene County Jail": {
+        "census": 25,
+        "sentenced": 5,
+        "unsentenced": 18,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Hamilton County Jail": {
+        "census": 2,
+        "sentenced": 1,
+        "unsentenced": 2,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Herkimer County Jail": {
+        "census": 68,
+        "sentenced": 12,
+        "unsentenced": 46,
+        "technical_parole_violators": 2,
+        "state_readies": 1
+      },
+      "Jefferson County Jail": {
+        "census": 160,
+        "sentenced": 33,
+        "unsentenced": 118,
+        "technical_parole_violators": 5,
+        "state_readies": 3
+      },
+      "Lewis County Jail": {
+        "census": 22,
+        "sentenced": 6,
+        "unsentenced": 12,
+        "technical_parole_violators": 2,
+        "state_readies": 0
+      },
+      "Livingston County Jail": {
+        "census": 118,
+        "sentenced": 18,
+        "unsentenced": 46,
+        "technical_parole_violators": 1,
+        "state_readies": 2
+      },
+      "Madison County Jail": {
+        "census": 62,
+        "sentenced": 16,
+        "unsentenced": 39,
+        "technical_parole_violators": 0,
+        "state_readies": 1
+      },
+      "Monroe County CF": {
+        "census": 0,
+        "sentenced": 0,
+        "unsentenced": 0,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Monroe County Jail": {
+        "census": 712,
+        "sentenced": 81,
+        "unsentenced": 504,
+        "technical_parole_violators": 31,
+        "state_readies": 22
+      },
+      "Montgomery County Jail": {
+        "census": 107,
+        "sentenced": 30,
+        "unsentenced": 59,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Nassau County CF": {
+        "census": 710,
+        "sentenced": 206,
+        "unsentenced": 479,
+        "technical_parole_violators": 4,
+        "state_readies": 9
+      },
+      "Niagara County Jail": {
+        "census": 412,
+        "sentenced": 111,
+        "unsentenced": 184,
+        "technical_parole_violators": 7,
+        "state_readies": 6
+      },
+      "Oneida County Jail": {
+        "census": 263,
+        "sentenced": 77,
+        "unsentenced": 157,
+        "technical_parole_violators": 6,
+        "state_readies": 4
+      },
+      "Onondaga County CF": {
+        "census": 142,
+        "sentenced": 79,
+        "unsentenced": 53,
+        "technical_parole_violators": 3,
+        "state_readies": 1
+      },
+      "Onondaga County Jail": {
+        "census": 431,
+        "sentenced": 31,
+        "unsentenced": 367,
+        "technical_parole_violators": 13,
+        "state_readies": 12
+      },
+      "Ontario County Jail": {
+        "census": 100,
+        "sentenced": 19,
+        "unsentenced": 75,
+        "technical_parole_violators": 4,
+        "state_readies": 2
+      },
+      "Orange County Jail": {
+        "census": 340,
+        "sentenced": 62,
+        "unsentenced": 192,
+        "technical_parole_violators": 7,
+        "state_readies": 6
+      },
+      "Orleans County Jail": {
+        "census": 47,
+        "sentenced": 11,
+        "unsentenced": 19,
+        "technical_parole_violators": 2,
+        "state_readies": 1
+      },
+      "Oswego County Jail": {
+        "census": 131,
+        "sentenced": 28,
+        "unsentenced": 91,
+        "technical_parole_violators": 5,
+        "state_readies": 3
+      },
+      "Otsego County Jail": {
+        "census": 25,
+        "sentenced": 6,
+        "unsentenced": 19,
+        "technical_parole_violators": 0,
+        "state_readies": 1
+      },
+      "Putnam County Jail": {
+        "census": 47,
+        "sentenced": 7,
+        "unsentenced": 25,
+        "technical_parole_violators": 0,
+        "state_readies": 1
+      },
+      "Rensselaer County Jail": {
+        "census": 173,
+        "sentenced": 35,
+        "unsentenced": 75,
+        "technical_parole_violators": 3,
+        "state_readies": 3
+      },
+      "Rockland County Jail": {
+        "census": 115,
+        "sentenced": 16,
+        "unsentenced": 97,
+        "technical_parole_violators": 1,
+        "state_readies": 2
+      },
+      "St. Lawrence County Jail": {
+        "census": 118,
+        "sentenced": 36,
+        "unsentenced": 73,
+        "technical_parole_violators": 4,
+        "state_readies": 3
+      },
+      "Saratoga County Jail": {
+        "census": 175,
+        "sentenced": 45,
+        "unsentenced": 117,
+        "technical_parole_violators": 8,
+        "state_readies": 4
+      },
+      "Schenectady County Jail": {
+        "census": 235,
+        "sentenced": 33,
+        "unsentenced": 172,
+        "technical_parole_violators": 9,
+        "state_readies": 5
+      },
+      "Schoharie County Jail": {
+        "census": 24,
+        "sentenced": 7,
+        "unsentenced": 15,
+        "technical_parole_violators": 1,
+        "state_readies": 0
+      },
+      "Schuyler County Jail": {
+        "census": 13,
+        "sentenced": 4,
+        "unsentenced": 8,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Seneca County Jail": {
+        "census": 26,
+        "sentenced": 13,
+        "unsentenced": 10,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Steuben County Jail": {
+        "census": 126,
+        "sentenced": 24,
+        "unsentenced": 92,
+        "technical_parole_violators": 3,
+        "state_readies": 3
+      },
+      "Suffolk County CF - Riverhead": {
+        "census": 413,
+        "sentenced": 63,
+        "unsentenced": 325,
+        "technical_parole_violators": 2,
+        "state_readies": 8
+      },
+      "Suffolk County CF - Yaphank": {
+        "census": 554,
+        "sentenced": 104,
+        "unsentenced": 383,
+        "technical_parole_violators": 3,
+        "state_readies": 13
+      },
+      "Sullivan County Jail": {
+        "census": 98,
+        "sentenced": 14,
+        "unsentenced": 80,
+        "technical_parole_violators": 4,
+        "state_readies": 1
+      },
+      "Tioga County Jail": {
+        "census": 46,
+        "sentenced": 17,
+        "unsentenced": 21,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Tompkins County Jail": {
+        "census": 56,
+        "sentenced": 12,
+        "unsentenced": 42,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Ulster County Jail": {
+        "census": 190,
+        "sentenced": 45,
+        "unsentenced": 135,
+        "technical_parole_violators": 0,
+        "state_readies": 9
+      },
+      "Warren County Jail": {
+        "census": 93,
+        "sentenced": 31,
+        "unsentenced": 51,
+        "technical_parole_violators": 5,
+        "state_readies": 2
+      },
+      "Washington County Jail": {
+        "census": 73,
+        "sentenced": 24,
+        "unsentenced": 43,
+        "technical_parole_violators": 3,
+        "state_readies": 3
+      },
+      "Wayne County Jail": {
+        "census": 54,
+        "sentenced": 21,
+        "unsentenced": 29,
+        "technical_parole_violators": 4,
+        "state_readies": 1
+      },
+      "Westchester County Pen": {
+        "census": 103,
+        "sentenced": 19,
+        "unsentenced": 62,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      },
+      "Westchester County Jail": {
+        "census": 445,
+        "sentenced": 62,
+        "unsentenced": 290,
+        "technical_parole_violators": 7,
+        "state_readies": 6
+      },
+      "Westchester County Annex": {
+        "census": 45,
+        "sentenced": 6,
+        "unsentenced": 34,
+        "technical_parole_violators": 0,
+        "state_readies": 0
+      },
+      "Wyoming County Jail": {
+        "census": 37,
+        "sentenced": 12,
+        "unsentenced": 22,
+        "technical_parole_violators": 3,
+        "state_readies": 1
+      },
+      "Yates County Jail": {
+        "census": 31,
+        "sentenced": 5,
+        "unsentenced": 8,
+        "technical_parole_violators": 1,
+        "state_readies": 1
+      }
+    }
+  },
+  "adult_arrests_2024": {
+    "total_arrests": 388250,
+    "felony_total": 149972,
+    "misdemeanor_total": 238278,
+    "violent_felony": 45307,
+    "drug_felony": 18481,
+    "dwi_felony": 5025,
+    "other_felony": 81159,
+    "by_county": {
+      "Albany": {
+        "total": 6310,
+        "felony_total": 2640,
+        "misdemeanor_total": 3670,
+        "drug_felony": 356,
+        "violent_felony": 648,
+        "dwi_felony": 99,
+        "other_felony": 1537
+      },
+      "Allegany": {
+        "total": 886,
+        "felony_total": 305,
+        "misdemeanor_total": 581,
+        "drug_felony": 28,
+        "violent_felony": 75,
+        "dwi_felony": 19,
+        "other_felony": 183
+      },
+      "Bronx": {
+        "total": 47568,
+        "felony_total": 20320,
+        "misdemeanor_total": 27248,
+        "drug_felony": 2236,
+        "violent_felony": 8719,
+        "dwi_felony": 74,
+        "other_felony": 9291
+      },
+      "Broome": {
+        "total": 5331,
+        "felony_total": 1655,
+        "misdemeanor_total": 3676,
+        "drug_felony": 262,
+        "violent_felony": 369,
+        "dwi_felony": 56,
+        "other_felony": 968
+      },
+      "Cattaraugus": {
+        "total": 1937,
+        "felony_total": 673,
+        "misdemeanor_total": 1264,
+        "drug_felony": 142,
+        "violent_felony": 127,
+        "dwi_felony": 35,
+        "other_felony": 369
+      },
+      "Cayuga": {
+        "total": 1111,
+        "felony_total": 371,
+        "misdemeanor_total": 740,
+        "drug_felony": 50,
+        "violent_felony": 52,
+        "dwi_felony": 26,
+        "other_felony": 243
+      },
+      "Chautauqua": {
+        "total": 3588,
+        "felony_total": 1130,
+        "misdemeanor_total": 2458,
+        "drug_felony": 250,
+        "violent_felony": 222,
+        "dwi_felony": 38,
+        "other_felony": 620
+      },
+      "Chemung": {
+        "total": 2231,
+        "felony_total": 608,
+        "misdemeanor_total": 1623,
+        "drug_felony": 64,
+        "violent_felony": 159,
+        "dwi_felony": 32,
+        "other_felony": 353
+      },
+      "Chenango": {
+        "total": 1078,
+        "felony_total": 378,
+        "misdemeanor_total": 700,
+        "drug_felony": 50,
+        "violent_felony": 76,
+        "dwi_felony": 15,
+        "other_felony": 237
+      },
+      "Clinton": {
+        "total": 1834,
+        "felony_total": 485,
+        "misdemeanor_total": 1349,
+        "drug_felony": 80,
+        "violent_felony": 85,
+        "dwi_felony": 31,
+        "other_felony": 289
+      },
+      "Columbia": {
+        "total": 1041,
+        "felony_total": 320,
+        "misdemeanor_total": 721,
+        "drug_felony": 42,
+        "violent_felony": 62,
+        "dwi_felony": 41,
+        "other_felony": 175
+      },
+      "Cortland": {
+        "total": 1191,
+        "felony_total": 328,
+        "misdemeanor_total": 863,
+        "drug_felony": 33,
+        "violent_felony": 64,
+        "dwi_felony": 15,
+        "other_felony": 216
+      },
+      "Delaware": {
+        "total": 730,
+        "felony_total": 254,
+        "misdemeanor_total": 476,
+        "drug_felony": 44,
+        "violent_felony": 54,
+        "dwi_felony": 17,
+        "other_felony": 139
+      },
+      "Dutchess": {
+        "total": 4075,
+        "felony_total": 1354,
+        "misdemeanor_total": 2721,
+        "drug_felony": 211,
+        "violent_felony": 262,
+        "dwi_felony": 147,
+        "other_felony": 734
+      },
+      "Erie": {
+        "total": 14940,
+        "felony_total": 5991,
+        "misdemeanor_total": 8949,
+        "drug_felony": 895,
+        "violent_felony": 1601,
+        "dwi_felony": 222,
+        "other_felony": 3273
+      },
+      "Essex": {
+        "total": 674,
+        "felony_total": 214,
+        "misdemeanor_total": 460,
+        "drug_felony": 40,
+        "violent_felony": 35,
+        "dwi_felony": 15,
+        "other_felony": 124
+      },
+      "Franklin": {
+        "total": 1015,
+        "felony_total": 345,
+        "misdemeanor_total": 670,
+        "drug_felony": 56,
+        "violent_felony": 69,
+        "dwi_felony": 16,
+        "other_felony": 204
+      },
+      "Fulton": {
+        "total": 1007,
+        "felony_total": 373,
+        "misdemeanor_total": 634,
+        "drug_felony": 73,
+        "violent_felony": 92,
+        "dwi_felony": 11,
+        "other_felony": 197
+      },
+      "Genesee": {
+        "total": 1201,
+        "felony_total": 461,
+        "misdemeanor_total": 740,
+        "drug_felony": 57,
+        "violent_felony": 75,
+        "dwi_felony": 37,
+        "other_felony": 292
+      },
+      "Greene": {
+        "total": 1123,
+        "felony_total": 334,
+        "misdemeanor_total": 789,
+        "drug_felony": 68,
+        "violent_felony": 50,
+        "dwi_felony": 34,
+        "other_felony": 182
+      },
+      "Hamilton": {
+        "total": 35,
+        "felony_total": 12,
+        "misdemeanor_total": 23,
+        "drug_felony": 0,
+        "violent_felony": 4,
+        "dwi_felony": 0,
+        "other_felony": 8
+      },
+      "Herkimer": {
+        "total": 1286,
+        "felony_total": 353,
+        "misdemeanor_total": 933,
+        "drug_felony": 39,
+        "violent_felony": 55,
+        "dwi_felony": 15,
+        "other_felony": 244
+      },
+      "Jefferson": {
+        "total": 2138,
+        "felony_total": 630,
+        "misdemeanor_total": 1508,
+        "drug_felony": 131,
+        "violent_felony": 111,
+        "dwi_felony": 34,
+        "other_felony": 354
+      },
+      "Kings": {
+        "total": 58720,
+        "felony_total": 26858,
+        "misdemeanor_total": 31862,
+        "drug_felony": 3435,
+        "violent_felony": 8841,
+        "dwi_felony": 153,
+        "other_felony": 14429
+      },
+      "Lewis": {
+        "total": 300,
+        "felony_total": 109,
+        "misdemeanor_total": 191,
+        "drug_felony": 11,
+        "violent_felony": 20,
+        "dwi_felony": 7,
+        "other_felony": 71
+      },
+      "Livingston": {
+        "total": 941,
+        "felony_total": 370,
+        "misdemeanor_total": 571,
+        "drug_felony": 66,
+        "violent_felony": 51,
+        "dwi_felony": 30,
+        "other_felony": 223
+      },
+      "Madison": {
+        "total": 1020,
+        "felony_total": 314,
+        "misdemeanor_total": 706,
+        "drug_felony": 22,
+        "violent_felony": 63,
+        "dwi_felony": 13,
+        "other_felony": 216
+      },
+      "Monroe": {
+        "total": 10676,
+        "felony_total": 3808,
+        "misdemeanor_total": 6868,
+        "drug_felony": 356,
+        "violent_felony": 1213,
+        "dwi_felony": 266,
+        "other_felony": 1973
+      },
+      "Montgomery": {
+        "total": 1349,
+        "felony_total": 412,
+        "misdemeanor_total": 937,
+        "drug_felony": 46,
+        "violent_felony": 59,
+        "dwi_felony": 20,
+        "other_felony": 287
+      },
+      "Nassau": {
+        "total": 14371,
+        "felony_total": 5327,
+        "misdemeanor_total": 9044,
+        "drug_felony": 698,
+        "violent_felony": 1262,
+        "dwi_felony": 149,
+        "other_felony": 3218
+      },
+      "New York": {
+        "total": 51618,
+        "felony_total": 20607,
+        "misdemeanor_total": 31011,
+        "drug_felony": 2586,
+        "violent_felony": 6054,
+        "dwi_felony": 56,
+        "other_felony": 11911
+      },
+      "Niagara": {
+        "total": 4200,
+        "felony_total": 1445,
+        "misdemeanor_total": 2755,
+        "drug_felony": 166,
+        "violent_felony": 302,
+        "dwi_felony": 75,
+        "other_felony": 902
+      },
+      "Oneida": {
+        "total": 4591,
+        "felony_total": 1203,
+        "misdemeanor_total": 3388,
+        "drug_felony": 111,
+        "violent_felony": 231,
+        "dwi_felony": 65,
+        "other_felony": 796
+      },
+      "Onondaga": {
+        "total": 8880,
+        "felony_total": 3452,
+        "misdemeanor_total": 5428,
+        "drug_felony": 258,
+        "violent_felony": 906,
+        "dwi_felony": 133,
+        "other_felony": 2155
+      },
+      "Ontario": {
+        "total": 1512,
+        "felony_total": 566,
+        "misdemeanor_total": 946,
+        "drug_felony": 40,
+        "violent_felony": 113,
+        "dwi_felony": 54,
+        "other_felony": 359
+      },
+      "Orange": {
+        "total": 6880,
+        "felony_total": 2053,
+        "misdemeanor_total": 4827,
+        "drug_felony": 311,
+        "violent_felony": 426,
+        "dwi_felony": 170,
+        "other_felony": 1146
+      },
+      "Orleans": {
+        "total": 571,
+        "felony_total": 190,
+        "misdemeanor_total": 381,
+        "drug_felony": 14,
+        "violent_felony": 52,
+        "dwi_felony": 9,
+        "other_felony": 115
+      },
+      "Oswego": {
+        "total": 2698,
+        "felony_total": 747,
+        "misdemeanor_total": 1951,
+        "drug_felony": 74,
+        "violent_felony": 136,
+        "dwi_felony": 50,
+        "other_felony": 487
+      },
+      "Otsego": {
+        "total": 1088,
+        "felony_total": 337,
+        "misdemeanor_total": 751,
+        "drug_felony": 33,
+        "violent_felony": 68,
+        "dwi_felony": 22,
+        "other_felony": 214
+      },
+      "Putnam": {
+        "total": 1164,
+        "felony_total": 265,
+        "misdemeanor_total": 899,
+        "drug_felony": 37,
+        "violent_felony": 31,
+        "dwi_felony": 51,
+        "other_felony": 146
+      },
+      "Queens": {
+        "total": 44501,
+        "felony_total": 19713,
+        "misdemeanor_total": 24788,
+        "drug_felony": 1873,
+        "violent_felony": 7290,
+        "dwi_felony": 142,
+        "other_felony": 10408
+      },
+      "Rensselaer": {
+        "total": 2423,
+        "felony_total": 943,
+        "misdemeanor_total": 1480,
+        "drug_felony": 146,
+        "violent_felony": 202,
+        "dwi_felony": 37,
+        "other_felony": 558
+      },
+      "Richmond": {
+        "total": 8479,
+        "felony_total": 3638,
+        "misdemeanor_total": 4841,
+        "drug_felony": 420,
+        "violent_felony": 1067,
+        "dwi_felony": 34,
+        "other_felony": 2117
+      },
+      "Rockland": {
+        "total": 3659,
+        "felony_total": 1105,
+        "misdemeanor_total": 2554,
+        "drug_felony": 96,
+        "violent_felony": 304,
+        "dwi_felony": 70,
+        "other_felony": 635
+      },
+      "Saratoga": {
+        "total": 3380,
+        "felony_total": 1123,
+        "misdemeanor_total": 2257,
+        "drug_felony": 172,
+        "violent_felony": 147,
+        "dwi_felony": 101,
+        "other_felony": 703
+      },
+      "Schenectady": {
+        "total": 3655,
+        "felony_total": 1288,
+        "misdemeanor_total": 2367,
+        "drug_felony": 114,
+        "violent_felony": 334,
+        "dwi_felony": 47,
+        "other_felony": 793
+      },
+      "Schoharie": {
+        "total": 455,
+        "felony_total": 126,
+        "misdemeanor_total": 329,
+        "drug_felony": 10,
+        "violent_felony": 22,
+        "dwi_felony": 13,
+        "other_felony": 81
+      },
+      "Schuyler": {
+        "total": 293,
+        "felony_total": 115,
+        "misdemeanor_total": 178,
+        "drug_felony": 9,
+        "violent_felony": 8,
+        "dwi_felony": 11,
+        "other_felony": 87
+      },
+      "Seneca": {
+        "total": 849,
+        "felony_total": 275,
+        "misdemeanor_total": 574,
+        "drug_felony": 31,
+        "violent_felony": 38,
+        "dwi_felony": 37,
+        "other_felony": 169
+      },
+      "St. Lawrence": {
+        "total": 2270,
+        "felony_total": 702,
+        "misdemeanor_total": 1568,
+        "drug_felony": 151,
+        "violent_felony": 123,
+        "dwi_felony": 29,
+        "other_felony": 399
+      },
+      "Steuben": {
+        "total": 1990,
+        "felony_total": 732,
+        "misdemeanor_total": 1258,
+        "drug_felony": 102,
+        "violent_felony": 166,
+        "dwi_felony": 38,
+        "other_felony": 426
+      },
+      "Suffolk": {
+        "total": 18918,
+        "felony_total": 4607,
+        "misdemeanor_total": 14311,
+        "drug_felony": 1016,
+        "violent_felony": 939,
+        "dwi_felony": 332,
+        "other_felony": 2320
+      },
+      "Sullivan": {
+        "total": 1864,
+        "felony_total": 657,
+        "misdemeanor_total": 1207,
+        "drug_felony": 96,
+        "violent_felony": 132,
+        "dwi_felony": 48,
+        "other_felony": 381
+      },
+      "Tioga": {
+        "total": 604,
+        "felony_total": 217,
+        "misdemeanor_total": 387,
+        "drug_felony": 34,
+        "violent_felony": 43,
+        "dwi_felony": 15,
+        "other_felony": 125
+      },
+      "Tompkins": {
+        "total": 1274,
+        "felony_total": 427,
+        "misdemeanor_total": 847,
+        "drug_felony": 37,
+        "violent_felony": 115,
+        "dwi_felony": 27,
+        "other_felony": 248
+      },
+      "Ulster": {
+        "total": 3241,
+        "felony_total": 959,
+        "misdemeanor_total": 2282,
+        "drug_felony": 138,
+        "violent_felony": 147,
+        "dwi_felony": 97,
+        "other_felony": 577
+      },
+      "Warren": {
+        "total": 1715,
+        "felony_total": 491,
+        "misdemeanor_total": 1224,
+        "drug_felony": 67,
+        "violent_felony": 57,
+        "dwi_felony": 38,
+        "other_felony": 329
+      },
+      "Washington": {
+        "total": 1086,
+        "felony_total": 339,
+        "misdemeanor_total": 747,
+        "drug_felony": 45,
+        "violent_felony": 65,
+        "dwi_felony": 17,
+        "other_felony": 212
+      },
+      "Wayne": {
+        "total": 1171,
+        "felony_total": 372,
+        "misdemeanor_total": 799,
+        "drug_felony": 14,
+        "violent_felony": 87,
+        "dwi_felony": 39,
+        "other_felony": 232
+      },
+      "Westchester": {
+        "total": 12754,
+        "felony_total": 4260,
+        "misdemeanor_total": 8494,
+        "drug_felony": 418,
+        "violent_felony": 1080,
+        "dwi_felony": 225,
+        "other_felony": 2537
+      },
+      "Wyoming": {
+        "total": 542,
+        "felony_total": 207,
+        "misdemeanor_total": 335,
+        "drug_felony": 17,
+        "violent_felony": 33,
+        "dwi_felony": 20,
+        "other_felony": 137
+      },
+      "Yates": {
+        "total": 218,
+        "felony_total": 79,
+        "misdemeanor_total": 139,
+        "drug_felony": 4,
+        "violent_felony": 14,
+        "dwi_felony": 9,
+        "other_felony": 52
+      }
+    }
+  },
+  "crime_index_2024": {
+    "total_index_crimes": 603920,
+    "violent_crimes": 102682,
+    "property_crimes": 501238,
+    "murder": 917,
+    "forcible_rape": 8210,
+    "robbery": 24472,
+    "aggravated_assault": 69083,
+    "burglary": 44836,
+    "larceny": 409137,
+    "motor_vehicle_theft": 47265,
+    "by_county": {
+      "Albany": {
+        "total_index_crimes": 18106,
+        "violent": 2602,
+        "property": 15504,
+        "murder": 32,
+        "robbery": 588,
+        "aggravated_assault": 1714,
+        "burglary": 1574,
+        "larceny": 13068,
+        "motor_vehicle_theft": 862
+      },
+      "Allegany": {
+        "total_index_crimes": 762,
+        "violent": 160,
+        "property": 602,
+        "murder": 0,
+        "robbery": 8,
+        "aggravated_assault": 104,
+        "burglary": 90,
+        "larceny": 482,
+        "motor_vehicle_theft": 30
+      },
+      "Bronx": {
+        "total_index_crimes": 50844,
+        "violent": 17160,
+        "property": 33684,
+        "murder": 114,
+        "robbery": 4937,
+        "aggravated_assault": 11437,
+        "burglary": 2947,
+        "larceny": 26127,
+        "motor_vehicle_theft": 4610
+      },
+      "Broome": {
+        "total_index_crimes": 10142,
+        "violent": 1000,
+        "property": 9142,
+        "murder": 8,
+        "robbery": 120,
+        "aggravated_assault": 686,
+        "burglary": 1016,
+        "larceny": 7760,
+        "motor_vehicle_theft": 366
+      },
+      "Cattaraugus": {
+        "total_index_crimes": 2450,
+        "violent": 292,
+        "property": 2158,
+        "murder": 0,
+        "robbery": 54,
+        "aggravated_assault": 188,
+        "burglary": 330,
+        "larceny": 1732,
+        "motor_vehicle_theft": 96
+      },
+      "Cayuga": {
+        "total_index_crimes": 1412,
+        "violent": 280,
+        "property": 1132,
+        "murder": 0,
+        "robbery": 16,
+        "aggravated_assault": 192,
+        "burglary": 126,
+        "larceny": 946,
+        "motor_vehicle_theft": 60
+      },
+      "Chautauqua": {
+        "total_index_crimes": 4472,
+        "violent": 620,
+        "property": 3852,
+        "murder": 14,
+        "robbery": 62,
+        "aggravated_assault": 406,
+        "burglary": 596,
+        "larceny": 3136,
+        "motor_vehicle_theft": 120
+      },
+      "Chemung": {
+        "total_index_crimes": 3632,
+        "violent": 526,
+        "property": 3106,
+        "murder": 6,
+        "robbery": 62,
+        "aggravated_assault": 416,
+        "burglary": 402,
+        "larceny": 2634,
+        "motor_vehicle_theft": 70
+      },
+      "Chenango": {
+        "total_index_crimes": 936,
+        "violent": 134,
+        "property": 802,
+        "murder": 0,
+        "robbery": 2,
+        "aggravated_assault": 68,
+        "burglary": 120,
+        "larceny": 650,
+        "motor_vehicle_theft": 32
+      },
+      "Clinton": {
+        "total_index_crimes": 2756,
+        "violent": 286,
+        "property": 2470,
+        "murder": 6,
+        "robbery": 16,
+        "aggravated_assault": 164,
+        "burglary": 244,
+        "larceny": 2128,
+        "motor_vehicle_theft": 98
+      },
+      "Columbia": {
+        "total_index_crimes": 1000,
+        "violent": 132,
+        "property": 868,
+        "murder": 2,
+        "robbery": 8,
+        "aggravated_assault": 94,
+        "burglary": 94,
+        "larceny": 762,
+        "motor_vehicle_theft": 12
+      },
+      "Cortland": {
+        "total_index_crimes": 2148,
+        "violent": 200,
+        "property": 1948,
+        "murder": 2,
+        "robbery": 8,
+        "aggravated_assault": 136,
+        "burglary": 226,
+        "larceny": 1684,
+        "motor_vehicle_theft": 38
+      },
+      "Delaware": {
+        "total_index_crimes": 716,
+        "violent": 130,
+        "property": 586,
+        "murder": 0,
+        "robbery": 6,
+        "aggravated_assault": 86,
+        "burglary": 82,
+        "larceny": 466,
+        "motor_vehicle_theft": 38
+      },
+      "Dutchess": {
+        "total_index_crimes": 6958,
+        "violent": 1042,
+        "property": 5916,
+        "murder": 16,
+        "robbery": 162,
+        "aggravated_assault": 698,
+        "burglary": 536,
+        "larceny": 5096,
+        "motor_vehicle_theft": 284
+      },
+      "Erie": {
+        "total_index_crimes": 50434,
+        "violent": 6122,
+        "property": 44312,
+        "murder": 92,
+        "robbery": 1328,
+        "aggravated_assault": 4214,
+        "burglary": 4690,
+        "larceny": 31552,
+        "motor_vehicle_theft": 8070
+      },
+      "Essex": {
+        "total_index_crimes": 482,
+        "violent": 72,
+        "property": 410,
+        "murder": 0,
+        "robbery": 0,
+        "aggravated_assault": 32,
+        "burglary": 78,
+        "larceny": 312,
+        "motor_vehicle_theft": 20
+      },
+      "Franklin": {
+        "total_index_crimes": 1070,
+        "violent": 150,
+        "property": 920,
+        "murder": 0,
+        "robbery": 6,
+        "aggravated_assault": 98,
+        "burglary": 174,
+        "larceny": 692,
+        "motor_vehicle_theft": 54
+      },
+      "Fulton": {
+        "total_index_crimes": 1438,
+        "violent": 200,
+        "property": 1238,
+        "murder": 2,
+        "robbery": 14,
+        "aggravated_assault": 162,
+        "burglary": 174,
+        "larceny": 990,
+        "motor_vehicle_theft": 74
+      },
+      "Genesee": {
+        "total_index_crimes": 1554,
+        "violent": 252,
+        "property": 1302,
+        "murder": 4,
+        "robbery": 26,
+        "aggravated_assault": 180,
+        "burglary": 122,
+        "larceny": 1134,
+        "motor_vehicle_theft": 46
+      },
+      "Greene": {
+        "total_index_crimes": 758,
+        "violent": 120,
+        "property": 638,
+        "murder": 0,
+        "robbery": 2,
+        "aggravated_assault": 92,
+        "burglary": 96,
+        "larceny": 524,
+        "motor_vehicle_theft": 18
+      },
+      "Hamilton": {
+        "total_index_crimes": 42,
+        "violent": 6,
+        "property": 36,
+        "murder": 0,
+        "robbery": 0,
+        "aggravated_assault": 2,
+        "burglary": 8,
+        "larceny": 22,
+        "motor_vehicle_theft": 6
+      },
+      "Herkimer": {
+        "total_index_crimes": 2500,
+        "violent": 328,
+        "property": 2172,
+        "murder": 4,
+        "robbery": 26,
+        "aggravated_assault": 260,
+        "burglary": 310,
+        "larceny": 1800,
+        "motor_vehicle_theft": 62
+      },
+      "Jefferson": {
+        "total_index_crimes": 3714,
+        "violent": 476,
+        "property": 3238,
+        "murder": 0,
+        "robbery": 22,
+        "aggravated_assault": 284,
+        "burglary": 450,
+        "larceny": 2670,
+        "motor_vehicle_theft": 118
+      },
+      "Kings": {
+        "total_index_crimes": 62086,
+        "violent": 15415,
+        "property": 46671,
+        "murder": 118,
+        "robbery": 4055,
+        "aggravated_assault": 10571,
+        "burglary": 3450,
+        "larceny": 38695,
+        "motor_vehicle_theft": 4526
+      },
+      "Lewis": {
+        "total_index_crimes": 352,
+        "violent": 68,
+        "property": 284,
+        "murder": 2,
+        "robbery": 4,
+        "aggravated_assault": 36,
+        "burglary": 80,
+        "larceny": 186,
+        "motor_vehicle_theft": 18
+      },
+      "Livingston": {
+        "total_index_crimes": 1082,
+        "violent": 96,
+        "property": 986,
+        "murder": 2,
+        "robbery": 12,
+        "aggravated_assault": 58,
+        "burglary": 104,
+        "larceny": 844,
+        "motor_vehicle_theft": 38
+      },
+      "Madison": {
+        "total_index_crimes": 1636,
+        "violent": 220,
+        "property": 1416,
+        "murder": 0,
+        "robbery": 22,
+        "aggravated_assault": 132,
+        "burglary": 230,
+        "larceny": 1146,
+        "motor_vehicle_theft": 40
+      },
+      "Monroe": {
+        "total_index_crimes": 34524,
+        "violent": 4158,
+        "property": 30366,
+        "murder": 110,
+        "robbery": 1104,
+        "aggravated_assault": 2630,
+        "burglary": 3282,
+        "larceny": 19088,
+        "motor_vehicle_theft": 7996
+      },
+      "Montgomery": {
+        "total_index_crimes": 1256,
+        "violent": 96,
+        "property": 1160,
+        "murder": 2,
+        "robbery": 12,
+        "aggravated_assault": 62,
+        "burglary": 124,
+        "larceny": 994,
+        "motor_vehicle_theft": 42
+      },
+      "Nassau": {
+        "total_index_crimes": 32520,
+        "violent": 4588,
+        "property": 27932,
+        "murder": 30,
+        "robbery": 1084,
+        "aggravated_assault": 3154,
+        "burglary": 2060,
+        "larceny": 24770,
+        "motor_vehicle_theft": 1102
+      },
+      "New York": {
+        "total_index_crimes": 69546,
+        "violent": 11277,
+        "property": 58269,
+        "murder": 68,
+        "robbery": 3718,
+        "aggravated_assault": 6998,
+        "burglary": 3343,
+        "larceny": 53191,
+        "motor_vehicle_theft": 1735
+      },
+      "Niagara": {
+        "total_index_crimes": 6530,
+        "violent": 814,
+        "property": 5716,
+        "murder": 8,
+        "robbery": 146,
+        "aggravated_assault": 586,
+        "burglary": 658,
+        "larceny": 4514,
+        "motor_vehicle_theft": 544
+      },
+      "Oneida": {
+        "total_index_crimes": 9268,
+        "violent": 1138,
+        "property": 8130,
+        "murder": 14,
+        "robbery": 150,
+        "aggravated_assault": 740,
+        "burglary": 886,
+        "larceny": 6882,
+        "motor_vehicle_theft": 362
+      },
+      "Onondaga": {
+        "total_index_crimes": 23414,
+        "violent": 3070,
+        "property": 20344,
+        "murder": 48,
+        "robbery": 498,
+        "aggravated_assault": 2196,
+        "burglary": 3004,
+        "larceny": 13968,
+        "motor_vehicle_theft": 3372
+      },
+      "Ontario": {
+        "total_index_crimes": 2724,
+        "violent": 320,
+        "property": 2404,
+        "murder": 0,
+        "robbery": 30,
+        "aggravated_assault": 206,
+        "burglary": 244,
+        "larceny": 2062,
+        "motor_vehicle_theft": 98
+      },
+      "Orange": {
+        "total_index_crimes": 9070,
+        "violent": 1320,
+        "property": 7750,
+        "murder": 10,
+        "robbery": 210,
+        "aggravated_assault": 900,
+        "burglary": 600,
+        "larceny": 6860,
+        "motor_vehicle_theft": 290
+      },
+      "Orleans": {
+        "total_index_crimes": 844,
+        "violent": 134,
+        "property": 710,
+        "murder": 0,
+        "robbery": 18,
+        "aggravated_assault": 98,
+        "burglary": 96,
+        "larceny": 580,
+        "motor_vehicle_theft": 34
+      },
+      "Oswego": {
+        "total_index_crimes": 2958,
+        "violent": 384,
+        "property": 2574,
+        "murder": 4,
+        "robbery": 32,
+        "aggravated_assault": 240,
+        "burglary": 304,
+        "larceny": 2134,
+        "motor_vehicle_theft": 136
+      },
+      "Otsego": {
+        "total_index_crimes": 1206,
+        "violent": 148,
+        "property": 1058,
+        "murder": 0,
+        "robbery": 4,
+        "aggravated_assault": 102,
+        "burglary": 130,
+        "larceny": 892,
+        "motor_vehicle_theft": 36
+      },
+      "Putnam": {
+        "total_index_crimes": 1038,
+        "violent": 126,
+        "property": 912,
+        "murder": 0,
+        "robbery": 10,
+        "aggravated_assault": 86,
+        "burglary": 76,
+        "larceny": 800,
+        "motor_vehicle_theft": 36
+      },
+      "Queens": {
+        "total_index_crimes": 56218,
+        "violent": 12578,
+        "property": 43640,
+        "murder": 51,
+        "robbery": 3546,
+        "aggravated_assault": 8340,
+        "burglary": 3164,
+        "larceny": 35211,
+        "motor_vehicle_theft": 5265
+      },
+      "Rensselaer": {
+        "total_index_crimes": 5704,
+        "violent": 670,
+        "property": 5034,
+        "murder": 2,
+        "robbery": 120,
+        "aggravated_assault": 462,
+        "burglary": 578,
+        "larceny": 4032,
+        "motor_vehicle_theft": 424
+      },
+      "Richmond": {
+        "total_index_crimes": 8054,
+        "violent": 1686,
+        "property": 6368,
+        "murder": 6,
+        "robbery": 298,
+        "aggravated_assault": 1279,
+        "burglary": 344,
+        "larceny": 5545,
+        "motor_vehicle_theft": 479
+      },
+      "Rockland": {
+        "total_index_crimes": 8434,
+        "violent": 1014,
+        "property": 7420,
+        "murder": 6,
+        "robbery": 192,
+        "aggravated_assault": 704,
+        "burglary": 510,
+        "larceny": 6692,
+        "motor_vehicle_theft": 218
+      },
+      "Saratoga": {
+        "total_index_crimes": 5032,
+        "violent": 438,
+        "property": 4594,
+        "murder": 6,
+        "robbery": 44,
+        "aggravated_assault": 246,
+        "burglary": 502,
+        "larceny": 3972,
+        "motor_vehicle_theft": 120
+      },
+      "Schenectady": {
+        "total_index_crimes": 8874,
+        "violent": 1274,
+        "property": 7600,
+        "murder": 24,
+        "robbery": 234,
+        "aggravated_assault": 894,
+        "burglary": 910,
+        "larceny": 6282,
+        "motor_vehicle_theft": 408
+      },
+      "Schoharie": {
+        "total_index_crimes": 462,
+        "violent": 44,
+        "property": 418,
+        "murder": 0,
+        "robbery": 2,
+        "aggravated_assault": 32,
+        "burglary": 48,
+        "larceny": 356,
+        "motor_vehicle_theft": 14
+      },
+      "Schuyler": {
+        "total_index_crimes": 148,
+        "violent": 22,
+        "property": 126,
+        "murder": 0,
+        "robbery": 0,
+        "aggravated_assault": 14,
+        "burglary": 28,
+        "larceny": 92,
+        "motor_vehicle_theft": 6
+      },
+      "Seneca": {
+        "total_index_crimes": 1112,
+        "violent": 106,
+        "property": 1006,
+        "murder": 2,
+        "robbery": 8,
+        "aggravated_assault": 84,
+        "burglary": 82,
+        "larceny": 886,
+        "motor_vehicle_theft": 38
+      },
+      "Steuben": {
+        "total_index_crimes": 2168,
+        "violent": 292,
+        "property": 1876,
+        "murder": 4,
+        "robbery": 6,
+        "aggravated_assault": 186,
+        "burglary": 328,
+        "larceny": 1462,
+        "motor_vehicle_theft": 86
+      },
+      "St Lawrence": {
+        "total_index_crimes": 3060,
+        "violent": 338,
+        "property": 2722,
+        "murder": 6,
+        "robbery": 14,
+        "aggravated_assault": 236,
+        "burglary": 464,
+        "larceny": 2188,
+        "motor_vehicle_theft": 70
+      },
+      "Suffolk": {
+        "total_index_crimes": 38426,
+        "violent": 2902,
+        "property": 35524,
+        "murder": 34,
+        "robbery": 458,
+        "aggravated_assault": 2116,
+        "burglary": 1420,
+        "larceny": 31622,
+        "motor_vehicle_theft": 2482
+      },
+      "Sullivan": {
+        "total_index_crimes": 1762,
+        "violent": 280,
+        "property": 1482,
+        "murder": 2,
+        "robbery": 20,
+        "aggravated_assault": 210,
+        "burglary": 264,
+        "larceny": 1166,
+        "motor_vehicle_theft": 52
+      },
+      "Tioga": {
+        "total_index_crimes": 494,
+        "violent": 94,
+        "property": 400,
+        "murder": 4,
+        "robbery": 4,
+        "aggravated_assault": 68,
+        "burglary": 106,
+        "larceny": 282,
+        "motor_vehicle_theft": 12
+      },
+      "Tompkins": {
+        "total_index_crimes": 4182,
+        "violent": 294,
+        "property": 3888,
+        "murder": 4,
+        "robbery": 42,
+        "aggravated_assault": 170,
+        "burglary": 454,
+        "larceny": 3380,
+        "motor_vehicle_theft": 54
+      },
+      "Ulster": {
+        "total_index_crimes": 3378,
+        "violent": 440,
+        "property": 2938,
+        "murder": 6,
+        "robbery": 50,
+        "aggravated_assault": 300,
+        "burglary": 232,
+        "larceny": 2602,
+        "motor_vehicle_theft": 104
+      },
+      "Warren": {
+        "total_index_crimes": 1830,
+        "violent": 162,
+        "property": 1668,
+        "murder": 0,
+        "robbery": 22,
+        "aggravated_assault": 80,
+        "burglary": 126,
+        "larceny": 1506,
+        "motor_vehicle_theft": 36
+      },
+      "Washington": {
+        "total_index_crimes": 838,
+        "violent": 172,
+        "property": 666,
+        "murder": 0,
+        "robbery": 12,
+        "aggravated_assault": 102,
+        "burglary": 98,
+        "larceny": 522,
+        "motor_vehicle_theft": 46
+      },
+      "Wayne": {
+        "total_index_crimes": 2142,
+        "violent": 318,
+        "property": 1824,
+        "murder": 6,
+        "robbery": 50,
+        "aggravated_assault": 186,
+        "burglary": 230,
+        "larceny": 1482,
+        "motor_vehicle_theft": 112
+      },
+      "Westchester": {
+        "total_index_crimes": 22420,
+        "violent": 3776,
+        "property": 18644,
+        "murder": 32,
+        "robbery": 766,
+        "aggravated_assault": 2794,
+        "burglary": 1662,
+        "larceny": 15358,
+        "motor_vehicle_theft": 1624
+      },
+      "Wyoming": {
+        "total_index_crimes": 456,
+        "violent": 88,
+        "property": 368,
+        "murder": 2,
+        "robbery": 0,
+        "aggravated_assault": 56,
+        "burglary": 70,
+        "larceny": 286,
+        "motor_vehicle_theft": 12
+      },
+      "Yates": {
+        "total_index_crimes": 346,
+        "violent": 32,
+        "property": 314,
+        "murder": 2,
+        "robbery": 2,
+        "aggravated_assault": 16,
+        "burglary": 60,
+        "larceny": 240,
+        "motor_vehicle_theft": 14
+      }
+    }
+  },
+  "recidivism_data": {
+    "note": "Latest available data: 2019-2021 (3-year tracking after prison release)",
+    "data": {
+      "2019": {
+        "total": 19606,
+        "returned": 4872,
+        "not_returned": 14734,
+        "by_gender": {
+          "MALE": {
+            "total": 18277,
+            "returned": 4628
+          },
+          "FEMALE": {
+            "total": 1329,
+            "returned": 244
+          }
+        },
+        "by_age": {},
+        "return_rate_pct": 24.8
+      },
+      "2020": {
+        "total": 15809,
+        "returned": 3022,
+        "not_returned": 12787,
+        "by_gender": {
+          "MALE": {
+            "total": 14726,
+            "returned": 2907
+          },
+          "FEMALE": {
+            "total": 1083,
+            "returned": 115
+          }
+        },
+        "by_age": {},
+        "return_rate_pct": 19.1
+      },
+      "2021": {
+        "total": 11940,
+        "returned": 2230,
+        "not_returned": 9710,
+        "by_gender": {
+          "MALE": {
+            "total": 11234,
+            "returned": 2156
+          },
+          "FEMALE": {
+            "total": 706,
+            "returned": 74
+          }
+        },
+        "by_age": {},
+        "return_rate_pct": 18.7
+      }
+    }
+  }
+}
