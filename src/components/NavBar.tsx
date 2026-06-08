@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
-  { href: '/', label: 'Judges', icon: '⚖️' },
-  { href: '/judges/state', label: 'State Judges', icon: '🔴' },
+  { href: '/', label: 'State Judges', icon: '⚖️' },
+  { href: '/judges/federal', label: 'Federal Judges', icon: '🏛️' },
   { href: '/districts', label: 'Districts', icon: '🗺️' },
   { href: '/states', label: 'States', icon: '🇺🇸' },
   { href: '/rankings', label: 'Rankings', icon: '📊' },
