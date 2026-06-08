@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: '/rankings', label: 'Rankings', icon: '📊' },
   { href: '/offenders', label: 'Offenders', icon: '🔍' },
   { href: '/insights', label: 'Insights', icon: '💡' },
+  { href: '/methodology', label: 'Methodology', icon: '📐' },
 ];
 
 export default function NavBar() {
