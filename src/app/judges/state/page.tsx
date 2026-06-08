@@ -166,6 +166,7 @@ export default function StateJudgesPage() {
 
   const filtered = useMemo(() => {
     let list = ALL_JUDGES.filter((j) => {
+      if (j.totalCases < 30) return false; // Minimum 30 cases for meaningful data
       if (facilityFilter && j.courtFacility !== facilityFilter) return false;
       if (j.leniencyScore < leniencyMin || j.leniencyScore > leniencyMax) return false;
       return true;
