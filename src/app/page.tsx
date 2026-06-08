@@ -93,6 +93,69 @@ export default function Home() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        {/* State Judges Banner */}
+        <div
+          style={{
+            background: 'linear-gradient(135deg, rgba(220,38,38,0.12) 0%, rgba(127,29,29,0.08) 100%)',
+            border: '1px solid rgba(220,38,38,0.35)',
+            borderRadius: '0.875rem',
+            padding: '1.5rem',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{ flex: 1, minWidth: '240px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+              <span style={{ fontSize: '1.25rem' }}>🔴</span>
+              <span
+                style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  color: '#dc2626',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  background: 'rgba(220,38,38,0.15)',
+                  padding: '0.2rem 0.5rem',
+                  borderRadius: '0.25rem',
+                }}
+              >
+                NEW FEATURE
+              </span>
+            </div>
+            <h2 style={{ fontSize: '1.375rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.2, marginBottom: '0.5rem' }}>
+              State Court Judge Accountability
+            </h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.375rem' }}>
+              See which judges are letting violent criminals walk free
+            </p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
+              135 Cook County judges ranked by actual sentencing decisions — 12,332 cases, real data
+            </p>
+          </div>
+          <a
+            href="/judges/state"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: '#dc2626',
+              color: 'white',
+              borderRadius: '0.625rem',
+              padding: '0.75rem 1.5rem',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              textDecoration: 'none',
+              boxShadow: '0 0 24px rgba(220,38,38,0.3)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            See the Rankings →
+          </a>
+        </div>
+
         <StatsOverview {...overview} />
 
         <USMap
