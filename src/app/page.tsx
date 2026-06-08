@@ -6,6 +6,7 @@ import {
   getAllStateJudges,
   getJudgeProfilesMeta,
   getCourtAverage,
+  getAvailableStates,
   getLeniencyLabel,
   getLeniencyColor,
   pct,
@@ -20,6 +21,8 @@ const COURT_AVG = getCourtAverage();
 const ALL_FACILITIES = Array.from(
   new Set(ALL_JUDGES.map((j) => j.courtFacility).filter(Boolean))
 ).sort();
+
+const AVAILABLE_STATES = getAvailableStates();
 
 // Illinois state court coverage data for the map
 const STATE_COVERAGE = [
@@ -165,10 +168,11 @@ function ComparePanel({
 }
 
 export default function Home() {
+  const [stateFilter, setStateFilter] = useState('');
   const [facilityFilter, setFacilityFilter] = useState('');
   const [leniencyMin, setLeniencyMin] = useState(0);
   const [leniencyMax, setLeniencyMax] = useState(100);
-  const [sortCol, setSortCol] = useState<'leniency' | 'cases' | 'prison' | 'probation' | 'violentPrison'>('leniency');
+  const [sortCol, setSortCol] = useState<'leniency' | 'cases' | 'prison' | 'probation' | 'violentPrison' | 'state'>('leniency');
   const [sortDir, setSortDir] = useState<'desc' | 'asc'>('desc');
   const [compare1, setCompare1] = useState<string>('');
   const [compare2, setCompare2] = useState<string>('');
@@ -177,6 +181,7 @@ export default function Home() {
   const filtered = useMemo(() => {
     let list = ALL_JUDGES.filter((j) => {
       if (j.totalCases < 30) return false;
+      if (stateFilter && j.stateCode !== stateFilter) return false;
       if (facilityFilter && j.courtFacility !== facilityFilter) return false;
       if (j.leniencyScore < leniencyMin || j.leniencyScore > leniencyMax) return false;
       return true;
@@ -193,6 +198,10 @@ export default function Home() {
           aVal = a.probationRate; bVal = b.probationRate; break;
         case 'violentPrison':
           aVal = a.violentCases.prisonRate; bVal = b.violentCases.prisonRate; break;
+        case 'state': {
+          const cmp = a.state.localeCompare(b.state);
+          return sortDir === 'desc' ? -cmp : cmp;
+        }
         default:
           aVal = a.leniencyScore; bVal = b.leniencyScore; break;
       }
@@ -200,7 +209,7 @@ export default function Home() {
     });
 
     return list;
-  }, [facilityFilter, leniencyMin, leniencyMax, sortCol, sortDir]);
+  }, [stateFilter, facilityFilter, leniencyMin, leniencyMax, sortCol, sortDir]);
 
   const toggleSort = (col: typeof sortCol) => {
     if (sortCol === col) {
@@ -383,6 +392,29 @@ export default function Home() {
         >
           <div>
             <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.25rem' }}>
+              State
+            </label>
+            <select
+              value={stateFilter}
+              onChange={(e) => { setStateFilter(e.target.value); setFacilityFilter(''); }}
+              style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border)',
+                borderRadius: '0.375rem',
+                color: 'var(--text-primary)',
+                padding: '0.375rem 0.75rem',
+                fontSize: '0.875rem',
+                cursor: 'pointer',
+              }}
+            >
+              <option value="">All States</option>
+              {AVAILABLE_STATES.map((s) => (
+                <option key={s.code} value={s.code}>{s.name} ({s.county})</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.25rem' }}>
               Court Facility
             </label>
             <select
@@ -530,6 +562,12 @@ export default function Home() {
                     Judge
                   </th>
                   <th
+                    onClick={() => toggleSort('state')}
+                    style={{ padding: '0.75rem 1rem', textAlign: 'left', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
+                  >
+                    State {sortCol === 'state' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+                  </th>
+                  <th
                     onClick={() => toggleSort('cases')}
                     style={{ padding: '0.75rem 1rem', textAlign: 'right', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
                   >
@@ -583,6 +621,10 @@ export default function Home() {
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.1rem' }}>
                           {judge.courtFacility || '—'}
                         </div>
+                      </td>
+                      <td style={{ padding: '0.75rem 1rem', fontSize: '0.8rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 600 }}>{judge.stateCode}</div>
+                        <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>{judge.county}</div>
                       </td>
                       <td style={{ padding: '0.75rem 1rem', textAlign: 'right', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                         {judge.totalCases.toLocaleString()}

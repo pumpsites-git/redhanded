@@ -1,4 +1,10 @@
-import judgeProfilesRaw from '../../data/state-courts/illinois/judge-profiles.json';
+import ilProfilesRaw from '../../data/state-courts/illinois/judge-profiles.json';
+
+// Registry of all state court data files
+// Add new states here as they become available
+const STATE_REGISTRY: { code: string; name: string; county: string; data: unknown }[] = [
+  { code: 'IL', name: 'Illinois', county: 'Cook County', data: ilProfilesRaw },
+];
 
 export interface ViolentCaseStats {
   total: number;
@@ -29,6 +35,9 @@ export interface DemographicStats {
 export interface StateJudge {
   name: string;
   slug: string;
+  state: string;
+  stateCode: string;
+  county: string;
   totalCases: number;
   prisonRate: number;
   jailRate: number;
@@ -72,24 +81,51 @@ export interface JudgeProfilesData {
   judges: Record<string, StateJudge>;
 }
 
-// Cast the JSON import
-const judgeProfiles = judgeProfilesRaw as JudgeProfilesData;
+// Build unified judge list from all states
+const allStateProfiles: JudgeProfilesData[] = STATE_REGISTRY.map(s => s.data as JudgeProfilesData);
+
+const allJudgesCache: StateJudge[] = STATE_REGISTRY.flatMap(({ code, name, county, data }) => {
+  const profiles = data as JudgeProfilesData;
+  return Object.values(profiles.judges).map(j => ({
+    ...j,
+    state: name,
+    stateCode: code,
+    county,
+  }));
+});
+
+const allStatesCache: string[] = [...new Set(STATE_REGISTRY.map(s => s.code))].sort();
 
 export function getAllStateJudges(): StateJudge[] {
-  return Object.values(judgeProfiles.judges);
+  return allJudgesCache;
+}
+
+export function getAvailableStates(): { code: string; name: string; county: string }[] {
+  return STATE_REGISTRY.map(({ code, name, county }) => ({ code, name, county }));
 }
 
 export function getStateJudgeBySlug(slug: string): StateJudge | null {
-  return judgeProfiles.judges[slug] ?? null;
+  return allJudgesCache.find(j => j.slug === slug) ?? null;
 }
 
 export function getJudgeProfilesMeta(): Omit<JudgeProfilesData, 'judges'> {
-  const { judges: _judges, ...meta } = judgeProfiles;
-  return meta;
+  // Aggregate meta across all states
+  const totalJudges = allStateProfiles.reduce((sum, p) => sum + p.totalJudges, 0);
+  const totalCases = allStateProfiles.reduce((sum, p) => sum + p.totalCases, 0);
+  // Use first state's court average for now; will need weighted average when multi-state
+  const first = allStateProfiles[0];
+  return {
+    generated: first.generated,
+    source: STATE_REGISTRY.length === 1 ? first.source : `${STATE_REGISTRY.length} state court systems`,
+    totalJudges,
+    totalCases,
+    courtAverage: first.courtAverage,
+    summary: first.summary,
+  };
 }
 
 export function getCourtAverage(): CourtAverage {
-  return judgeProfiles.courtAverage;
+  return allStateProfiles[0].courtAverage;
 }
 
 export function getLeniencyLabel(score: number): string {
