@@ -10,3 +10,6 @@ data/state-courts/illinois/cook-county-felonies.json
 data/state-courts/illinois/cook-county-dispositions.json
 data/state-courts/illinois/cook-county-sentencing.json
 data/state-courts/illinois/cook-county-intake.json
+data/state-courts/florida/raw/
+data/state-courts/florida/*.png
+data/state-courts/florida/raw/
