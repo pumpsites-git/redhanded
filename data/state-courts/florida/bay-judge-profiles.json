@@ -1,17 +1,17 @@
 {
   "generated": "2026-06-09",
   "source": "Bay County Clerk of Court, 14th Judicial Circuit",
-  "totalJudges": 25,
-  "totalCases": 804,
+  "totalJudges": 10,
+  "totalCases": 376,
   "courtAverage": {
-    "prisonRate": 0.2363,
+    "prisonRate": 0.4,
     "jailRate": 0,
-    "probationRate": 0.7637,
-    "otherRate": 0,
+    "probationRate": 0.15,
+    "otherRate": 0.45,
     "violentCases": {
-      "total": 804,
-      "prisonRate": 0.2363,
-      "probationRate": 0.7637,
+      "total": 376,
+      "prisonRate": 0.4,
+      "probationRate": 0.15,
       "jailRate": 0,
       "prisonCount": 0,
       "probationCount": 0
@@ -19,16 +19,16 @@
     "avgCommitmentDays": null
   },
   "summary": {
-    "judgesLowViolentPrisonRate": 11,
-    "minViolentPrisonRate": 0,
-    "maxViolentPrisonRate": 1,
-    "avgLeniencyScore": 44.0
+    "judgesLowViolentPrisonRate": 10,
+    "minViolentPrisonRate": 0.1,
+    "maxViolentPrisonRate": 0.4471,
+    "avgLeniencyScore": 46.2
   },
   "judges": {
     "stephenson-dustin": {
       "name": "STEPHENSON, DUSTIN",
       "slug": "stephenson-dustin",
-      "totalCases": 23,
+      "totalCases": 22,
       "prisonRate": 0.4222,
       "jailRate": 0,
       "probationRate": 0.0444,
@@ -39,7 +39,7 @@
       "otherCount": 24,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 36,
       "violentCases": {
         "total": 22,
         "prisonRate": 0.4222222222222222,
@@ -50,38 +50,7 @@
       },
       "sentenceTypes": {
         "Criminal Felony": 22,
-        "Domestic Relations": 1
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "mallory-peter-a": {
-      "name": "MALLORY, PETER A",
-      "slug": "mallory-peter-a",
-      "totalCases": 31,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Domestic Violence": 13,
-        "Domestic Relations": 18
+        "Misdemeanor": 0
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -90,33 +59,29 @@
     "grammer-joe": {
       "name": "GRAMMER, JOE",
       "slug": "grammer-joe",
-      "totalCases": 73,
-      "prisonRate": 0.4177,
+      "totalCases": 62,
+      "prisonRate": 0.44,
       "jailRate": 0,
-      "probationRate": 0.1519,
-      "otherRate": 0.3544,
+      "probationRate": 0.16,
+      "otherRate": 0.36,
       "prisonCount": 33,
       "jailCount": 0,
       "probationCount": 12,
-      "otherCount": 34,
+      "otherCount": 30,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 40,
       "violentCases": {
         "total": 0,
-        "prisonRate": 0.4177215189873418,
-        "probationRate": 0.08860759493670886,
+        "prisonRate": 0.44,
+        "probationRate": 0.09333333333333334,
         "jailRate": 0,
         "prisonCount": 33,
         "probationCount": 7
       },
       "sentenceTypes": {
-        "Misdemeanor": 43,
-        "Municipal Ordinance": 2,
-        "Criminal Traffic": 19,
-        "County Civil": 4,
-        "Small Claims": 3,
-        "Civil Traffic": 2
+        "Criminal Felony": 0,
+        "Misdemeanor": 43
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -125,34 +90,29 @@
     "dyer-william": {
       "name": "DYER, WILLIAM",
       "slug": "dyer-william",
-      "totalCases": 128,
-      "prisonRate": 0.3394,
+      "totalCases": 82,
+      "prisonRate": 0.34,
       "jailRate": 0,
-      "probationRate": 0.3211,
-      "otherRate": 0.211,
-      "prisonCount": 37,
+      "probationRate": 0.34,
+      "otherRate": 0.2,
+      "prisonCount": 34,
       "jailCount": 0,
-      "probationCount": 35,
-      "otherCount": 37,
+      "probationCount": 34,
+      "otherCount": 32,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 53,
       "violentCases": {
         "total": 0,
-        "prisonRate": 0.3394495412844037,
-        "probationRate": 0.1559633027522936,
+        "prisonRate": 0.34,
+        "probationRate": 0.17,
         "jailRate": 0,
-        "prisonCount": 37,
+        "prisonCount": 34,
         "probationCount": 17
       },
       "sentenceTypes": {
-        "Misdemeanor": 49,
-        "Criminal Traffic": 33,
-        "Municipal Ordinance": 4,
-        "Civil Traffic": 4,
-        "County Civil": 29,
-        "Small Claims": 8,
-        "Animal Control": 1
+        "Criminal Felony": 0,
+        "Misdemeanor": 49
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -161,32 +121,29 @@
     "vann-shane": {
       "name": "VANN, SHANE",
       "slug": "vann-shane",
-      "totalCases": 110,
-      "prisonRate": 0.4198,
+      "totalCases": 101,
+      "prisonRate": 0.438,
       "jailRate": 0,
-      "probationRate": 0.2366,
-      "otherRate": 0.3206,
-      "prisonCount": 55,
+      "probationRate": 0.1983,
+      "otherRate": 0.3388,
+      "prisonCount": 53,
       "jailCount": 0,
-      "probationCount": 31,
-      "otherCount": 45,
+      "probationCount": 24,
+      "otherCount": 44,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 41,
       "violentCases": {
         "total": 0,
-        "prisonRate": 0.4198473282442748,
-        "probationRate": 0.10687022900763359,
+        "prisonRate": 0.4380165289256198,
+        "probationRate": 0.09090909090909091,
         "jailRate": 0,
-        "prisonCount": 55,
-        "probationCount": 14
+        "prisonCount": 53,
+        "probationCount": 11
       },
       "sentenceTypes": {
-        "Misdemeanor": 59,
-        "Municipal Ordinance": 6,
-        "Criminal Traffic": 42,
-        "Civil Traffic": 2,
-        "Animal Control": 1
+        "Criminal Felony": 0,
+        "Misdemeanor": 59
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -206,7 +163,7 @@
       "otherCount": 46,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 33,
       "violentCases": {
         "total": 36,
         "prisonRate": 0.4470588235294118,
@@ -216,7 +173,8 @@
         "probationCount": 1
       },
       "sentenceTypes": {
-        "Criminal Felony": 36
+        "Criminal Felony": 36,
+        "Misdemeanor": 0
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -225,7 +183,7 @@
     "gay-shonna-young": {
       "name": "GAY, SHONNA YOUNG",
       "slug": "gay-shonna-young",
-      "totalCases": 37,
+      "totalCases": 34,
       "prisonRate": 0.4,
       "jailRate": 0,
       "probationRate": 0.04,
@@ -236,7 +194,7 @@
       "otherCount": 42,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 37,
       "violentCases": {
         "total": 34,
         "prisonRate": 0.4,
@@ -247,7 +205,7 @@
       },
       "sentenceTypes": {
         "Criminal Felony": 34,
-        "Domestic Violence": 3
+        "Misdemeanor": 0
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -267,7 +225,7 @@
       "otherCount": 23,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 41,
       "violentCases": {
         "total": 21,
         "prisonRate": 0.40384615384615385,
@@ -277,383 +235,8 @@
         "probationCount": 7
       },
       "sentenceTypes": {
-        "Criminal Felony": 21
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "smith-tracy": {
-      "name": "SMITH, TRACY",
-      "slug": "smith-tracy",
-      "totalCases": 26,
-      "prisonRate": 0.0909,
-      "jailRate": 0,
-      "probationRate": 0.2727,
-      "otherRate": 0.3636,
-      "prisonCount": 1,
-      "jailCount": 0,
-      "probationCount": 3,
-      "otherCount": 7,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0.09090909090909091,
-        "probationRate": 0.18181818181818182,
-        "jailRate": 0,
-        "prisonCount": 1,
-        "probationCount": 2
-      },
-      "sentenceTypes": {
-        "County Civil": 5,
-        "Misdemeanor": 4,
-        "Criminal Traffic": 5,
-        "Municipal Ordinance": 1,
-        "Small Claims": 11
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "campbell-timothy-craig": {
-      "name": "CAMPBELL, TIMOTHY CRAIG",
-      "slug": "campbell-timothy-craig",
-      "totalCases": 70,
-      "prisonRate": 0.2,
-      "jailRate": 0,
-      "probationRate": 0.6,
-      "otherRate": 0.2,
-      "prisonCount": 1,
-      "jailCount": 0,
-      "probationCount": 3,
-      "otherCount": 1,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0.2,
-        "probationRate": 0.4,
-        "jailRate": 0,
-        "prisonCount": 1,
-        "probationCount": 2
-      },
-      "sentenceTypes": {
-        "County Civil": 39,
-        "Small Claims": 26,
-        "Municipal Ordinance": 1,
-        "Criminal Traffic": 3,
-        "Misdemeanor": 1
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "dykes-maria-ignacio": {
-      "name": "DYKES, MARIA IGNACIO",
-      "slug": "dykes-maria-ignacio",
-      "totalCases": 36,
-      "prisonRate": 0.0278,
-      "jailRate": 0,
-      "probationRate": 0.3611,
-      "otherRate": 0.4444,
-      "prisonCount": 1,
-      "jailCount": 0,
-      "probationCount": 13,
-      "otherCount": 22,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0.027777777777777776,
-        "probationRate": 0.3611111111111111,
-        "jailRate": 0,
-        "prisonCount": 1,
-        "probationCount": 13
-      },
-      "sentenceTypes": {
-        "Civil Traffic": 36
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "goodman-james-j-jr": {
-      "name": "GOODMAN, JAMES J JR",
-      "slug": "goodman-james-j-jr",
-      "totalCases": 26,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Circuit Civil": 26
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "collier-devin": {
-      "name": "COLLIER, DEVIN",
-      "slug": "collier-devin",
-      "totalCases": 12,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Domestic Relations": 9,
-        "Circuit Civil": 3
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "smiley-elijah": {
-      "name": "SMILEY, ELIJAH",
-      "slug": "smiley-elijah",
-      "totalCases": 62,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Probate": 32,
-        "Will on Deposit": 11,
-        "Circuit Civil": 14,
-        "Guardianship": 2,
-        "Notice of Trust": 3
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "henry-william": {
-      "name": "HENRY, WILLIAM",
-      "slug": "henry-william",
-      "totalCases": 43,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Circuit Civil": 39,
-        "Domestic Relations": 4
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "young-brandon": {
-      "name": "YOUNG, BRANDON",
-      "slug": "young-brandon",
-      "totalCases": 21,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Domestic Relations": 21
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "carothers-alicia-dawn": {
-      "name": "CAROTHERS, ALICIA DAWN",
-      "slug": "carothers-alicia-dawn",
-      "totalCases": 5,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "County Civil": 1,
-        "Small Claims": 4
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "fishel-john-l-ii": {
-      "name": "FISHEL, JOHN L II",
-      "slug": "fishel-john-l-ii",
-      "totalCases": 7,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Circuit Civil": 7
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "welch-thomas-f": {
-      "name": "WELCH, THOMAS F",
-      "slug": "welch-thomas-f",
-      "totalCases": 3,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Small Claims": 2,
-        "County Civil": 1
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "overstreet-michael-c": {
-      "name": "OVERSTREET, MICHAEL C",
-      "slug": "overstreet-michael-c",
-      "totalCases": 3,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Circuit Civil": 3
+        "Criminal Felony": 21,
+        "Misdemeanor": 0
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
@@ -662,7 +245,7 @@
     "garcia-ana-maria": {
       "name": "GARCIA, ANA MARIA",
       "slug": "garcia-ana-maria",
-      "totalCases": 11,
+      "totalCases": 5,
       "prisonRate": 0.3077,
       "jailRate": 0,
       "probationRate": 0.2308,
@@ -673,7 +256,7 @@
       "otherCount": 6,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 100,
+      "leniencyScore": 50,
       "violentCases": {
         "total": 5,
         "prisonRate": 0.3076923076923077,
@@ -684,129 +267,69 @@
       },
       "sentenceTypes": {
         "Criminal Felony": 5,
-        "Domestic Relations": 6
+        "Misdemeanor": 0
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
       "genderBreakdown": {}
     },
-    "roberts-russell": {
-      "name": "ROBERTS, RUSSELL",
-      "slug": "roberts-russell",
+    "smith-tracy": {
+      "name": "SMITH, TRACY",
+      "slug": "smith-tracy",
+      "totalCases": 9,
+      "prisonRate": 0.1,
+      "jailRate": 0,
+      "probationRate": 0.3,
+      "otherRate": 0.4,
+      "prisonCount": 1,
+      "jailCount": 0,
+      "probationCount": 3,
+      "otherCount": 6,
+      "avgCommitmentDays": null,
+      "courtFacility": "Bay County, FL",
+      "leniencyScore": 66,
+      "violentCases": {
+        "total": 0,
+        "prisonRate": 0.1,
+        "probationRate": 0.2,
+        "jailRate": 0,
+        "prisonCount": 1,
+        "probationCount": 2
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 0,
+        "Misdemeanor": 4
+      },
+      "offenseBreakdown": {},
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "campbell-timothy-craig": {
+      "name": "CAMPBELL, TIMOTHY CRAIG",
+      "slug": "campbell-timothy-craig",
       "totalCases": 4,
-      "prisonRate": 0,
+      "prisonRate": 0.25,
       "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
+      "probationRate": 0.5,
+      "otherRate": 0.25,
+      "prisonCount": 1,
       "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
+      "probationCount": 2,
+      "otherCount": 1,
       "avgCommitmentDays": null,
       "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
+      "leniencyScore": 65,
       "violentCases": {
         "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
+        "prisonRate": 0.25,
+        "probationRate": 0.5,
         "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
+        "prisonCount": 1,
+        "probationCount": 2
       },
       "sentenceTypes": {
-        "Domestic Relations": 4
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "patterson-christopher-n": {
-      "name": "PATTERSON, CHRISTOPHER N",
-      "slug": "patterson-christopher-n",
-      "totalCases": 4,
-      "prisonRate": 0.0,
-      "jailRate": 0,
-      "probationRate": 0.0,
-      "otherRate": 0.0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 5,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 2,
-        "prisonRate": 0.0,
-        "probationRate": 0.0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Criminal Felony": 2,
-        "Domestic Violence": 2
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "jefcoat-shalla": {
-      "name": "JEFCOAT, SHALLA",
-      "slug": "jefcoat-shalla",
-      "totalCases": 11,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "County Civil": 4,
-        "Small Claims": 7
-      },
-      "offenseBreakdown": {},
-      "raceBreakdown": {},
-      "genderBreakdown": {}
-    },
-    "patterson-jarred": {
-      "name": "PATTERSON, JARRED",
-      "slug": "patterson-jarred",
-      "totalCases": 1,
-      "prisonRate": 0,
-      "jailRate": 0,
-      "probationRate": 0,
-      "otherRate": 0,
-      "prisonCount": 0,
-      "jailCount": 0,
-      "probationCount": 0,
-      "otherCount": 0,
-      "avgCommitmentDays": null,
-      "courtFacility": "Bay County, FL",
-      "leniencyScore": 0,
-      "violentCases": {
-        "total": 0,
-        "prisonRate": 0,
-        "probationRate": 0,
-        "jailRate": 0,
-        "prisonCount": 0,
-        "probationCount": 0
-      },
-      "sentenceTypes": {
-        "Domestic Relations": 1
+        "Criminal Felony": 0,
+        "Misdemeanor": 1
       },
       "offenseBreakdown": {},
       "raceBreakdown": {},
