@@ -61,7 +61,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
         {sorted.map(c => {
           const color = leniencyColor(c.leniencyScore);
           const bg = leniencyBg(c.leniencyScore);
-          const isPalmBeach = c.slug === 'palm-beach';
+
           return (
             <div
               key={c.slug}
@@ -71,7 +71,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
                 width: '56px',
                 height: '44px',
                 background: bg,
-                border: isPalmBeach ? '2px solid #3b82f6' : `1.5px solid ${color}55`,
+                border: `1.5px solid ${color}55`,
                 borderRadius: '6px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -102,17 +102,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
               <div style={{ fontSize: '0.65rem', fontWeight: 800, color, lineHeight: 1 }}>
                 {c.leniencyScore.toFixed(0)}
               </div>
-              {isPalmBeach && (
-                <div style={{
-                  position: 'absolute',
-                  top: '2px',
-                  right: '2px',
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: '#3b82f6',
-                }} />
-              )}
+
             </div>
           );
         })}
@@ -124,10 +114,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
           <div style={{ width: '32px', height: '10px', borderRadius: '3px', background: 'linear-gradient(to right, hsl(120,70%,42%), hsl(60,70%,42%), hsl(0,70%,42%))' }} />
           <span>Strict → Lenient</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <div style={{ width: '10px', height: '10px', borderRadius: '2px', border: '2px solid #3b82f6', background: 'rgba(59,130,246,0.18)' }} />
-          <span>Palm Beach</span>
-        </div>
+
         <span>· Sorted most lenient → strictest (left to right)</span>
       </div>
     </div>

@@ -121,7 +121,7 @@ export default function FloridaCountyTable({ counties }: Props) {
           </thead>
           <tbody>
             {sorted.map((c, i) => {
-              const isPalmBeach = c.slug === 'palm-beach';
+              const isPalmBeach = false;
               const bg = isPalmBeach
                 ? 'rgba(59,130,246,0.07)'
                 : i % 2 === 0 ? 'var(--bg-card)' : 'var(--bg-secondary)';
@@ -132,11 +132,11 @@ export default function FloridaCountyTable({ counties }: Props) {
                   key={c.slug}
                   style={{
                     background: bg,
-                    borderLeft: isPalmBeach ? '3px solid #3b82f6' : '3px solid transparent',
+                    borderLeft: '3px solid transparent',
                     transition: 'background 0.1s',
                   }}
                 >
-                  <td style={{ padding: '0.5rem 0.75rem', color: 'var(--text-primary)', fontWeight: isPalmBeach ? 700 : 500 }}>
+                  <td style={{ padding: '0.5rem 0.75rem', color: 'var(--text-primary)', fontWeight: 500 }}>
                     {c.name}
                     
                   </td>

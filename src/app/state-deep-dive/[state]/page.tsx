@@ -812,44 +812,7 @@ function FloridaPage() {
           <SourceNote text="FDLE Criminal Justice Data Transparency Portal · Clerk of Court Reports · 3.59M cases" />
         </Section>
 
-        {/* Palm Beach Highlight */}
-        <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid rgba(59,130,246,0.35)',
-          borderLeft: '4px solid #3b82f6',
-          borderRadius: '0.75rem',
-          padding: '1.25rem 1.5rem',
-          marginBottom: '1.5rem',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem',
-          alignItems: 'center',
-        }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <span style={{ fontSize: '1.25rem' }}>🏡</span>
-              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#93c5fd', margin: 0 }}>Palm Beach County</h3>
-            </div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-              Judicial Circuit 15 · Leniency rank #{pb.leniencyRank} of 67 counties
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-            {([
-              { label: 'Leniency Score', val: pb.leniencyScore.toFixed(1), color: '#f97316' },
-              { label: 'Prison Rate', val: `${(pb.prisonRate * 100).toFixed(1)}%`, color: '#dc2626' },
-              { label: 'Jail Rate', val: `${(pb.jailRate * 100).toFixed(1)}%`, color: '#8b5cf6' },
-              { label: 'Total Cases', val: fmt(pb.totalCases), color: 'var(--text-primary)' },
-              { label: 'Avg Felony Sentence', val: `${Math.round(pb.avgFelonySentenceDays ?? 0)} days`, color: '#ca8a04' },
-              { label: 'Violent Cases', val: fmt(pb.violentCases.total), color: '#ef4444' },
-            ] as { label: string; val: string; color: string }[]).map(({ label, val, color }) => (
-              <div key={label}>
-                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginBottom: '2px' }}>{label}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color }}>{val}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* County Heatmap */}
         <Section>
@@ -945,12 +908,7 @@ function FloridaPage() {
                 title: 'Broward & Orange County Leniency',
                 body: `Broward (Fort Lauderdale, score 76.7) and Orange (Orlando, score 69.5) rank #2 and #3 most lenient — major metro counties with well below-average prison commitment rates.`,
               },
-              {
-                icon: '🏡',
-                color: '#3b82f6',
-                title: 'Palm Beach — Score 57.5 (Rank #16)',
-                body: `Palm Beach County ranks #${pb.leniencyRank} of 67 — above the midpoint in leniency. Prison rate ${(pb.prisonRate * 100).toFixed(1)}%, below the state average of 14.4%. ${fmt(pb.totalCases)} total cases analyzed.`,
-              },
+
               {
                 icon: '🟩',
                 color: '#16a34a',
