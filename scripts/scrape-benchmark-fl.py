@@ -86,13 +86,13 @@ def scrape_county(key, config):
         print('No CAPTCHA found, submitting without token')
         token = ''
     
-    # Step 3: Submit search — ALL criminal case types, wide date range
+    # Step 3: Submit search — CRIMINAL ONLY (felony + misdemeanor + criminal traffic)
     data = {
         '__RequestVerificationToken': csrf[0],
         'type': 'name', 'search': '%',  # Wildcard to get ALL cases
-        'courtTypes': courts[0] if courts else '2',
-        'caseTypes': cases[0] if cases else '5',
-        'openedFrom': '01/01/2020', 'openedTo': '12/31/2025',
+        'courtTypes': '2',  # Criminal court type only
+        'caseTypes': '5,15,9',  # Criminal Felony, Misdemeanor, Criminal Traffic
+        'openedFrom': '01/01/2024', 'openedTo': '12/31/2026',
         'closedFrom': '', 'closedTo': '',
         'partyTypes': '1,2,3,4,5',
         'divisions': '', 'statutes': '',
@@ -260,8 +260,8 @@ def search_common_names(base, s, csrf, sitekey, courts, cases):
         data = {
             '__RequestVerificationToken': csrf,
             'type': 'name', 'search': name,
-            'courtTypes': courts, 'caseTypes': '5',  # Criminal Felony only
-            'openedFrom': '01/01/2020', 'openedTo': '12/31/2025',
+            'courtTypes': '2', 'caseTypes': '5,15,9',  # Criminal Felony + Misdemeanor + Criminal Traffic
+            'openedFrom': '01/01/2024', 'openedTo': '12/31/2026',
             'closedFrom': '', 'closedTo': '',
             'partyTypes': '', 'divisions': '', 'statutes': '',
             'partyBirthYear': '', 'partyDOB': '',
