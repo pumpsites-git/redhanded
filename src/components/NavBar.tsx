@@ -6,13 +6,8 @@ import { usePathname } from 'next/navigation';
 const NAV_LINKS = [
   { href: '/', label: 'State Judges', icon: '⚖️' },
   { href: '/judges/federal', label: 'Federal Judges', icon: '🏛️' },
-  { href: '/districts', label: 'Districts', icon: '🗺️' },
-  { href: '/states', label: 'States', icon: '🇺🇸' },
-  { href: '/rankings', label: 'Rankings', icon: '📊' },
-  { href: '/offenders', label: 'Offenders', icon: '🔍' },
-  { href: '/insights', label: 'Insights', icon: '💡' },
+  { href: '/state-deep-dive/fl', label: 'Florida Deep Dive', icon: '☀️' },
   { href: '/methodology', label: 'Methodology', icon: '📐' },
-  { href: '/state-deep-dives', label: 'Deep Dives', icon: '🔬' },
 ];
 
 export default function NavBar() {
@@ -48,6 +43,7 @@ export default function NavBar() {
             gap: '0.5rem',
             textDecoration: 'none',
             marginRight: '1.5rem',
+            flexShrink: 0,
           }}
         >
           <span style={{ fontSize: '1.25rem' }}>🔴</span>
@@ -64,7 +60,7 @@ export default function NavBar() {
         </Link>
 
         {/* Nav links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flex: 1, overflowX: 'auto' }}>
           {NAV_LINKS.map(({ href, label, icon }) => {
             const isActive =
               href === '/'
@@ -87,16 +83,18 @@ export default function NavBar() {
                   border: `1px solid ${isActive ? 'var(--border)' : 'transparent'}`,
                   textDecoration: 'none',
                   transition: 'all 0.15s ease',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
                 }}
               >
                 <span style={{ fontSize: '0.875rem' }}>{icon}</span>
-                {label}
+                <span className="nav-label">{label}</span>
               </Link>
             );
           })}
         </div>
 
-        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', flexShrink: 0, display: 'none' }} className="nav-tagline">
           Public Court Data
         </span>
       </div>

@@ -709,6 +709,28 @@ function FloridaPage() {
 
       <main style={{ maxWidth: '72rem', margin: '0 auto', padding: '2rem 1rem' }}>
 
+        {/* Broward callout banner */}
+        <div style={{
+          background: 'rgba(220,38,38,0.06)',
+          border: '1px solid rgba(220,38,38,0.3)',
+          borderLeft: '4px solid #dc2626',
+          borderRadius: '0.75rem',
+          padding: '1rem 1.25rem',
+          marginBottom: '1.5rem',
+          display: 'flex',
+          gap: '0.75rem',
+          alignItems: 'flex-start',
+        }}>
+          <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>🚨</span>
+          <div>
+            <strong style={{ color: '#f87171', fontSize: '0.95rem' }}>Spotlight: Broward County</strong>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: '0.25rem 0 0', lineHeight: 1.5 }}>
+              Broward County (Fort Lauderdale) lets <strong style={{ color: '#dc2626' }}>52.8% of convicted criminals walk</strong> with
+              withheld adjudication — the #2 most lenient county in Florida, with a leniency score of 76.7.
+            </p>
+          </div>
+        </div>
+
         {/* Key Stats */}
         <Section>
           <SectionHeader title="Florida at a Glance" icon="📊" />

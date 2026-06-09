@@ -181,6 +181,12 @@ function ComparePanel({
   );
 }
 
+// Platform-wide totals (IL judges + FL Bay + FL 67-county cases)
+const TOTAL_JUDGES_TRACKED = META.totalJudges; // 135 IL + 11 FL Bay
+const FL_COUNTY_CASES = 3593714;
+const TOTAL_CASES_ANALYZED = META.totalCases + FL_COUNTY_CASES;
+const STATES_COVERED = 2;
+
 export default function Home() {
   const [stateFilter, setStateFilter] = useState('');
   const [facilityFilter, setFacilityFilter] = useState('');
@@ -252,39 +258,78 @@ export default function Home() {
 
   return (
     <div style={{ minHeight: '100vh' }}>
-      {/* Header */}
+      {/* Hero Header */}
       <header
+        className="hero-gradient"
         style={{
           borderBottom: '1px solid var(--border)',
           background: 'var(--bg-secondary)',
-          padding: '1.5rem 1rem',
+          padding: '2.5rem 1rem 2rem',
         }}
       >
         <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
-            <span style={{ fontSize: '2rem' }}>🔴</span>
-            <h1 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1 }}>
-              Red<span style={{ color: 'var(--red-primary)' }}>Handed</span>
-            </h1>
-          </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginLeft: '2.75rem' }}>
-            Judicial Accountability — Track, Score, and Hold Judges Accountable
+          {/* Headline */}
+          <h1
+            className="hero-headline"
+            style={{ fontSize: '2.25rem', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '0.5rem' }}
+          >
+            Who&apos;s Letting <span style={{ color: 'var(--red-primary)' }}>Criminals Walk?</span>
+          </h1>
+          <p
+            className="hero-sub"
+            style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: '540px', lineHeight: 1.5, marginBottom: '1.75rem' }}
+          >
+            Judges ranked by their actual sentencing decisions — public court data, no spin.
           </p>
+
+          {/* Stat Counters */}
+          <div
+            className="hero-stats-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '0',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border)',
+              borderRadius: '0.75rem',
+              overflow: 'hidden',
+              maxWidth: '540px',
+            }}
+          >
+            {[
+              { value: TOTAL_JUDGES_TRACKED.toLocaleString() + '+', label: 'Judges Tracked', color: '#dc2626', icon: '⚖️' },
+              { value: TOTAL_CASES_ANALYZED.toLocaleString(), label: 'Cases Analyzed', color: '#f97316', icon: '📋' },
+              { value: STATES_COVERED.toString(), label: 'States Covered', color: '#22c55e', icon: '🗺️' },
+            ].map(({ value, label, color, icon }, i) => (
+              <div
+                key={label}
+                className="stat-value"
+                style={{
+                  padding: '1.25rem 1.5rem',
+                  borderRight: i < 2 ? '1px solid var(--border)' : undefined,
+                  animationDelay: `${i * 0.1}s`,
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: '0.9rem', marginBottom: '0.25rem' }}>{icon}</div>
+                <div style={{ fontSize: '1.625rem', fontWeight: 900, color, lineHeight: 1, letterSpacing: '-0.02em' }}>
+                  {value}
+                </div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
 
       <main style={{ maxWidth: '72rem', margin: '0 auto', padding: '1.5rem 1rem' }}>
 
-        {/* Hero sub-header */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)', lineHeight: 1.2 }}>
-            Who&apos;s Letting Criminals Walk?
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', marginTop: '0.375rem' }}>
-            State court judges ranked by their actual sentencing decisions — Cook County, Illinois
-          </p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.375rem' }}>
-            Source: {META.source} · {META.totalCases.toLocaleString()} cases · {META.totalJudges} judges · Generated {META.generated}
+        {/* Data provenance strip */}
+        <div style={{ marginBottom: '1.5rem', paddingTop: '0.25rem' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            📋 Source: {META.source} · {META.totalCases.toLocaleString()} IL sentencing records + 3.59M FL records · {META.totalJudges} judges · Updated {META.generated}
           </p>
         </div>
 
@@ -728,19 +773,24 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Footer */}
-        <footer style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem', paddingBottom: '3rem', marginTop: '3rem', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            🔴 RedHanded — All data sourced from public court records
-          </p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-            Data: {META.source} · {META.totalCases.toLocaleString()} sentencing records · {META.totalJudges} judges
-          </p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-            Leniency Score: weighted composite of violent-crime probation rate (50%), overall probation rate (30%), non-prison rate (20%).
-            Scores are relative to court average (avg ≈ 42).
-          </p>
-        </footer>
+        {/* Methodology note */}
+        <div
+          style={{
+            marginTop: '2rem',
+            padding: '1rem 1.25rem',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            borderRadius: '0.75rem',
+            fontSize: '0.78rem',
+            color: 'var(--text-muted)',
+            lineHeight: 1.6,
+          }}
+        >
+          <strong style={{ color: 'var(--text-secondary)' }}>📐 Methodology:</strong>{' '}
+          Leniency Score is a weighted composite: violent-crime probation rate (50%), overall probation rate (30%), non-prison rate (20%).
+          Scores are normalized relative to court average (avg ≈ 42). Only judges with ≥30 cases shown by default.
+          {' '}<a href="/methodology" style={{ color: 'var(--red-primary)', textDecoration: 'none' }}>Full methodology →</a>
+        </div>
       </main>
     </div>
   );

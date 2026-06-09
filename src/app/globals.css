@@ -14,33 +14,37 @@
   --border: #2a2a2a;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Custom scrollbar */
+/* ── Custom scrollbar ─────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #555; }
 
-/* Score ring animation */
+/* ── Score ring animation ─────────────────────── */
 @keyframes score-fill {
   from { stroke-dashoffset: 283; }
 }
-
 .score-ring {
   animation: score-fill 1.5s ease-out;
 }
 
-/* Red glow effect */
+/* ── Red glow effect ──────────────────────────── */
 .red-glow {
   box-shadow: 0 0 20px var(--red-glow), 0 0 40px rgba(220, 38, 38, 0.05);
 }
 
-/* Card hover */
+/* ── Judge card hover ─────────────────────────── */
 .judge-card {
   transition: all 0.2s ease;
   border: 1px solid var(--border);
@@ -49,4 +53,123 @@ body {
   border-color: var(--red-primary);
   box-shadow: 0 0 30px var(--red-glow);
   transform: translateY(-2px);
+}
+
+/* ── Loading skeleton pulse ───────────────────── */
+@keyframes shimmer {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+.skeleton {
+  background: var(--bg-card);
+  border-radius: 0.5rem;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── Stat counter pulse-in ────────────────────── */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stat-value {
+  animation: count-up 0.6s ease-out forwards;
+}
+
+/* ── Hero gradient overlay ────────────────────── */
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.04) 0%,
+    transparent 60%
+  );
+}
+
+/* ── Table row hover ──────────────────────────── */
+tr.table-row:hover td {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ── Mobile responsive ────────────────────────── */
+
+/* Hide nav labels on very small screens */
+@media (max-width: 480px) {
+  .nav-label {
+    display: none;
+  }
+  .nav-tagline {
+    display: none !important;
+  }
+}
+
+/* Show tagline on md+ */
+@media (min-width: 768px) {
+  .nav-tagline {
+    display: block !important;
+  }
+}
+
+/* Responsive table: allow horizontal scroll */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive grids: single column on mobile */
+@media (max-width: 640px) {
+  .hero-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Responsive hero heading */
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 1.5rem !important;
+  }
+  .hero-sub {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 768px) {
+  a, button {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+  /* except inline text links */
+  p a, td a, li a {
+    min-height: unset;
+    display: inline;
+  }
+}
+
+/* Responsive judge profile */
+@media (max-width: 768px) {
+  .judge-hero-layout {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .judge-metric-badges {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* Responsive page max width */
+@media (max-width: 640px) {
+  .page-container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
 }
