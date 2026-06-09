@@ -1,9 +1,11 @@
 import ilProfilesRaw from '../../data/state-courts/illinois/judge-profiles.json';
+import flBayProfilesRaw from '../../data/state-courts/florida/bay-judge-profiles.json';
 
 // Registry of all state court data files
 // Add new states here as they become available
 const STATE_REGISTRY: { code: string; name: string; county: string; data: unknown }[] = [
   { code: 'IL', name: 'Illinois', county: 'Cook County', data: ilProfilesRaw },
+  { code: 'FL', name: 'Florida', county: 'Bay County', data: flBayProfilesRaw },
 ];
 
 export interface ViolentCaseStats {
