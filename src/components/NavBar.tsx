@@ -3,11 +3,62 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+// SVG icons — no emoji, guaranteed to render everywhere
+function ScalesIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" y1="3" x2="12" y2="21" />
+      <path d="M3 7h18" />
+      <path d="M3 7l3 6H0l3-6z" />
+      <path d="M21 7l3 6h-6l3-6z" />
+      <line x1="9" y1="21" x2="15" y2="21" />
+    </svg>
+  );
+}
+
+function BuildingIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="10" width="20" height="11" />
+      <path d="M2 10l10-7 10 7" />
+      <line x1="8" y1="21" x2="8" y2="15" />
+      <line x1="16" y1="21" x2="16" y2="15" />
+    </svg>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  );
+}
+
+function DocIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  );
+}
+
 const NAV_LINKS = [
-  { href: '/', label: 'State Judges', icon: '⚖️' },
-  { href: '/judges/federal', label: 'Federal Judges', icon: '🏛️' },
-  { href: '/state-deep-dive/fl', label: 'Florida Deep Dive', icon: '☀️' },
-  { href: '/methodology', label: 'Methodology', icon: '📐' },
+  { href: '/', label: 'State Judges', Icon: ScalesIcon },
+  { href: '/judges/federal', label: 'Federal Judges', Icon: BuildingIcon },
+  { href: '/state-deep-dive/fl', label: 'Florida Deep Dive', Icon: SunIcon },
+  { href: '/methodology', label: 'Methodology', Icon: DocIcon },
 ];
 
 export default function NavBar() {
@@ -46,7 +97,18 @@ export default function NavBar() {
             flexShrink: 0,
           }}
         >
-          <span style={{ fontSize: '1.25rem' }}>🔴</span>
+          {/* Red dot — pure CSS, no emoji */}
+          <span
+            style={{
+              display: 'inline-block',
+              width: '14px',
+              height: '14px',
+              borderRadius: '50%',
+              background: '#dc2626',
+              boxShadow: '0 0 8px rgba(220,38,38,0.5)',
+              flexShrink: 0,
+            }}
+          />
           <span
             style={{
               fontSize: '1.125rem',
@@ -61,7 +123,7 @@ export default function NavBar() {
 
         {/* Nav links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flex: 1, overflowX: 'auto' }}>
-          {NAV_LINKS.map(({ href, label, icon }) => {
+          {NAV_LINKS.map(({ href, label, Icon }) => {
             const isActive =
               href === '/'
                 ? pathname === '/'
@@ -87,7 +149,7 @@ export default function NavBar() {
                   flexShrink: 0,
                 }}
               >
-                <span style={{ fontSize: '0.875rem' }}>{icon}</span>
+                <Icon />
                 <span className="nav-label">{label}</span>
               </Link>
             );

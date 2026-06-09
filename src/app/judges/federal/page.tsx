@@ -81,7 +81,7 @@ export default function FederalJudgesPage() {
           <div className="flex items-center gap-3 mb-1">
             <Link href="/" style={{ textDecoration: 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontSize: '2rem' }}>🔴</span>
+                <span style={{ display: 'inline-block', width: '28px', height: '28px', borderRadius: '50%', background: '#dc2626', boxShadow: '0 0 12px rgba(220,38,38,0.5)', flexShrink: 0 }} />
                 <h1 className="text-3xl font-bold tracking-tight">
                   Red<span className="text-[var(--red-primary)]">Handed</span>
                 </h1>
@@ -128,7 +128,7 @@ export default function FederalJudgesPage() {
 
         <div className="bg-amber-900/10 border border-amber-800/30 rounded-lg p-4">
           <p className="text-sm text-amber-400">
-            📊 <strong>Live Database:</strong> {overview.totalJudges} federal judges loaded from CourtListener via Supabase.
+            <strong>Live Database:</strong> {overview.totalJudges} federal judges loaded from CourtListener via Supabase.
             Accountability scores are being calculated as case data is collected.
           </p>
         </div>
@@ -155,7 +155,13 @@ export default function FederalJudgesPage() {
 
         {loading ? (
           <div className="text-center py-16">
-            <div className="text-4xl mb-4 animate-pulse">⚖️</div>
+            <div className="mb-4 flex justify-center">
+              <svg className="animate-pulse" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="12" y1="3" x2="12" y2="21"/>
+                <path d="M3 7h18"/><path d="M3 7l3 6H0l3-6z"/><path d="M21 7l3 6h-6l3-6z"/>
+                <line x1="9" y1="21" x2="15" y2="21"/>
+              </svg>
+            </div>
             <p className="text-[var(--text-secondary)]">Loading judges...</p>
           </div>
         ) : (
@@ -168,7 +174,7 @@ export default function FederalJudgesPage() {
 
         {!loading && judges.length === 0 && (
           <div className="text-center py-16">
-            <div className="text-4xl mb-4">🔍</div>
+            <div className="mb-4 flex justify-center text-[var(--text-muted)] text-4xl font-light">?</div>
             <p className="text-[var(--text-secondary)]">No judges match your search criteria</p>
           </div>
         )}
@@ -198,7 +204,7 @@ export default function FederalJudgesPage() {
         <footer className="border-t border-[var(--border)] pt-8 pb-12 mt-16">
           <div className="text-center space-y-2">
             <p className="text-sm text-[var(--text-muted)]">
-              🔴 RedHanded — All data sourced from public court records via CourtListener
+              RedHanded — All data sourced from public court records via CourtListener
             </p>
             <p className="text-xs text-[var(--text-muted)]">
               Federal judge data powered by Supabase. Accountability scores calculated from reversal rates, sentencing patterns, and community input.

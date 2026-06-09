@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import {
   getAllStateJudges,
@@ -195,6 +195,7 @@ const TOTAL_CASES_ANALYZED = META.totalCases + FL_COUNTY_CASES;
 const STATES_COVERED = 2;
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
   const [stateFilter, setStateFilter] = useState('');
   const [facilityFilter, setFacilityFilter] = useState('');
   const [leniencyMin, setLeniencyMin] = useState(0);
@@ -208,11 +209,19 @@ export default function Home() {
   const filtered = useMemo(() => {
     let list = ALL_JUDGES.filter((j) => {
       // Lower threshold when filtering by state (smaller counties have fewer cases)
-      const minCases = stateFilter ? 3 : 30;
+      const minCases = stateFilter || searchQuery ? 3 : 30;
       if (j.totalCases < minCases) return false;
       if (stateFilter && j.stateCode !== stateFilter) return false;
       if (facilityFilter && j.courtFacility !== facilityFilter) return false;
       if (j.leniencyScore < leniencyMin || j.leniencyScore > leniencyMax) return false;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const nameMatch = j.name.toLowerCase().includes(q);
+        const countyMatch = j.county.toLowerCase().includes(q);
+        const stateMatch = j.state.toLowerCase().includes(q) || j.stateCode.toLowerCase().includes(q);
+        const courtMatch = (j.courtFacility || '').toLowerCase().includes(q);
+        if (!nameMatch && !countyMatch && !stateMatch && !courtMatch) return false;
+      }
       return true;
     });
 
@@ -286,7 +295,7 @@ export default function Home() {
             className="hero-sub"
             style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: '540px', lineHeight: 1.5, marginBottom: '1.75rem' }}
           >
-            Judges ranked by their actual sentencing decisions — public court data, no spin.
+            Real sentencing data. Real accountability.
           </p>
 
           {/* Stat Counters */}
@@ -304,10 +313,27 @@ export default function Home() {
             }}
           >
             {[
-              { value: TOTAL_JUDGES_TRACKED.toLocaleString() + '+', label: 'Judges Tracked', color: '#dc2626', icon: '⚖️' },
-              { value: TOTAL_CASES_ANALYZED.toLocaleString(), label: 'Cases Analyzed', color: '#f97316', icon: '📋' },
-              { value: STATES_COVERED.toString(), label: 'States Covered', color: '#22c55e', icon: '🗺️' },
-            ].map(({ value, label, color, icon }, i) => (
+              { value: TOTAL_JUDGES_TRACKED.toLocaleString() + '+', label: 'Judges Tracked', color: '#dc2626', svg: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="12" y1="3" x2="12" y2="21"/>
+                  <path d="M3 7h18"/><path d="M3 7l3 6H0l3-6z"/><path d="M21 7l3 6h-6l3-6z"/>
+                  <line x1="9" y1="21" x2="15" y2="21"/>
+                </svg>
+              ) },
+              { value: TOTAL_CASES_ANALYZED.toLocaleString(), label: 'Cases Analyzed', color: '#f97316', svg: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              ) },
+              { value: STATES_COVERED.toString(), label: 'States Covered', color: '#22c55e', svg: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                  <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+                </svg>
+              ) },
+            ].map(({ value, label, color, svg }, i) => (
               <div
                 key={label}
                 className="stat-value"
@@ -318,7 +344,7 @@ export default function Home() {
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: '0.9rem', marginBottom: '0.25rem' }}>{icon}</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.25rem' }}>{svg}</div>
                 <div style={{ fontSize: '1.625rem', fontWeight: 900, color, lineHeight: 1, letterSpacing: '-0.02em' }}>
                   {value}
                 </div>
@@ -336,7 +362,7 @@ export default function Home() {
         {/* Data provenance strip */}
         <div style={{ marginBottom: '1.5rem', paddingTop: '0.25rem' }}>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            📋 Source: {META.source} · {META.totalCases.toLocaleString()} IL sentencing records + 3.59M FL records · {META.totalJudges} judges · Updated {META.generated}
+            Source: {META.source} · {META.totalCases.toLocaleString()} IL sentencing records + 3.59M FL records · {META.totalJudges} judges · Updated {META.generated}
           </p>
         </div>
 
@@ -410,15 +436,49 @@ export default function Home() {
           </div>
         </div>
 
-        {/* US Map */}
+        {/* US Map + State Cards */}
         <div style={{ marginBottom: '1.5rem' }}>
           <StateCourtMap
             coveredStates={STATE_COVERAGE}
-            onStateClick={() => {
-              // Scroll down to the judge table
+            onStateClick={(code) => {
+              setStateFilter(code);
               document.getElementById('judge-table')?.scrollIntoView({ behavior: 'smooth' });
             }}
           />
+          {/* State coverage quick-select cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginTop: '0.75rem' }}>
+            {[
+              { code: 'IL', name: 'Illinois', detail: 'Cook County', count: IL_JUDGES.length, desc: 'Individual judge profiles' },
+              { code: 'FL', name: 'Florida', detail: 'Bay · Indian River · St. Johns', count: FL_JUDGES.length, desc: 'Individual judge profiles' },
+              { code: 'NY', name: 'New York', detail: 'Coming soon', count: 0, desc: 'Data collection in progress' },
+            ].map(({ code, name, detail, count, desc }) => (
+              <button
+                key={code}
+                onClick={() => count > 0 ? setStateFilter(code) : undefined}
+                style={{
+                  background: count > 0 && stateFilter === code ? 'rgba(220,38,38,0.1)' : 'var(--bg-card)',
+                  border: `1px solid ${count > 0 && stateFilter === code ? 'rgba(220,38,38,0.5)' : 'var(--border)'}`,
+                  borderRadius: '0.625rem',
+                  padding: '0.875rem 1rem',
+                  textAlign: 'left',
+                  cursor: count > 0 ? 'pointer' : 'default',
+                  opacity: count === 0 ? 0.5 : 1,
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.25rem' }}>
+                  <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)' }}>{name}</span>
+                  {count > 0 && (
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#dc2626', background: 'rgba(220,38,38,0.1)', padding: '0.1rem 0.4rem', borderRadius: '0.25rem' }}>
+                      {count} judges
+                    </span>
+                  )}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.1rem' }}>{detail}</div>
+                <div style={{ fontSize: '0.7rem', color: count > 0 ? 'var(--text-secondary)' : 'var(--text-muted)' }}>{desc}</div>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Judicial Retention Context */}
@@ -434,7 +494,7 @@ export default function Home() {
             alignItems: 'flex-start',
           }}
         >
-          <span style={{ fontSize: '1.25rem' }}>🗳️</span>
+          <span style={{ color: '#dc2626', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', flexShrink: 0, marginTop: '0.125rem' }}>VOTE</span>
           <div>
             <strong style={{ color: 'var(--text-primary)', fontSize: '0.9rem' }}>Judicial Retention Elections:</strong>
             <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
@@ -458,6 +518,39 @@ export default function Home() {
             alignItems: 'flex-end',
           }}
         >
+          {/* Search box */}
+          <div style={{ flex: '1 1 220px', minWidth: '180px' }}>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.25rem' }}>
+              Search
+            </label>
+            <div style={{ position: 'relative' }}>
+              <svg
+                width="14" height="14"
+                viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                style={{ position: 'absolute', left: '0.625rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input
+                type="text"
+                placeholder="Search judges by name, county, or state..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '0.375rem',
+                  color: 'var(--text-primary)',
+                  padding: '0.375rem 0.75rem 0.375rem 2rem',
+                  fontSize: '0.875rem',
+                  outline: 'none',
+                }}
+              />
+            </div>
+          </div>
           <div>
             <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.25rem' }}>
               State
@@ -551,7 +644,7 @@ export default function Home() {
             alignItems: 'center',
           }}
         >
-          <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontWeight: 600 }}>⚡ Compare:</span>
+          <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Compare:</span>
           <select
             value={compare1}
             onChange={(e) => setCompare1(e.target.value)}
@@ -622,7 +715,7 @@ export default function Home() {
             overflow: 'hidden',
           }}
         >
-          <div style={{ overflowX: 'auto' }}>
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-secondary)' }}>
@@ -793,7 +886,7 @@ export default function Home() {
             lineHeight: 1.6,
           }}
         >
-          <strong style={{ color: 'var(--text-secondary)' }}>📐 Methodology:</strong>{' '}
+          <strong style={{ color: 'var(--text-secondary)' }}>Methodology:</strong>{' '}
           Leniency Score is a weighted composite: violent-crime probation rate (50%), overall probation rate (30%), non-prison rate (20%).
           Scores are normalized relative to court average (avg ≈ 42). Only judges with ≥30 cases shown by default.
           {' '}<a href="/methodology" style={{ color: 'var(--red-primary)', textDecoration: 'none' }}>Full methodology →</a>

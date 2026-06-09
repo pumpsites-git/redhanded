@@ -261,7 +261,7 @@ export default async function JudgeProfilePage({ params }: Props) {
           }}
         >
           <h2 style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            📊 Sentencing Breakdown
+            Sentencing Breakdown
           </h2>
           <SentenceBar label="Prison" value={judge.prisonRate} color="#dc2626" count={judge.prisonCount} />
           <SentenceBar label="Probation" value={judge.probationRate} color="#22c55e" count={judge.probationCount} />
@@ -296,7 +296,7 @@ export default async function JudgeProfilePage({ params }: Props) {
           }}
         >
           <h2 style={{ fontWeight: 700, marginBottom: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            🚨 Violent Crime Record
+            Violent Crime Record
           </h2>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
             How does this judge handle violent offenders? ({judge.violentCases.total} violent cases)
@@ -341,7 +341,7 @@ export default async function JudgeProfilePage({ params }: Props) {
                     color: '#fca5a5',
                   }}
                 >
-                  ⚠️ <strong>Warning:</strong> This judge gives probation to more than half of violent offenders —
+                  <strong>Warning:</strong> This judge gives probation to more than half of violent offenders —
                   {' '}{pct(judge.violentCases.probationRate)} vs. court average of {pct(avg.violentCases.probationRate)}.
                 </div>
               )}
@@ -361,7 +361,7 @@ export default async function JudgeProfilePage({ params }: Props) {
           }}
         >
           <h2 style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            🏙️ What This Means for Public Safety
+            What This Means for Public Safety
           </h2>
 
           {judge.violentCases.total > 0 ? (
@@ -408,7 +408,7 @@ export default async function JudgeProfilePage({ params }: Props) {
           }}
         >
           <h2 style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            📋 Offense Breakdown (Top Cases)
+            Offense Breakdown (Top Cases)
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {topOffenses.map(([offense, stats]) => (
@@ -444,61 +444,77 @@ export default async function JudgeProfilePage({ params }: Props) {
         </section>
 
         {/* Demographics */}
-        <section
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border)',
-            borderRadius: '0.75rem',
-            padding: '1.25rem',
-          }}
-        >
-          <h2 style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            👥 Defendant Demographics
-          </h2>
-          <div style={{ marginBottom: '1rem' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Race Breakdown
-            </div>
-            {Object.entries(judge.raceBreakdown)
-              .filter(([, s]) => s.total >= 1)
-              .sort((a, b) => b[1].total - a[1].total)
-              .slice(0, 8)
-              .map(([race, stats]) => (
-                <div key={race} style={{ marginBottom: '0.5rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.15rem' }}>
-                    <span>{race}</span>
-                    <span style={{ color: 'var(--text-muted)' }}>
-                      {stats.total} cases · {pct(stats.prisonRate)} prison
-                    </span>
-                  </div>
-                  <div style={{ height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden', display: 'flex' }}>
-                    <div style={{ width: `${Math.round(stats.prisonRate * 100)}%`, background: '#dc2626', height: '100%' }} />
-                    <div style={{ width: `${Math.round(stats.probationRate * 100)}%`, background: '#22c55e', height: '100%' }} />
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Gender Breakdown
-            </div>
-            {Object.entries(judge.genderBreakdown)
-              .filter(([g, s]) => s.total >= 1 && g !== 'Unknown Gender' && g)
-              .sort((a, b) => b[1].total - a[1].total)
-              .map(([gender, stats]) => (
-                <div key={gender} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
-                  <span>{gender}</span>
-                  <span style={{ color: 'var(--text-muted)' }}>
-                    {stats.total} cases · {pct(stats.prisonRate)} prison · {pct(stats.probationRate)} probation
-                  </span>
-                </div>
-              ))}
-          </div>
-          <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.75rem' }}>
-            Data presented neutrally. Source: {meta.source}.
-          </p>
-        </section>
+        {(() => {
+          const raceEntries = Object.entries(judge.raceBreakdown).filter(([, s]) => s.total >= 1);
+          const genderEntries = Object.entries(judge.genderBreakdown).filter(([g, s]) => s.total >= 1 && g !== 'Unknown Gender' && g);
+          const hasData = raceEntries.length > 0 || genderEntries.length > 0;
+          return (
+            <section
+              style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border)',
+                borderRadius: '0.75rem',
+                padding: '1.25rem',
+              }}
+            >
+              <h2 style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
+                Defendant Demographics
+              </h2>
+              {!hasData ? (
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                  Demographics data not yet available for {judge.county}.
+                </p>
+              ) : (
+                <>
+                  {raceEntries.length > 0 && (
+                    <div style={{ marginBottom: '1rem' }}>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Race Breakdown
+                      </div>
+                      {raceEntries
+                        .sort((a, b) => b[1].total - a[1].total)
+                        .slice(0, 8)
+                        .map(([race, stats]) => (
+                          <div key={race} style={{ marginBottom: '0.5rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.15rem' }}>
+                              <span>{race}</span>
+                              <span style={{ color: 'var(--text-muted)' }}>
+                                {stats.total} cases · {pct(stats.prisonRate)} prison
+                              </span>
+                            </div>
+                            <div style={{ height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden', display: 'flex' }}>
+                              <div style={{ width: `${Math.round(stats.prisonRate * 100)}%`, background: '#dc2626', height: '100%' }} />
+                              <div style={{ width: `${Math.round(stats.probationRate * 100)}%`, background: '#22c55e', height: '100%' }} />
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                  {genderEntries.length > 0 && (
+                    <div>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Gender Breakdown
+                      </div>
+                      {genderEntries
+                        .sort((a, b) => b[1].total - a[1].total)
+                        .map(([gender, stats]) => (
+                          <div key={gender} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                            <span>{gender}</span>
+                            <span style={{ color: 'var(--text-muted)' }}>
+                              {stats.total} cases · {pct(stats.prisonRate)} prison · {pct(stats.probationRate)} probation
+                            </span>
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                </>
+              )}
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.75rem' }}>
+                Data presented neutrally. Source: {meta.source}.
+              </p>
+            </section>
+          );
+        })()}
 
         {/* Take Action */}
         <section
@@ -510,12 +526,18 @@ export default async function JudgeProfilePage({ params }: Props) {
           }}
         >
           <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-            🗳️ Take Action
+            Take Action
           </h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
             <strong style={{ color: 'var(--text-primary)' }}>{judge.name}</strong> serves in{' '}
-            <strong>{judge.courtFacility || 'Cook County Circuit Court'}</strong>.
-            If you live in Cook County, you vote on judicial retention — a YES/NO vote on whether this judge keeps their seat.
+            <strong>{judge.courtFacility || (judge.stateCode === 'IL' ? 'Cook County Circuit Court' : `${judge.county} Court`)}</strong>.
+            {judge.stateCode === 'IL' ? (
+              <> Cook County voters decide judicial retention — a YES/NO vote on whether this judge keeps their seat.
+              Your vote is your voice.</>
+            ) : (
+              <> Florida voters can contact the Florida Judicial Qualifications Commission to report concerns about judicial conduct.
+              Share this profile to raise awareness about {judge.name}&apos;s sentencing record.</>
+            )}
           </p>
           <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
             Leniency score: <strong style={{ color: getLeniencyColor(judge.leniencyScore) }}>{judge.leniencyScore} — {getLeniencyLabel(judge.leniencyScore)}</strong>.
@@ -524,26 +546,49 @@ export default async function JudgeProfilePage({ params }: Props) {
             )}
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <a
-              href="https://www.cookcountyclerkofcourt.org/services/judicial-elections"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.375rem',
-                background: '#dc2626',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.625rem 1.25rem',
-                fontSize: '0.875rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-              }}
-            >
-              🗳️ Voter Information
-            </a>
+            {judge.stateCode === 'IL' ? (
+              <a
+                href="https://www.cookcountyclerkofcourt.org/services/judicial-elections"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.375rem',
+                  background: '#dc2626',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  padding: '0.625rem 1.25rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                Voter Information
+              </a>
+            ) : (
+              <a
+                href="https://jqc.state.fl.us/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.375rem',
+                  background: '#dc2626',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  padding: '0.625rem 1.25rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                FL Judicial Qualifications Commission
+              </a>
+            )}
             <Link
               href="/judges/state"
               style={{

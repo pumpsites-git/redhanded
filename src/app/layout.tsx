@@ -4,6 +4,9 @@ import NavBar from "@/components/NavBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.svg',
+  },
   title: {
     default: "RedHanded — Judicial Accountability",
     template: "%s | RedHanded",
@@ -84,7 +87,17 @@ function SiteFooter() {
               marginBottom: "0.75rem",
             }}
           >
-            <span style={{ fontSize: "1.25rem" }}>🔴</span>
+            <span
+              style={{
+                display: "inline-block",
+                width: "14px",
+                height: "14px",
+                borderRadius: "50%",
+                background: "#dc2626",
+                boxShadow: "0 0 8px rgba(220,38,38,0.4)",
+                flexShrink: 0,
+              }}
+            />
             <span
               style={{
                 fontSize: "1.125rem",
