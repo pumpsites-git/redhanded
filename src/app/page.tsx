@@ -194,7 +194,9 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     let list = ALL_JUDGES.filter((j) => {
-      if (j.totalCases < 30) return false;
+      // Lower threshold when filtering by state (smaller counties have fewer cases)
+      const minCases = stateFilter ? 3 : 30;
+      if (j.totalCases < minCases) return false;
       if (stateFilter && j.stateCode !== stateFilter) return false;
       if (facilityFilter && j.courtFacility !== facilityFilter) return false;
       if (j.leniencyScore < leniencyMin || j.leniencyScore > leniencyMax) return false;
