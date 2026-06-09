@@ -1,0 +1,433 @@
+{
+  "county": "bay",
+  "circuit": 14,
+  "population": 185000,
+  "total_searched": 31,
+  "cases_with_judges": 31,
+  "scraped_at": "2026-06-09 00:42:31",
+  "cases": [
+    {
+      "case_id": "2995753",
+      "case_number": "20000402CA",
+      "defendant": "",
+      "judge": "SMILEY, ELIJAH",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "1/5/2021",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3100016",
+      "case_number": "22002014CFMA",
+      "defendant": "",
+      "judge": "STEPHENSON, DUSTIN",
+      "court_type": "Criminal Felony",
+      "agency": "",
+      "status_date": "12/3/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "LEWD OR LASCIVIOUS CONDUCT (80004 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "LEWD OR LASCIVIOUS CONDUCT (80004 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3232009",
+      "case_number": "24003553CFMA",
+      "defendant": "",
+      "judge": "STEPHENSON, DUSTIN",
+      "court_type": "Criminal Felony",
+      "agency": "",
+      "status_date": "12/3/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "FAILURE TO REGISTER AS A SEXUAL OFFENDER (9430435 2)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3027064",
+      "case_number": "20001847CA",
+      "defendant": "",
+      "judge": "GOODMAN, JAMES J JR",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "4/20/2022",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3032274",
+      "case_number": "20004809CFMA",
+      "defendant": "",
+      "judge": "CLARK, BRANTLEY SCOTT JR",
+      "court_type": "Criminal Felony",
+      "agency": "",
+      "status_date": "1/27/2021",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF MORE THAN 20 GRAMS OF MARIJUANA (89313 6a)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3036940",
+      "case_number": "21000323MMMA",
+      "defendant": "",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "",
+      "status_date": "1/22/2021",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3233103",
+      "case_number": "24003681CFMA",
+      "defendant": "",
+      "judge": "STEPHENSON, DUSTIN",
+      "court_type": "Criminal Felony",
+      "agency": "",
+      "status_date": "12/26/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        },
+        {
+          "count": "3",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        },
+        {
+          "count": "4",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3238776",
+      "case_number": "24006361MMMA",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "",
+      "status_date": "12/23/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "4",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "2990400",
+      "case_number": "20000161CC",
+      "defendant": "",
+      "judge": "WELCH, THOMAS F",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "1/22/2020",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3082638",
+      "case_number": "22000062CC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "1/26/2022",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3113346",
+      "case_number": "22002274CC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "9/6/2022",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3127380",
+      "case_number": "22003484CC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "1/12/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3176566",
+      "case_number": "23003404CC",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "12/5/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3187902",
+      "case_number": "24000633CC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "3/12/2024",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3215923",
+      "case_number": "24002594CC",
+      "defendant": "",
+      "judge": "SMITH, TRACY",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "9/11/2024",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "2996242",
+      "case_number": "20000426CA",
+      "defendant": "",
+      "judge": "HENRY, WILLIAM",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "1/20/2021",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3041427",
+      "case_number": "21000590SC",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "9/20/2021",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3063155",
+      "case_number": "21002144CC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "10/15/2021",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3064995",
+      "case_number": "21002277SC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "4/27/2022",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3128165",
+      "case_number": "22003574SC",
+      "defendant": "",
+      "judge": "JEFCOAT, SHALLA",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "8/27/2025",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3154121",
+      "case_number": "23001648CC",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "10/12/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3177137",
+      "case_number": "23003458SC",
+      "defendant": "",
+      "judge": "SMITH, TRACY",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "6/11/2025",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3199424",
+      "case_number": "24001275SC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "12/2/2025",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3220406",
+      "case_number": "24003016SC",
+      "defendant": "",
+      "judge": "SMITH, TRACY",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "11/4/2025",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3237765",
+      "case_number": "24004695CC",
+      "defendant": "",
+      "judge": "SMITH, TRACY",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "9/8/2025",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3040961",
+      "case_number": "21000547CC",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "County Civil",
+      "agency": "",
+      "status_date": "2/22/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3079751",
+      "case_number": "21005316CTMA",
+      "defendant": "",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "",
+      "status_date": "12/27/2021",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED (32234 2a)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "2993839",
+      "case_number": "20000273CA",
+      "defendant": "",
+      "judge": "FISHEL, JOHN L II",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "3/6/2020",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3038108",
+      "case_number": "21000151CA",
+      "defendant": "",
+      "judge": "HENRY, WILLIAM",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "11/2/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3133558",
+      "case_number": "23000119CA",
+      "defendant": "",
+      "judge": "HENRY, WILLIAM",
+      "court_type": "Circuit Civil",
+      "agency": "",
+      "status_date": "3/14/2023",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3266457",
+      "case_number": "25002530SC",
+      "defendant": "",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "Small Claims",
+      "agency": "",
+      "status_date": "5/11/2026",
+      "charges": [],
+      "county": "bay"
+    }
+  ]
+}
