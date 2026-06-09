@@ -2,380 +2,634 @@
   "county": "bay",
   "circuit": 14,
   "population": 185000,
-  "total_searched": 31,
-  "cases_with_judges": 31,
-  "scraped_at": "2026-06-09 00:42:31",
+  "total_searched": 146,
+  "cases_with_judges": 87,
+  "scraped_at": "2026-06-09 00:47:06",
   "cases": [
     {
-      "case_id": "2995753",
-      "case_number": "20000402CA",
-      "defendant": "",
-      "judge": "SMILEY, ELIJAH",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "1/5/2021",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3100016",
-      "case_number": "22002014CFMA",
-      "defendant": "",
+      "case_id": "3045561",
+      "case_number": "21001425CFMA",
       "judge": "STEPHENSON, DUSTIN",
       "court_type": "Criminal Felony",
-      "agency": "",
-      "status_date": "12/3/2024",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "7/22/2021",
       "charges": [
         {
           "count": "1",
-          "description": "LEWD OR LASCIVIOUS CONDUCT (80004 6b)",
+          "description": "GRAND THEFT AUTO (812014 2c6)",
           "disposition": "ADJUDICATED GUILTY"
         },
         {
           "count": "2",
-          "description": "LEWD OR LASCIVIOUS CONDUCT (80004 6b)",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED-HABITUAL (32234 5)",
           "disposition": "ADJUDICATED GUILTY"
         }
       ],
       "county": "bay"
     },
     {
-      "case_id": "3232009",
-      "case_number": "24003553CFMA",
-      "defendant": "",
+      "case_id": "3045562",
+      "case_number": "21001426CFMA",
       "judge": "STEPHENSON, DUSTIN",
       "court_type": "Criminal Felony",
-      "agency": "",
-      "status_date": "12/3/2024",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "5/24/2021",
       "charges": [
         {
           "count": "1",
-          "description": "FAILURE TO REGISTER AS A SEXUAL OFFENDER (9430435 2)",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED-HABITUAL (32234 5)",
+          "disposition": "CONSOLIDATED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3179007",
+      "case_number": "23000829DV",
+      "judge": "MALLORY, PETER A",
+      "court_type": "Domestic Violence",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3180247",
+      "case_number": "23006475MMMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "12/29/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "PETIT THEFT (812014 3a)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "DISORDERLY CONDUCT - LYNN HAVEN (999999999)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3180249",
+      "case_number": "23006476MOMS",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Municipal Ordinance",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "1/11/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSSESSION OPEN CONTAINER RIGHT OF WAY 3-3 (9999999999)",
           "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
         }
       ],
       "county": "bay"
     },
     {
-      "case_id": "3027064",
-      "case_number": "20001847CA",
-      "defendant": "",
-      "judge": "GOODMAN, JAMES J JR",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "4/20/2022",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3032274",
-      "case_number": "20004809CFMA",
-      "defendant": "",
-      "judge": "CLARK, BRANTLEY SCOTT JR",
-      "court_type": "Criminal Felony",
-      "agency": "",
-      "status_date": "1/27/2021",
-      "charges": [
-        {
-          "count": "1",
-          "description": "POSS OF MORE THAN 20 GRAMS OF MARIJUANA (89313 6a)",
-          "disposition": "CONSOLIDATED"
-        },
-        {
-          "count": "2",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "TRANSFERRED TO ANOTHER COURT"
-        }
-      ],
-      "county": "bay"
-    },
-    {
-      "case_id": "3036940",
-      "case_number": "21000323MMMA",
-      "defendant": "",
+      "case_id": "3180255",
+      "case_number": "23006482MOMS",
       "judge": "GRAMMER, JOE",
-      "court_type": "Misdemeanor",
-      "agency": "",
-      "status_date": "1/22/2021",
+      "court_type": "Municipal Ordinance",
+      "agency": "LYNN HAVEN POLICE DEPARTMENT",
+      "status_date": "12/29/2023",
       "charges": [
         {
           "count": "1",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "ADJUDICATED GUILTY"
+          "description": "DISORDERLY CONDUCT - LYNN HAVEN (999999999)",
+          "disposition": "CONSOLIDATED"
         }
       ],
       "county": "bay"
     },
     {
-      "case_id": "3233103",
-      "case_number": "24003681CFMA",
-      "defendant": "",
-      "judge": "STEPHENSON, DUSTIN",
-      "court_type": "Criminal Felony",
-      "agency": "",
-      "status_date": "12/26/2024",
-      "charges": [
-        {
-          "count": "1",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "TRANSFERRED TO ANOTHER COURT"
-        },
-        {
-          "count": "2",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "TRANSFERRED TO ANOTHER COURT"
-        },
-        {
-          "count": "3",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "TRANSFERRED TO ANOTHER COURT"
-        },
-        {
-          "count": "4",
-          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
-          "disposition": "TRANSFERRED TO ANOTHER COURT"
-        }
-      ],
-      "county": "bay"
-    },
-    {
-      "case_id": "3238776",
-      "case_number": "24006361MMMA",
-      "defendant": "",
+      "case_id": "3182253",
+      "case_number": "24000133MMMA",
       "judge": "DYER, WILLIAM",
       "court_type": "Misdemeanor",
-      "agency": "",
-      "status_date": "12/23/2024",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "1/22/2024",
       "charges": [
         {
           "count": "1",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "ADJUDICATED GUILTY"
-        },
-        {
-          "count": "2",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "ADJUDICATED GUILTY"
-        },
-        {
-          "count": "3",
-          "description": "POSS OF PARAPHERNALIA (893147 1)",
-          "disposition": "ADJUDICATED GUILTY"
-        },
-        {
-          "count": "4",
-          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "description": "PETIT THEFT (812014 3a)",
           "disposition": "ADJUDICATED GUILTY"
         }
       ],
       "county": "bay"
     },
     {
-      "case_id": "2990400",
-      "case_number": "20000161CC",
-      "defendant": "",
-      "judge": "WELCH, THOMAS F",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "1/22/2020",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3082638",
-      "case_number": "22000062CC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "1/26/2022",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3113346",
-      "case_number": "22002274CC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "9/6/2022",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3127380",
-      "case_number": "22003484CC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "1/12/2023",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3176566",
-      "case_number": "23003404CC",
-      "defendant": "",
+      "case_id": "3182545",
+      "case_number": "24000186MMMA",
       "judge": "DYER, WILLIAM",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "12/5/2023",
-      "charges": [],
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "1/22/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "PETIT LARCENY 2ND OFFENSE (812014 3b)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
       "county": "bay"
     },
     {
-      "case_id": "3187902",
-      "case_number": "24000633CC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "3/12/2024",
-      "charges": [],
+      "case_id": "3184389",
+      "case_number": "24000388MMMO",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "12/22/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "PETIT THEFT (812014 3a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
       "county": "bay"
     },
     {
-      "case_id": "3215923",
-      "case_number": "24002594CC",
-      "defendant": "",
-      "judge": "SMITH, TRACY",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "9/11/2024",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "2996242",
-      "case_number": "20000426CA",
-      "defendant": "",
-      "judge": "HENRY, WILLIAM",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "1/20/2021",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3041427",
-      "case_number": "21000590SC",
-      "defendant": "",
-      "judge": "DYER, WILLIAM",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "9/20/2021",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3063155",
-      "case_number": "21002144CC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "10/15/2021",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3064995",
-      "case_number": "21002277SC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "4/27/2022",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3128165",
-      "case_number": "22003574SC",
-      "defendant": "",
-      "judge": "JEFCOAT, SHALLA",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "8/27/2025",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3154121",
-      "case_number": "23001648CC",
-      "defendant": "",
-      "judge": "DYER, WILLIAM",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "10/12/2023",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3177137",
-      "case_number": "23003458SC",
-      "defendant": "",
-      "judge": "SMITH, TRACY",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "6/11/2025",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3199424",
-      "case_number": "24001275SC",
-      "defendant": "",
-      "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "12/2/2025",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3220406",
-      "case_number": "24003016SC",
-      "defendant": "",
-      "judge": "SMITH, TRACY",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "11/4/2025",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3237765",
-      "case_number": "24004695CC",
-      "defendant": "",
-      "judge": "SMITH, TRACY",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "9/8/2025",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3040961",
-      "case_number": "21000547CC",
-      "defendant": "",
-      "judge": "DYER, WILLIAM",
-      "court_type": "County Civil",
-      "agency": "",
-      "status_date": "2/22/2023",
-      "charges": [],
-      "county": "bay"
-    },
-    {
-      "case_id": "3079751",
-      "case_number": "21005316CTMA",
-      "defendant": "",
+      "case_id": "3213870",
+      "case_number": "24003352CTMA",
       "judge": "DYER, WILLIAM",
       "court_type": "Criminal Traffic",
-      "agency": "",
-      "status_date": "12/27/2021",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "1/8/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DUI DAMAGE TO PROPERTY OR PERSON OF ANOTHER (316193 3c1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "LVN SCE ACCIDENT WITH  DAMAGE MORE THAN $50 (316061 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED (32234 2a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3238415",
+      "case_number": "24006308MMMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "3/6/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DISORDERLY INTOXICATION (856011)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "INDECENT EXPOSURE (80003 1a)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3262303",
+      "case_number": "25001919CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "8/11/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "REFUSAL TO SUBMIT TO BAL TEST (3161939 1)",
+          "disposition": "NOLLE PROSSED"
+        },
+        {
+          "count": "2",
+          "description": "DR WHILE UNDER INFLUENCE (316193 1a)",
+          "disposition": "NOLLE PROSSED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3262402",
+      "case_number": "25002267MMMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "2/19/2026",
+      "charges": [
+        {
+          "count": "1",
+          "description": "PETIT THEFT (PRIOR CONVICTION) (812014 3b)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3263011",
+      "case_number": "25002336MOMS",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Municipal Ordinance",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "8/11/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CAMPING ON BEACH (99999999999)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3280421",
+      "case_number": "25004276MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "9/10/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DISORDERLY INTOXICATION (856011)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3283099",
+      "case_number": "25004543MMMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "10/29/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DISORDERLY INTOXICATION (856011)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3289724",
+      "case_number": "25005261MMMO",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "11/10/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "TRESPASS IN A STRUCTURE OR CONVEYANCE AFTER WARNING (81008 2a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3290527",
+      "case_number": "25005373MMMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "11/19/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "TRESPASSING - FAIL TO LEAVE PROPERTY (81009 2b)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3291892",
+      "case_number": "25003691CFMA",
+      "judge": "CLARK, BRANTLEY SCOTT JR",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "4/20/2026",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DWLSR 3RD OR SUBSEQUENT OFFENSE (32234 2c)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "DR WHILE UNDER INFLUENCE (316193 1a)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "REFUSAL TO SUBMIT TO CHEMICAL OR PHYSICAL TEST (3161939 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "4",
+          "description": "FAILURE OF CONVICTED FELON TO PROPERLY REGISTER (77513 5a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3026933",
+      "case_number": "20005082MMMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "12/22/2020",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY (DOMESTIC VIOLENCE) (78403 1a1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3033820",
+      "case_number": "20000399DV",
+      "judge": "MALLORY, PETER A",
+      "court_type": "Domestic Violence",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3070381",
+      "case_number": "21004467MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "5/24/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY  GENERAL (78403 1a1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3071505",
+      "case_number": "21004014CFMA",
+      "judge": "STEPHENSON, DUSTIN",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "5/24/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSSESSION AMPHETAMINES/METHAMPHETAMINE (89313 2a2)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "POSSESSION OF PARAPHERNALIA (USE) (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3089717",
+      "case_number": "22000835CFMA",
+      "judge": "STEPHENSON, DUSTIN",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "5/24/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSSESSION AMPHETAMINES/METHAMPHETAMINE (89313 2a2)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3215321",
+      "case_number": "24002330CFMA",
+      "judge": "GAY, SHONNA YOUNG",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "11/27/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "TAMPERING WITH OR HARRESSING WITNESS, VICTIM,OR INFORMANT (91422 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "BATTERY (DOMESTIC VIOLENCE) (78403 1a1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "PETIT THEFT (812014 3a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3232705",
+      "case_number": "24005720MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "12/27/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY  GENERAL (78403 1a1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        },
+        {
+          "count": "2",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3006300",
+      "case_number": "20002307MOMS",
+      "judge": "VANN, SHANE",
+      "court_type": "Municipal Ordinance",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/17/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS ALCOHOL BEV IN PARK (99999999999)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "TRESPASS PROPERTY OTHER THAN STRUCT OR CONV (81009 2a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3012596",
+      "case_number": "20003147MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/17/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "TRESPASS PROPERTY OTHER THAN STRUCT OR CONV (81009 2a)",
+          "disposition": "CONSOLIDATED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3077405",
+      "case_number": "21005036CTMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Criminal Traffic",
+      "agency": "LYNN HAVEN POLICE DEPARTMENT",
+      "status_date": "4/26/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "LVN SCE ACCIDENT WITH  DAMAGE MORE THAN $50 (316061 1)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3078826",
+      "case_number": "21005226CTMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Criminal Traffic",
+      "agency": "LYNN HAVEN POLICE DEPARTMENT",
+      "status_date": "1/13/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "LVN SCE ACCIDENT WITH  DAMAGE MORE THAN $50 (316061 1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3021892",
+      "case_number": "20004404MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "7/28/2021",
+      "charges": [
+        {
+          "count": "1",
+          "description": "GIVING FALSE NAME TO LAW ENFORCEMENT (90136 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3264146",
+      "case_number": "25002079CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "5/29/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSSESSION OF SUSPENDED DRIVER&#39;S LICENSE (32232 1)",
+          "disposition": ""
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3011026",
+      "case_number": "20002795CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "9/11/2020",
+      "charges": [
+        {
+          "count": "1",
+          "description": "NO DRIVER&#39;S LICENSE - NEVER ISSUED (32203 1)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3014997",
+      "case_number": "20003342CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "3/25/2021",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DRIVER&#39;S LICENSE SUS/REV - KNOWINGLY (32234 2b)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3022035",
+      "case_number": "20004198CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "3/25/2021",
       "charges": [
         {
           "count": "1",
@@ -386,46 +640,781 @@
       "county": "bay"
     },
     {
-      "case_id": "2993839",
-      "case_number": "20000273CA",
-      "defendant": "",
-      "judge": "FISHEL, JOHN L II",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "3/6/2020",
+      "case_id": "3102139",
+      "case_number": "22002282CFMA",
+      "judge": "REGISTER, TIMOTHY",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "3/12/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "RIOT OR INCITE OR ENCOURAGE A RIOT (87001 2)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3124298",
+      "case_number": "22005160MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "11/16/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3124334",
+      "case_number": "22005193CTMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "8/31/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DR WHILE UNDER INFLUENCE (316193 1a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3145063",
+      "case_number": "23001919MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "2/20/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "ADJUDICATION WITHHELD"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3145177",
+      "case_number": "23001812CTMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "4/24/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED (32234 2a)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3157166",
+      "case_number": "23003430MMMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "8/31/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3157169",
+      "case_number": "23003308CTMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "8/31/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DR WHILE UNDER INFLUENCE (316193 1a)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3177116",
+      "case_number": "23004319CFMB",
+      "judge": "REGISTER, TIMOTHY",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "10/16/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY (78403 1a1)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        },
+        {
+          "count": "2",
+          "description": "RIOT OR INCITE OR ENCOURAGE A RIOT (87001 2)",
+          "disposition": "CONSOLIDATED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3229545",
+      "case_number": "24005368MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "10/16/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY (78403 1a1)",
+          "disposition": "ADJUDICATED GUILTY"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3212196",
+      "case_number": "24002343CC",
+      "judge": "SMITH, TRACY",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
       "charges": [],
       "county": "bay"
     },
     {
-      "case_id": "3038108",
-      "case_number": "21000151CA",
-      "defendant": "",
-      "judge": "HENRY, WILLIAM",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "11/2/2023",
+      "case_id": "3176810",
+      "case_number": "23006009MMMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "LYNN HAVEN POLICE DEPARTMENT",
+      "status_date": "12/15/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "BATTERY (DOMESTIC VIOLENCE) (78403 1a1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "2989845",
+      "case_number": "20000021DR",
+      "judge": "MALLORY, PETER A",
+      "court_type": "Domestic Relations",
+      "agency": "Status Date:",
+      "status_date": "",
       "charges": [],
       "county": "bay"
     },
     {
-      "case_id": "3133558",
-      "case_number": "23000119CA",
-      "defendant": "",
-      "judge": "HENRY, WILLIAM",
-      "court_type": "Circuit Civil",
-      "agency": "",
-      "status_date": "3/14/2023",
+      "case_id": "3215167",
+      "case_number": "24003815MMMO",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "7/22/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "PRE-TRIAL INVERVENTION\\DIVERSION"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3000227",
+      "case_number": "20001342MOMS",
+      "judge": "VANN, SHANE",
+      "court_type": "Municipal Ordinance",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "3/31/2020",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSSESSION, CONSUMPTION OF ALCOHOL ON BEACH (9999999999)",
+          "disposition": "PRE-TRIAL INVERVENTION\\DIVERSION"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3010831",
+      "case_number": "20002749CTMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/30/2020",
+      "charges": [
+        {
+          "count": "1",
+          "description": "FIRST CONVICTION DRIVING WHILE LICENSE SUSPENDED, REVOKED, CANCELED OR DISQUALIFIED (32234 10b1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3076045",
+      "case_number": "21005185MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/1/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DISORDERLY CONDUCT (87703)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3076049",
+      "case_number": "21005186MMMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/2/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "STALKING (784048 2)",
+          "disposition": "NOLLE PROSSED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3141620",
+      "case_number": "23001090CFMA",
+      "judge": "REGISTER, TIMOTHY",
+      "court_type": "Criminal Felony",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "1/15/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "FALSE VERIFICATION OF OWNERSHIP PAWNBROKER (539001 8b8b)",
+          "disposition": "ADJUDICATION WITHHELD"
+        },
+        {
+          "count": "2",
+          "description": "PETIT THEFT (812014 3a)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3032551",
+      "case_number": "20004835CFMA",
+      "judge": "REGISTER, TIMOTHY",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "3/16/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CARRYING A CONCEALED FIREARM (79001 2)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "2",
+          "description": "DRIVING WHILE LICENSE SUSPENDED OR REVOKED-HABITUAL (32234 5)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "3",
+          "description": "CARRYING CONCEALED WEAPON (79001 1)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "4",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "ADJUDICATED GUILTY"
+        },
+        {
+          "count": "5",
+          "description": "POSSESSION OF FIREARM WHILE COMMITTING FELONY (79007 2)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "6",
+          "description": "CARRYING CONCEALED WEAPON (79001 1)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "7",
+          "description": "CARRYING CONCEALED WEAPON (79001 1)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "8",
+          "description": "CARRYING CONCEALED WEAPON (79001 1)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "9",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "10",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "CONSOLIDATED"
+        },
+        {
+          "count": "11",
+          "description": "RESIST OFFICER WITHOUT VIOLENCE (84302)",
+          "disposition": "CONSOLIDATED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3097412",
+      "case_number": "22001938MMMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "7/7/2022",
+      "charges": [
+        {
+          "count": "1",
+          "description": "CNTRL SUBS LESS THAN 20 GRAM MARIJUANA (89313 6b)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        },
+        {
+          "count": "2",
+          "description": "POSS OF PARAPHERNALIA (893147 1)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3068995",
+      "case_number": "21002492CC",
+      "judge": "GRAMMER, JOE",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
       "charges": [],
       "county": "bay"
     },
     {
-      "case_id": "3266457",
-      "case_number": "25002530SC",
-      "defendant": "",
+      "case_id": "3101297",
+      "case_number": "22001372CC",
       "judge": "CAMPBELL, TIMOTHY CRAIG",
-      "court_type": "Small Claims",
-      "agency": "",
-      "status_date": "5/11/2026",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3105728",
+      "case_number": "22001711CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3197481",
+      "case_number": "24007519TR",
+      "judge": "DYKES, MARIA IGNACIO",
+      "court_type": "Civil Traffic",
+      "agency": "FLORIDA HIGHWAY PATROL",
+      "status_date": "6/6/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "PASSENGER RIDING ON EXTERIOR OF VEHICLE (31620152A)",
+          "disposition": "DISMISSED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3115701",
+      "case_number": "22000895CA",
+      "judge": "GOODMAN, JAMES J JR",
+      "court_type": "Circuit Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3128059",
+      "case_number": "22003560CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3131256",
+      "case_number": "23000097CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3134630",
+      "case_number": "23000363CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3143842",
+      "case_number": "23000901CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3150928",
+      "case_number": "23000361DV",
+      "judge": "MALLORY, PETER A",
+      "court_type": "Domestic Violence",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3151017",
+      "case_number": "23002622CTMA",
+      "judge": "GRAMMER, JOE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "6/5/2023",
+      "charges": [
+        {
+          "count": "1",
+          "description": "NO VALID DRIVER&#39;S LICENSE (32203 1a)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3158918",
+      "case_number": "23002004CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3162439",
+      "case_number": "23002246CC",
+      "judge": "CAMPBELL, TIMOTHY CRAIG",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3184681",
+      "case_number": "24000272CFMA",
+      "judge": "REGISTER, TIMOTHY",
+      "court_type": "Criminal Felony",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/18/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "NO VALID DRIVER&#39;S LICENSE (32203 1a)",
+          "disposition": "TRANSFERRED TO ANOTHER COURT"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3210724",
+      "case_number": "24003035CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "6/10/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "NO VALID DRIVER&#39;S LICENSE (32203 1a)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3185185",
+      "case_number": "24000134DR",
+      "judge": "COLLIER, DEVIN",
+      "court_type": "Domestic Relations",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3186110",
+      "case_number": "24000112CA",
+      "judge": "GOODMAN, JAMES J JR",
+      "court_type": "Circuit Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3207319",
+      "case_number": "24000573CP",
+      "judge": "SMILEY, ELIJAH",
+      "court_type": "Probate",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3207676",
+      "case_number": "24002955MMMO",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Misdemeanor",
+      "agency": "PANAMA CITY BEACH POLICE",
+      "status_date": "6/6/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "POSS OF ALCOHOL BY PERSON LESS THAN 21 YEARS OF AGE (562111)",
+          "disposition": "PRE-TRIAL INVERVENTION\\DIVERSION"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3211945",
+      "case_number": "24003174CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "8/22/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "NO DRIVER&#39;S LICENSE - NEVER ISSUED (32203 1)",
+          "disposition": "PRE-TRIAL INVERVENTION\\DIVERSION"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3230055",
+      "case_number": "24005101CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "10/23/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "VIOLATION OF NON RESIDENT DRIVER LIC (322031)",
+          "disposition": "ADJUDICATION WITHHELD"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3217112",
+      "case_number": "24003679CTMA",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "7/29/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "VIOLATION OF NON RESIDENT DRIVER LIC (322031)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        },
+        {
+          "count": "2",
+          "description": "FAIL TO NOTIFY CHANGE OF ADDRESS WITHIN 20 DAYS (32002 4)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3225064",
+      "case_number": "24017866TR",
+      "judge": "DYER, WILLIAM",
+      "court_type": "Civil Traffic",
+      "agency": "FLORIDA HIGHWAY PATROL",
+      "status_date": "12/5/2024",
+      "charges": [
+        {
+          "count": "1",
+          "description": "RAN STOP SIGN (316123 2A)",
+          "disposition": "PAY FINE"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3225476",
+      "case_number": "24000815CA",
+      "judge": "HENRY, WILLIAM",
+      "court_type": "Circuit Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3231934",
+      "case_number": "24001459DR",
+      "judge": "YOUNG, BRANDON",
+      "court_type": "Domestic Relations",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3257021",
+      "case_number": "25000378CA",
+      "judge": "GOODMAN, JAMES J JR",
+      "court_type": "Circuit Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3262640",
+      "case_number": "25000524CP",
+      "judge": "SMILEY, ELIJAH",
+      "court_type": "Probate",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3273799",
+      "case_number": "25000799CA",
+      "judge": "HENRY, WILLIAM",
+      "court_type": "Circuit Civil",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3275283",
+      "case_number": "25000260WL",
+      "judge": "SMILEY, ELIJAH",
+      "court_type": "Will on Deposit",
+      "agency": "Status Date:",
+      "status_date": "",
+      "charges": [],
+      "county": "bay"
+    },
+    {
+      "case_id": "3278371",
+      "case_number": "25003266CTMA",
+      "judge": "VANN, SHANE",
+      "court_type": "Criminal Traffic",
+      "agency": "PANAMA CITY POLICE",
+      "status_date": "9/12/2025",
+      "charges": [
+        {
+          "count": "1",
+          "description": "DRIVING WHILE LICENSE SUSPENDED (FINANCIAL RESPONSIBILTY) (324201 2)",
+          "disposition": "DROPPED/ABANDONED/NO INFORMATION FILED"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3291258",
+      "case_number": "25019325TR",
+      "judge": "DYKES, MARIA IGNACIO",
+      "court_type": "Civil Traffic",
+      "agency": "BAY COUNTY SHERIFF",
+      "status_date": "2/11/2026",
+      "charges": [
+        {
+          "count": "1",
+          "description": "UNLAWFUL SPEED (SCHOOL ZONE) (3161895)",
+          "disposition": "ADJ W/H COURT-JUDGE"
+        }
+      ],
+      "county": "bay"
+    },
+    {
+      "case_id": "3294786",
+      "case_number": "25005555CC",
+      "judge": "CAROTHERS, ALICIA DAWN",
+      "court_type": "County Civil",
+      "agency": "Status Date:",
+      "status_date": "",
       "charges": [],
       "county": "bay"
     }

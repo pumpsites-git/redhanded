@@ -1,0 +1,15 @@
+{
+  "scrape_date": "2026-06-09T00:16:05.286865Z",
+  "source": "Bay County Clerk - BenchmarkWeb2",
+  "url": "https://court.baycoclerk.com/BenchmarkWeb2/Home.aspx/Search",
+  "searches": [
+    {
+      "name": "Smith",
+      "cases_found": 0
+    }
+  ],
+  "total_cases": 0,
+  "has_judge_names": false,
+  "cases": [],
+  "judge_names_found": []
+}
