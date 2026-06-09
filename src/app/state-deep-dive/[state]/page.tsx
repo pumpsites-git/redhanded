@@ -16,6 +16,12 @@ import {
 } from '@/lib/state-deep-dive';
 import FloridaCountyTable from '@/components/FloridaCountyTable';
 import FloridaCountyHeatmap from '@/components/FloridaCountyHeatmap';
+import {
+  getAllStateJudges,
+  getLeniencyLabel,
+  getLeniencyColor,
+  pct as judgePct,
+} from '@/lib/state-judges';
 
 // ─── Shared sub-components ────────────────────────────────────────────────────
 
@@ -680,6 +686,67 @@ function ComingSoonPage({ stateCode }: { stateCode: string }) {
 
 // ─── Florida Page ─────────────────────────────────────────────────────────────
 
+function FLJudgeCards() {
+  const flJudges = getAllStateJudges().filter(j => j.stateCode === 'FL');
+  // Group by county
+  const byCounty: Record<string, typeof flJudges> = {};
+  for (const j of flJudges) {
+    const c = j.county || j.courtFacility?.replace(', FL', '') || 'Unknown';
+    if (!byCounty[c]) byCounty[c] = [];
+    byCounty[c].push(j);
+  }
+
+  return (
+    <div>
+      {Object.entries(byCounty).map(([county, judges]) => (
+        <div key={county} style={{ marginBottom: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ color: 'var(--red-primary)' }}>⚖️</span> {county}
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 400 }}>({judges.length} judges, {judges.reduce((s, j) => s + j.totalCases, 0).toLocaleString()} cases)</span>
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+            {judges.sort((a, b) => b.leniencyScore - a.leniencyScore).map(j => {
+              const color = getLeniencyColor(j.leniencyScore);
+              return (
+                <Link key={j.slug} href={`/judges/state/${j.slug}`} style={{ textDecoration: 'none' }}>
+                  <div style={{
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border)',
+                    borderLeft: `3px solid ${color}`,
+                    borderRadius: '0.5rem',
+                    padding: '0.875rem 1rem',
+                    transition: 'border-color 0.2s',
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.375rem' }}>
+                      <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem' }}>{j.name}</span>
+                      <span style={{ fontWeight: 800, color, fontSize: '1rem' }}>{j.leniencyScore}</span>
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '0.375rem' }}>
+                      {getLeniencyLabel(j.leniencyScore)} · {j.totalCases} cases
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.75rem' }}>
+                      <span style={{ color: '#dc2626' }}>Prison {judgePct(j.prisonRate)}</span>
+                      <span style={{ color: '#22c55e' }}>Probation {judgePct(j.probationRate)}</span>
+                      {j.violentCases.total > 0 && (
+                        <span style={{ color: '#f97316' }}>Violent→Prison {judgePct(j.violentCases.prisonRate)}</span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+      <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: 'rgba(220,38,38,0.06)', border: '1px solid rgba(220,38,38,0.15)', borderRadius: '0.5rem' }}>
+        <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+          🔗 <strong>View all FL judges</strong> on the <Link href="/?state=FL" style={{ color: 'var(--red-primary)' }}>main dashboard</Link> with full filtering, sorting, and comparison tools.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function FloridaPage() {
   const stats = getFLStats();
   const pb = stats.palmBeach;
@@ -849,6 +916,16 @@ function FloridaPage() {
           </p>
           <FloridaCountyTable counties={stats.counties} />
           <SourceNote text="FDLE Criminal Justice Data Transparency Portal · Clerk of Court statistical reporting. Prison rate = share of cases resulting in DOC commitment." />
+        </Section>
+
+        {/* Judge-Level Data — Bay, Indian River, St. Johns Counties */}
+        <Section>
+          <SectionHeader title="Judge-Level Analysis — 3 Counties" icon="👨‍⚖️" />
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem', lineHeight: 1.6 }}>
+            We've obtained <strong>individual judge sentencing data</strong> for Bay, Indian River, and St. Johns counties through direct court clerk system scraping.
+            Click any judge to view their full profile with offense breakdowns and leniency scoring.
+          </p>
+          <FLJudgeCards />
         </Section>
 
         {/* Key Findings */}

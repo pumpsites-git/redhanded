@@ -1,11 +1,15 @@
 import ilProfilesRaw from '../../data/state-courts/illinois/judge-profiles.json';
 import flBayProfilesRaw from '../../data/state-courts/florida/bay-judge-profiles.json';
+import flIndianRiverProfilesRaw from '../../data/state-courts/florida/indian-river-judge-profiles.json';
+import flStJohnsProfilesRaw from '../../data/state-courts/florida/st-johns-judge-profiles.json';
 
 // Registry of all state court data files
 // Add new states here as they become available
 const STATE_REGISTRY: { code: string; name: string; county: string; data: unknown }[] = [
   { code: 'IL', name: 'Illinois', county: 'Cook County', data: ilProfilesRaw },
   { code: 'FL', name: 'Florida', county: 'Bay County', data: flBayProfilesRaw },
+  { code: 'FL', name: 'Florida', county: 'Indian River County', data: flIndianRiverProfilesRaw },
+  { code: 'FL', name: 'Florida', county: 'St. Johns County', data: flStJohnsProfilesRaw },
 ];
 
 export interface ViolentCaseStats {
@@ -103,7 +107,20 @@ export function getAllStateJudges(): StateJudge[] {
 }
 
 export function getAvailableStates(): { code: string; name: string; county: string }[] {
-  return STATE_REGISTRY.map(({ code, name, county }) => ({ code, name, county }));
+  // Deduplicate by state code, listing all counties
+  const seen = new Map<string, { code: string; name: string; counties: string[] }>();
+  for (const { code, name, county } of STATE_REGISTRY) {
+    if (seen.has(code)) {
+      seen.get(code)!.counties.push(county);
+    } else {
+      seen.set(code, { code, name, counties: [county] });
+    }
+  }
+  return [...seen.values()].map(({ code, name, counties }) => ({
+    code,
+    name,
+    county: counties.length <= 2 ? counties.join(' & ') : `${counties.length} counties`,
+  }));
 }
 
 export function getStateJudgeBySlug(slug: string): StateJudge | null {

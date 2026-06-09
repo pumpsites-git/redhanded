@@ -1,0 +1,500 @@
+{
+  "generated": "2026-06-09T07:32:09Z",
+  "source": "Civitek Clerk Case Data \u2014 Indian River County, FL",
+  "totalJudges": 5,
+  "totalCases": 1037,
+  "courtAverage": {
+    "prisonRate": 0.1514,
+    "jailRate": 0.0,
+    "probationRate": 0.1437,
+    "otherRate": 0.7049,
+    "violentCases": {
+      "total": 285,
+      "prisonRate": 0.1825,
+      "probationRate": 0.0877,
+      "jailRate": 0,
+      "prisonCount": 52,
+      "probationCount": 25
+    },
+    "avgCommitmentDays": null
+  },
+  "summary": {
+    "judgesLowViolentPrisonRate": 3,
+    "minViolentPrisonRate": 0.0435,
+    "maxViolentPrisonRate": 1.0,
+    "avgLeniencyScore": 56.4
+  },
+  "judges": {
+    "norman-anastasia": {
+      "name": "Anastasia Norman",
+      "slug": "norman-anastasia",
+      "totalCases": 394,
+      "prisonRate": 0.1878,
+      "jailRate": 0.0,
+      "probationRate": 0.0,
+      "otherRate": 0.8122,
+      "prisonCount": 74,
+      "jailCount": 0,
+      "probationCount": 0,
+      "otherCount": 320,
+      "avgCommitmentDays": null,
+      "courtFacility": "Indian River County, FL",
+      "leniencyScore": 67,
+      "violentCases": {
+        "total": 155,
+        "prisonRate": 0.1484,
+        "probationRate": 0.0,
+        "jailRate": 0.0,
+        "prisonCount": 23,
+        "probationCount": 0
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 394
+      },
+      "offenseBreakdown": {
+        "Drug Offenses": {
+          "total": 449,
+          "prison": 41,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0913,
+          "probationRate": 0.0
+        },
+        "Property Crimes": {
+          "total": 115,
+          "prison": 22,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.1913,
+          "probationRate": 0.0
+        },
+        "Domestic Violence": {
+          "total": 5,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        },
+        "Other": {
+          "total": 441,
+          "prison": 57,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.1293,
+          "probationRate": 0.0
+        },
+        "Violent Crimes": {
+          "total": 112,
+          "prison": 15,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.1339,
+          "probationRate": 0.0
+        },
+        "Probation/Parole": {
+          "total": 1,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        },
+        "DUI/Traffic": {
+          "total": 40,
+          "prison": 7,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.175,
+          "probationRate": 0.0
+        },
+        "Weapons": {
+          "total": 10,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        },
+        "Sex Offenses": {
+          "total": 10,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "meadows-robert": {
+      "name": "Robert Meadows",
+      "slug": "meadows-robert",
+      "totalCases": 149,
+      "prisonRate": 0.4295,
+      "jailRate": 0.0,
+      "probationRate": 0.0,
+      "otherRate": 0.5705,
+      "prisonCount": 64,
+      "jailCount": 0,
+      "probationCount": 0,
+      "otherCount": 85,
+      "avgCommitmentDays": null,
+      "courtFacility": "Indian River County, FL",
+      "leniencyScore": 50,
+      "violentCases": {
+        "total": 67,
+        "prisonRate": 0.3284,
+        "probationRate": 0.0,
+        "jailRate": 0.0,
+        "prisonCount": 22,
+        "probationCount": 0
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 149
+      },
+      "offenseBreakdown": {
+        "Property Crimes": {
+          "total": 59,
+          "prison": 24,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.4068,
+          "probationRate": 0.0
+        },
+        "Violent Crimes": {
+          "total": 74,
+          "prison": 14,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.1892,
+          "probationRate": 0.0
+        },
+        "Other": {
+          "total": 115,
+          "prison": 27,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.2348,
+          "probationRate": 0.0
+        },
+        "Domestic Violence": {
+          "total": 2,
+          "prison": 1,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.5,
+          "probationRate": 0.0
+        },
+        "DUI/Traffic": {
+          "total": 5,
+          "prison": 4,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.8,
+          "probationRate": 0.0
+        },
+        "Drug Offenses": {
+          "total": 77,
+          "prison": 47,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6104,
+          "probationRate": 0.0
+        },
+        "Probation/Parole": {
+          "total": 3,
+          "prison": 2,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6667,
+          "probationRate": 0.0
+        },
+        "Sex Offenses": {
+          "total": 9,
+          "prison": 8,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.8889,
+          "probationRate": 0.0
+        },
+        "Weapons": {
+          "total": 1,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "stone-robyn": {
+      "name": "Robyn E. Stone",
+      "slug": "stone-robyn",
+      "totalCases": 202,
+      "prisonRate": 0.0248,
+      "jailRate": 0.0,
+      "probationRate": 0.302,
+      "otherRate": 0.6733,
+      "prisonCount": 5,
+      "jailCount": 0,
+      "probationCount": 61,
+      "otherCount": 67,
+      "avgCommitmentDays": null,
+      "courtFacility": "Indian River County, FL",
+      "leniencyScore": 83,
+      "violentCases": {
+        "total": 23,
+        "prisonRate": 0.0435,
+        "probationRate": 0.5652,
+        "jailRate": 0.0,
+        "prisonCount": 1,
+        "probationCount": 13
+      },
+      "sentenceTypes": {
+        "Criminal Traffic": 97,
+        "Criminal Felony": 15,
+        "Misdemeanor": 90
+      },
+      "offenseBreakdown": {
+        "DUI/Traffic": {
+          "total": 36,
+          "prison": 0,
+          "probation": 2,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0556
+        },
+        "Other": {
+          "total": 155,
+          "prison": 2,
+          "probation": 32,
+          "jail": 0,
+          "prisonRate": 0.0129,
+          "probationRate": 0.2065
+        },
+        "Drug Offenses": {
+          "total": 41,
+          "prison": 5,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.122,
+          "probationRate": 0.122
+        },
+        "Domestic Violence": {
+          "total": 13,
+          "prison": 0,
+          "probation": 10,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.7692
+        },
+        "Property Crimes": {
+          "total": 22,
+          "prison": 1,
+          "probation": 15,
+          "jail": 0,
+          "prisonRate": 0.0455,
+          "probationRate": 0.6818
+        },
+        "Violent Crimes": {
+          "total": 11,
+          "prison": 0,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.4545
+        },
+        "Probation/Parole": {
+          "total": 5,
+          "prison": 0,
+          "probation": 4,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.8
+        },
+        "Sex Offenses": {
+          "total": 3,
+          "prison": 0,
+          "probation": 3,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "menz-nicole": {
+      "name": "Nicole Menz",
+      "slug": "menz-nicole",
+      "totalCases": 282,
+      "prisonRate": 0.0142,
+      "jailRate": 0.0,
+      "probationRate": 0.3121,
+      "otherRate": 0.6738,
+      "prisonCount": 4,
+      "jailCount": 0,
+      "probationCount": 88,
+      "otherCount": 102,
+      "avgCommitmentDays": null,
+      "courtFacility": "Indian River County, FL",
+      "leniencyScore": 82,
+      "violentCases": {
+        "total": 37,
+        "prisonRate": 0.0811,
+        "probationRate": 0.3243,
+        "jailRate": 0.0,
+        "prisonCount": 3,
+        "probationCount": 12
+      },
+      "sentenceTypes": {
+        "Criminal Traffic": 138,
+        "Misdemeanor": 130,
+        "Criminal Felony": 14
+      },
+      "offenseBreakdown": {
+        "Other": {
+          "total": 210,
+          "prison": 0,
+          "probation": 48,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.2286
+        },
+        "Property Crimes": {
+          "total": 46,
+          "prison": 1,
+          "probation": 25,
+          "jail": 0,
+          "prisonRate": 0.0217,
+          "probationRate": 0.5435
+        },
+        "DUI/Traffic": {
+          "total": 48,
+          "prison": 0,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.1042
+        },
+        "Violent Crimes": {
+          "total": 36,
+          "prison": 5,
+          "probation": 7,
+          "jail": 0,
+          "prisonRate": 0.1389,
+          "probationRate": 0.1944
+        },
+        "Drug Offenses": {
+          "total": 24,
+          "prison": 0,
+          "probation": 17,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.7083
+        },
+        "Domestic Violence": {
+          "total": 7,
+          "prison": 0,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.7143
+        },
+        "Probation/Parole": {
+          "total": 11,
+          "prison": 0,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.4545
+        },
+        "Sex Offenses": {
+          "total": 2,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "white-rebecca": {
+      "name": "Rebecca White",
+      "slug": "white-rebecca",
+      "totalCases": 10,
+      "prisonRate": 1.0,
+      "jailRate": 0.0,
+      "probationRate": 0.0,
+      "otherRate": 0.0,
+      "prisonCount": 10,
+      "jailCount": 0,
+      "probationCount": 0,
+      "otherCount": 0,
+      "avgCommitmentDays": null,
+      "courtFacility": "Indian River County, FL",
+      "leniencyScore": 0,
+      "violentCases": {
+        "total": 3,
+        "prisonRate": 1.0,
+        "probationRate": 0.0,
+        "jailRate": 0.0,
+        "prisonCount": 3,
+        "probationCount": 0
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 10
+      },
+      "offenseBreakdown": {
+        "Drug Offenses": {
+          "total": 6,
+          "prison": 5,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.8333,
+          "probationRate": 0.0
+        },
+        "Other": {
+          "total": 7,
+          "prison": 6,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.8571,
+          "probationRate": 0.0
+        },
+        "Violent Crimes": {
+          "total": 3,
+          "prison": 2,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6667,
+          "probationRate": 0.0
+        },
+        "DUI/Traffic": {
+          "total": 1,
+          "prison": 1,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 1.0,
+          "probationRate": 0.0
+        },
+        "Property Crimes": {
+          "total": 1,
+          "prison": 1,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 1.0,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    }
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "generated": "2026-06-09T07:32:09Z",
+  "source": "Civitek Clerk Case Data \u2014 St. Johns County, FL",
+  "totalJudges": 6,
+  "totalCases": 1195,
+  "courtAverage": {
+    "prisonRate": 0.1757,
+    "jailRate": 0.0,
+    "probationRate": 0.1883,
+    "otherRate": 0.636,
+    "violentCases": {
+      "total": 230,
+      "prisonRate": 0.2913,
+      "probationRate": 0.2435,
+      "jailRate": 0,
+      "prisonCount": 67,
+      "probationCount": 56
+    },
+    "avgCommitmentDays": null
+  },
+  "summary": {
+    "judgesLowViolentPrisonRate": 3,
+    "minViolentPrisonRate": 0.0,
+    "maxViolentPrisonRate": 0.5455,
+    "avgLeniencyScore": 62.2
+  },
+  "judges": {
+    "woolsey-casey": {
+      "name": "Casey L Woolsey",
+      "slug": "woolsey-casey",
+      "totalCases": 410,
+      "prisonRate": 0.0,
+      "jailRate": 0.0,
+      "probationRate": 0.2463,
+      "otherRate": 0.7537,
+      "prisonCount": 0,
+      "jailCount": 0,
+      "probationCount": 101,
+      "otherCount": 149,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 85,
+      "violentCases": {
+        "total": 46,
+        "prisonRate": 0.0,
+        "probationRate": 0.6087,
+        "jailRate": 0.0,
+        "prisonCount": 0,
+        "probationCount": 28
+      },
+      "sentenceTypes": {
+        "Misdemeanor": 169,
+        "Criminal Traffic": 241
+      },
+      "offenseBreakdown": {
+        "Property Crimes": {
+          "total": 36,
+          "prison": 0,
+          "probation": 16,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.4444
+        },
+        "Other": {
+          "total": 295,
+          "prison": 0,
+          "probation": 56,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.1898
+        },
+        "Violent Crimes": {
+          "total": 38,
+          "prison": 0,
+          "probation": 22,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5789
+        },
+        "Drug Offenses": {
+          "total": 28,
+          "prison": 0,
+          "probation": 15,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5357
+        },
+        "DUI/Traffic": {
+          "total": 82,
+          "prison": 0,
+          "probation": 4,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0488
+        },
+        "Probation/Parole": {
+          "total": 4,
+          "prison": 0,
+          "probation": 2,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5
+        },
+        "Domestic Violence": {
+          "total": 10,
+          "prison": 0,
+          "probation": 5,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5
+        },
+        "Weapons": {
+          "total": 1,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        },
+        "Sex Offenses": {
+          "total": 1,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "smith-r": {
+      "name": "R. Lee Smith",
+      "slug": "smith-r",
+      "totalCases": 266,
+      "prisonRate": 0.5263,
+      "jailRate": 0.0,
+      "probationRate": 0.0113,
+      "otherRate": 0.4624,
+      "prisonCount": 140,
+      "jailCount": 0,
+      "probationCount": 3,
+      "otherCount": 123,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 41,
+      "violentCases": {
+        "total": 89,
+        "prisonRate": 0.4607,
+        "probationRate": 0.0225,
+        "jailRate": 0.0,
+        "prisonCount": 41,
+        "probationCount": 2
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 263,
+        "Misdemeanor": 3
+      },
+      "offenseBreakdown": {
+        "Other": {
+          "total": 151,
+          "prison": 65,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.4305,
+          "probationRate": 0.0066
+        },
+        "Violent Crimes": {
+          "total": 70,
+          "prison": 24,
+          "probation": 2,
+          "jail": 0,
+          "prisonRate": 0.3429,
+          "probationRate": 0.0286
+        },
+        "Drug Offenses": {
+          "total": 160,
+          "prison": 95,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.5938,
+          "probationRate": 0.0
+        },
+        "Property Crimes": {
+          "total": 127,
+          "prison": 53,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.4173,
+          "probationRate": 0.0
+        },
+        "Sex Offenses": {
+          "total": 3,
+          "prison": 3,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 1.0,
+          "probationRate": 0.0
+        },
+        "Domestic Violence": {
+          "total": 3,
+          "prison": 2,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6667,
+          "probationRate": 0.0
+        },
+        "DUI/Traffic": {
+          "total": 19,
+          "prison": 14,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.7368,
+          "probationRate": 0.0
+        },
+        "Weapons": {
+          "total": 4,
+          "prison": 3,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.75,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "blocker-lauren": {
+      "name": "Lauren P Blocker",
+      "slug": "blocker-lauren",
+      "totalCases": 131,
+      "prisonRate": 0.0,
+      "jailRate": 0.0,
+      "probationRate": 0.3206,
+      "otherRate": 0.6794,
+      "prisonCount": 0,
+      "jailCount": 0,
+      "probationCount": 42,
+      "otherCount": 48,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 86,
+      "violentCases": {
+        "total": 19,
+        "prisonRate": 0.0,
+        "probationRate": 0.5263,
+        "jailRate": 0.0,
+        "prisonCount": 0,
+        "probationCount": 10
+      },
+      "sentenceTypes": {
+        "Misdemeanor": 70,
+        "Criminal Traffic": 61
+      },
+      "offenseBreakdown": {
+        "Property Crimes": {
+          "total": 25,
+          "prison": 0,
+          "probation": 8,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.32
+        },
+        "Other": {
+          "total": 81,
+          "prison": 0,
+          "probation": 23,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.284
+        },
+        "Drug Offenses": {
+          "total": 10,
+          "prison": 0,
+          "probation": 7,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.7
+        },
+        "DUI/Traffic": {
+          "total": 22,
+          "prison": 0,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0
+        },
+        "Probation/Parole": {
+          "total": 2,
+          "prison": 0,
+          "probation": 2,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        },
+        "Violent Crimes": {
+          "total": 15,
+          "prison": 0,
+          "probation": 9,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.6
+        },
+        "Domestic Violence": {
+          "total": 4,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.25
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "ferebee-christopher": {
+      "name": "Christopher S Ferebee",
+      "slug": "ferebee-christopher",
+      "totalCases": 123,
+      "prisonRate": 0.5203,
+      "jailRate": 0.0,
+      "probationRate": 0.0,
+      "otherRate": 0.4797,
+      "prisonCount": 64,
+      "jailCount": 0,
+      "probationCount": 0,
+      "otherCount": 59,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 37,
+      "violentCases": {
+        "total": 44,
+        "prisonRate": 0.5455,
+        "probationRate": 0.0,
+        "jailRate": 0.0,
+        "prisonCount": 24,
+        "probationCount": 0
+      },
+      "sentenceTypes": {
+        "Criminal Felony": 123
+      },
+      "offenseBreakdown": {
+        "Drug Offenses": {
+          "total": 81,
+          "prison": 34,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.4198,
+          "probationRate": 0.0
+        },
+        "Property Crimes": {
+          "total": 60,
+          "prison": 17,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.2833,
+          "probationRate": 0.0
+        },
+        "Other": {
+          "total": 84,
+          "prison": 34,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.4048,
+          "probationRate": 0.0
+        },
+        "DUI/Traffic": {
+          "total": 17,
+          "prison": 4,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.2353,
+          "probationRate": 0.0
+        },
+        "Violent Crimes": {
+          "total": 37,
+          "prison": 17,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.4595,
+          "probationRate": 0.0
+        },
+        "Sex Offenses": {
+          "total": 6,
+          "prison": 4,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6667,
+          "probationRate": 0.0
+        },
+        "Weapons": {
+          "total": 3,
+          "prison": 1,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.3333,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "christine-alexander": {
+      "name": "Alexander R Christine Jr",
+      "slug": "christine-alexander",
+      "totalCases": 260,
+      "prisonRate": 0.0115,
+      "jailRate": 0.0,
+      "probationRate": 0.3,
+      "otherRate": 0.6885,
+      "prisonCount": 3,
+      "jailCount": 0,
+      "probationCount": 78,
+      "otherCount": 78,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 84,
+      "violentCases": {
+        "total": 30,
+        "prisonRate": 0.0333,
+        "probationRate": 0.5,
+        "jailRate": 0.0,
+        "prisonCount": 1,
+        "probationCount": 15
+      },
+      "sentenceTypes": {
+        "Misdemeanor": 119,
+        "Criminal Traffic": 138,
+        "Criminal Felony": 3
+      },
+      "offenseBreakdown": {
+        "Other": {
+          "total": 181,
+          "prison": 3,
+          "probation": 58,
+          "jail": 0,
+          "prisonRate": 0.0166,
+          "probationRate": 0.3204
+        },
+        "Probation/Parole": {
+          "total": 2,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.5
+        },
+        "Property Crimes": {
+          "total": 26,
+          "prison": 1,
+          "probation": 13,
+          "jail": 0,
+          "prisonRate": 0.0385,
+          "probationRate": 0.5
+        },
+        "DUI/Traffic": {
+          "total": 57,
+          "prison": 0,
+          "probation": 4,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.0702
+        },
+        "Violent Crimes": {
+          "total": 25,
+          "prison": 0,
+          "probation": 10,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.4
+        },
+        "Domestic Violence": {
+          "total": 4,
+          "prison": 0,
+          "probation": 3,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 0.75
+        },
+        "Drug Offenses": {
+          "total": 24,
+          "prison": 3,
+          "probation": 9,
+          "jail": 0,
+          "prisonRate": 0.125,
+          "probationRate": 0.375
+        },
+        "Weapons": {
+          "total": 2,
+          "prison": 0,
+          "probation": 2,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        },
+        "Sex Offenses": {
+          "total": 1,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    },
+    "mcgillin-howard": {
+      "name": "Howard O Mcgillin Jr",
+      "slug": "mcgillin-howard",
+      "totalCases": 5,
+      "prisonRate": 0.6,
+      "jailRate": 0.0,
+      "probationRate": 0.2,
+      "otherRate": 0.2,
+      "prisonCount": 3,
+      "jailCount": 0,
+      "probationCount": 1,
+      "otherCount": 0,
+      "avgCommitmentDays": null,
+      "courtFacility": "St. Johns County, FL",
+      "leniencyScore": 40,
+      "violentCases": {
+        "total": 2,
+        "prisonRate": 0.5,
+        "probationRate": 0.5,
+        "jailRate": 0.0,
+        "prisonCount": 1,
+        "probationCount": 1
+      },
+      "sentenceTypes": {
+        "Misdemeanor": 1,
+        "Criminal Traffic": 1,
+        "Criminal Felony": 3
+      },
+      "offenseBreakdown": {
+        "Domestic Violence": {
+          "total": 1,
+          "prison": 0,
+          "probation": 1,
+          "jail": 0,
+          "prisonRate": 0.0,
+          "probationRate": 1.0
+        },
+        "Drug Offenses": {
+          "total": 5,
+          "prison": 3,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.6,
+          "probationRate": 0.0
+        },
+        "Violent Crimes": {
+          "total": 2,
+          "prison": 1,
+          "probation": 0,
+          "jail": 0,
+          "prisonRate": 0.5,
+          "probationRate": 0.0
+        }
+      },
+      "raceBreakdown": {},
+      "genderBreakdown": {}
+    }
+  }
+}

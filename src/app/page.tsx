@@ -24,12 +24,17 @@ const ALL_FACILITIES = Array.from(
 
 const AVAILABLE_STATES = getAvailableStates();
 
-// Illinois state court coverage data for the map
+// Compute per-state stats from the unified judge list
+const IL_JUDGES = ALL_JUDGES.filter(j => j.stateCode === 'IL');
+const FL_JUDGES = ALL_JUDGES.filter(j => j.stateCode === 'FL');
+
 const STATE_COVERAGE = [
   {
     code: 'IL',
-    judgeCount: META.totalJudges,
-    avgLeniency: Math.round(META.summary.avgLeniencyScore),
+    judgeCount: IL_JUDGES.length,
+    avgLeniency: IL_JUDGES.length
+      ? Math.round(IL_JUDGES.reduce((s, j) => s + j.leniencyScore, 0) / IL_JUDGES.length)
+      : null,
     dataType: 'judge' as const,
   },
   {
@@ -40,10 +45,12 @@ const STATE_COVERAGE = [
   },
   {
     code: 'FL',
-    judgeCount: 0,
-    avgLeniency: null,
-    dataType: 'county' as const,
-    countyCount: 67,
+    judgeCount: FL_JUDGES.length,
+    avgLeniency: FL_JUDGES.length
+      ? Math.round(FL_JUDGES.reduce((s, j) => s + j.leniencyScore, 0) / FL_JUDGES.length)
+      : null,
+    dataType: 'judge' as const,
+    countyCount: 3,
   },
 ];
 
