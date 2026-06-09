@@ -7,6 +7,9 @@ interface StateCoverage {
   code: string;
   judgeCount: number;
   avgLeniency: number | null;
+  /** 'judge' = individual judge data (red), 'county' = county-level data (orange) */
+  dataType?: 'judge' | 'county';
+  countyCount?: number;
 }
 
 interface StateCourtMapProps {
@@ -38,6 +41,7 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
 
   const hoveredData = hoveredState ? coveredMap.get(hoveredState) : null;
   const isCovered = hoveredState ? coveredMap.has(hoveredState) : false;
+  const hoveredIsCounty = hoveredData?.dataType === 'county';
 
   return (
     <div
@@ -56,20 +60,33 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
         <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
           {hoveredState ? (
             isCovered ? (
-              <span>
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                  {STATE_NAMES[hoveredState] || hoveredState}
-                </span>
-                {' — '}
-                <span style={{ color: '#dc2626', fontWeight: 700 }}>
-                  {hoveredData!.judgeCount} judges
-                </span>
-                {hoveredData!.avgLeniency !== null && (
-                  <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
-                    avg leniency {hoveredData!.avgLeniency}
+              hoveredIsCounty ? (
+                <span>
+                  <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
+                    {STATE_NAMES[hoveredState] || hoveredState}
                   </span>
-                )}
-              </span>
+                  {' — '}
+                  <span style={{ color: '#f97316', fontWeight: 700 }}>
+                    {hoveredData!.countyCount ?? 67} counties
+                  </span>
+                  <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>county-level data</span>
+                </span>
+              ) : (
+                <span>
+                  <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
+                    {STATE_NAMES[hoveredState] || hoveredState}
+                  </span>
+                  {' — '}
+                  <span style={{ color: '#dc2626', fontWeight: 700 }}>
+                    {hoveredData!.judgeCount} judges
+                  </span>
+                  {hoveredData!.avgLeniency !== null && (
+                    <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
+                      avg leniency {hoveredData!.avgLeniency}
+                    </span>
+                  )}
+                </span>
+              )
             ) : (
               <span>
                 <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
@@ -93,12 +110,17 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
         {Object.entries(paths).map(([code, d]) => {
           const covered = coveredMap.has(code);
           const isHovered = hoveredState === code;
+          const isCounty = coveredMap.get(code)?.dataType === 'county';
 
           let fill: string;
-          if (isHovered && covered) {
-            fill = '#ef4444'; // brighter red on hover
+          if (isHovered && covered && isCounty) {
+            fill = '#fb923c'; // brighter orange on hover (county data)
+          } else if (covered && isCounty) {
+            fill = '#f97316'; // orange — county-level data
+          } else if (isHovered && covered) {
+            fill = '#ef4444'; // brighter red on hover (judge data)
           } else if (covered) {
-            fill = '#dc2626'; // red — has data
+            fill = '#dc2626'; // red — has judge-level data
           } else if (isHovered) {
             fill = '#3a3a3a'; // lighter dark on hover
           } else {
@@ -133,7 +155,11 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
           <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#dc2626' }} />
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Data Available</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Judge-Level Data</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+          <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#f97316' }} />
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>County Data Available</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
           <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#1f1f1f', border: '1px solid #3a3a3a' }} />
@@ -142,7 +168,7 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
       </div>
 
       <p style={{ textAlign: 'center', fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-        Currently covering Cook County, Illinois · More states being added
+        IL/NY: judge-level data · FL: 67-county sentencing data · More states being added
       </p>
     </div>
   );

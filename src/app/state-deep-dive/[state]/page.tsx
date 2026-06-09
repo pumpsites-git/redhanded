@@ -5,6 +5,7 @@ import {
   AVAILABLE_STATES,
   getILStats,
   getNYStats,
+  getFLStats,
   fmt,
   pct,
   dollars,
@@ -13,6 +14,8 @@ import {
   IL_DATA,
   NY_DATA,
 } from '@/lib/state-deep-dive';
+import FloridaCountyTable from '@/components/FloridaCountyTable';
+import FloridaCountyHeatmap from '@/components/FloridaCountyHeatmap';
 
 // ─── Shared sub-components ────────────────────────────────────────────────────
 
@@ -675,6 +678,216 @@ function ComingSoonPage({ stateCode }: { stateCode: string }) {
   );
 }
 
+// ─── Florida Page ─────────────────────────────────────────────────────────────
+
+function FloridaPage() {
+  const stats = getFLStats();
+  const pb = stats.palmBeach;
+
+  return (
+    <div>
+      {/* Header */}
+      <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-secondary)', padding: '1.5rem 1rem' }}>
+        <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+            <Link href="/state-deep-dives" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>← State Deep Dives</Link>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+            <span style={{ fontSize: '2rem' }}>☀️</span>
+            <h1 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+              Florida — 67-County Sentencing Analysis
+            </h1>
+          </div>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
+            {fmt(stats.totalCases)} cases analyzed across all {stats.totalCounties} counties · State court data · Source: FDLE Criminal Justice Data Transparency
+          </p>
+          <div style={{ marginTop: '0.5rem', padding: '0.4rem 0.75rem', background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.25)', borderRadius: '0.375rem', display: 'inline-block' }}>
+            <span style={{ fontSize: '0.75rem', color: '#fb923c' }}>⚠️ County-level data — leniency scores derived from sentencing outcome distributions</span>
+          </div>
+        </div>
+      </header>
+
+      <main style={{ maxWidth: '72rem', margin: '0 auto', padding: '2rem 1rem' }}>
+
+        {/* Key Stats */}
+        <Section>
+          <SectionHeader title="Florida at a Glance" icon="📊" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
+            <BigStat value={fmt(stats.totalCases)} label="Total Cases" sub="Across 67 counties" />
+            <BigStat value={`${(stats.stateAvgPrisonRate * 100).toFixed(1)}%`} label="State Avg Prison Rate" color="#22c55e" sub="14.4% sentenced to prison" />
+            <BigStat value={`${Math.round(stats.avgFelonySentenceDays).toLocaleString()} days`} label="Avg Felony Sentence" color="#ca8a04" sub="~3.1 years" />
+            <BigStat value={`${(stats.stateAvgJailRate * 100).toFixed(1)}%`} label="State Avg Jail Rate" color="#8b5cf6" sub="County jail (not prison)" />
+            <BigStat value={`${(stats.violentCaseRate * 100).toFixed(1)}%`} label="Violent Case Rate" color="#dc2626" sub="Of all cases" />
+            <BigStat value={stats.totalCounties.toString()} label="Counties Analyzed" color="#6b7280" sub="All 67 FL counties" />
+          </div>
+          <SourceNote text="FDLE Criminal Justice Data Transparency Portal · Clerk of Court Reports · 3.59M cases" />
+        </Section>
+
+        {/* Palm Beach Highlight */}
+        <div style={{
+          background: 'var(--bg-card)',
+          border: '1px solid rgba(59,130,246,0.35)',
+          borderLeft: '4px solid #3b82f6',
+          borderRadius: '0.75rem',
+          padding: '1.25rem 1.5rem',
+          marginBottom: '1.5rem',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '1rem',
+          alignItems: 'center',
+        }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+              <span style={{ fontSize: '1.25rem' }}>🏡</span>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#93c5fd', margin: 0 }}>Palm Beach County — Bryan's Home County</h3>
+            </div>
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+              Judicial Circuit 15 · Leniency rank #{pb.leniencyRank} of 67 counties
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
+            {([
+              { label: 'Leniency Score', val: pb.leniencyScore.toFixed(1), color: '#f97316' },
+              { label: 'Prison Rate', val: `${(pb.prisonRate * 100).toFixed(1)}%`, color: '#dc2626' },
+              { label: 'Jail Rate', val: `${(pb.jailRate * 100).toFixed(1)}%`, color: '#8b5cf6' },
+              { label: 'Total Cases', val: fmt(pb.totalCases), color: 'var(--text-primary)' },
+              { label: 'Avg Felony Sentence', val: `${Math.round(pb.avgFelonySentenceDays ?? 0)} days`, color: '#ca8a04' },
+              { label: 'Violent Cases', val: fmt(pb.violentCases.total), color: '#ef4444' },
+            ] as { label: string; val: string; color: string }[]).map(({ label, val, color }) => (
+              <div key={label}>
+                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginBottom: '2px' }}>{label}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 800, color }}>{val}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* County Heatmap */}
+        <Section>
+          <SectionHeader title="County Accountability Map" icon="🗺️" />
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+            All 67 Florida counties visualized by leniency score.{' '}
+            <strong style={{ color: '#dc2626' }}>Red tiles = most lenient</strong> (low prison rates, high withheld adjudication).{' '}
+            <strong style={{ color: '#16a34a' }}>Green tiles = toughest</strong> sentencing. Sorted left-to-right from most lenient to strictest.
+          </p>
+          <FloridaCountyHeatmap counties={stats.counties} />
+          <SourceNote text="Leniency score = composite index of prison rate (inverse), probation rate, withheld adjudication rate, and no-confinement rate. Score 0=toughest, 100=most lenient." />
+        </Section>
+
+        {/* Top 5 / Bottom 5 */}
+        <Section>
+          <SectionHeader title="County Extremes" icon="⚡" />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            {/* Most Lenient */}
+            <div>
+              <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: '#dc2626', marginBottom: '0.875rem' }}>
+                🟥 Top 5 Most Lenient
+              </h3>
+              {stats.mostLenient.map((c, i) => (
+                <div key={c.slug} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 0.625rem', marginBottom: '0.375rem', background: 'rgba(220,38,38,0.06)', borderRadius: '0.375rem', borderLeft: '3px solid #dc2626' }}>
+                  <div>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginRight: '0.375rem' }}>#{i + 1}</span>
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.85rem' }}>{c.name}</span>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Prison: {(c.prisonRate * 100).toFixed(1)}%</div>
+                  </div>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#dc2626' }}>{c.leniencyScore.toFixed(1)}</span>
+                </div>
+              ))}
+            </div>
+            {/* Toughest */}
+            <div>
+              <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: '#16a34a', marginBottom: '0.875rem' }}>
+                🟩 Top 5 Toughest
+              </h3>
+              {stats.toughest.map((c, i) => (
+                <div key={c.slug} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 0.625rem', marginBottom: '0.375rem', background: 'rgba(22,163,74,0.06)', borderRadius: '0.375rem', borderLeft: '3px solid #16a34a' }}>
+                  <div>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginRight: '0.375rem' }}>#{i + 1}</span>
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.85rem' }}>{c.name}</span>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Prison: {(c.prisonRate * 100).toFixed(1)}%</div>
+                  </div>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#16a34a' }}>{c.leniencyScore.toFixed(1)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ marginTop: '1rem', padding: '0.875rem 1rem', background: 'rgba(220,38,38,0.07)', border: '1px solid rgba(220,38,38,0.2)', borderRadius: '0.5rem' }}>
+            <p style={{ margin: 0, fontSize: '0.83rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              <strong style={{ color: '#f87171' }}>Key insight:</strong> Gadsden County (leniency 81.9) shows <strong>0% prison rate</strong> — not a single case resulted in a prison sentence in the analyzed period.
+              Union County (14.8) sits at the opposite extreme, reflecting a fundamentally different sentencing culture.
+            </p>
+          </div>
+        </Section>
+
+        {/* Full County Leaderboard */}
+        <Section>
+          <SectionHeader title="All 67 Counties — Full Leaderboard" icon="🏆" />
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem', lineHeight: 1.6 }}>
+            Sortable by leniency score, prison rate, total cases, or average felony sentence length.
+          </p>
+          <FloridaCountyTable counties={stats.counties} />
+          <SourceNote text="FDLE Criminal Justice Data Transparency Portal · Clerk of Court statistical reporting. Prison rate = share of cases resulting in DOC commitment." />
+        </Section>
+
+        {/* Key Findings */}
+        <Section>
+          <SectionHeader title="Key Findings" icon="🚨" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+            {[
+              {
+                icon: '🔴',
+                color: '#dc2626',
+                title: 'Gadsden: Zero Prison Rate',
+                body: `Gadsden County (leniency score 81.9) recorded a 0% prison rate and 0% jail rate — 100% of cases resulted in probation or no confinement. The most lenient county in Florida by a wide margin.`,
+              },
+              {
+                icon: '🌆',
+                color: '#dc2626',
+                title: 'Broward & Orange County Leniency',
+                body: `Broward (Fort Lauderdale, score 76.7) and Orange (Orlando, score 69.5) rank #2 and #3 most lenient — major metro counties with well below-average prison commitment rates.`,
+              },
+              {
+                icon: '🏡',
+                color: '#3b82f6',
+                title: 'Palm Beach — Score 57.5 (Rank #16)',
+                body: `Palm Beach County ranks #${pb.leniencyRank} of 67 — above the midpoint in leniency. Prison rate ${(pb.prisonRate * 100).toFixed(1)}%, below the state average of 14.4%. ${fmt(pb.totalCases)} total cases analyzed.`,
+              },
+              {
+                icon: '🟩',
+                color: '#16a34a',
+                title: 'Union & Bradford: Toughest Counties',
+                body: `Union County (score 14.8) and Bradford (16.5) — both small North Florida counties — have the state's strictest sentencing patterns, with significantly higher prison commitment rates.`,
+              },
+              {
+                icon: '⚖️',
+                color: '#ca8a04',
+                title: 'Miami-Dade: Large County, Tough Sentencing',
+                body: `Miami-Dade (score 24.6) is Florida's most populous county with ${fmt(stats.miamiDade.totalCases)} cases — yet ranks among the toughest third. Prison rate ${(stats.miamiDade.prisonRate * 100).toFixed(1)}%, violent crime prison rate ${(stats.miamiDade.violentCases.prisonRate * 100).toFixed(1)}%.`,
+              },
+              {
+                icon: '📍',
+                color: '#8b5cf6',
+                title: 'North vs. South: Geographic Divide',
+                body: `North Florida counties (Bradford, Dixie, Union, Hamilton, Alachua) cluster in the strictest tier. South Florida coastal counties (Broward, Monroe, Palm Beach) trend more lenient — reflecting demographic and political differences.`,
+              },
+            ].map(({ icon, color, title, body }) => (
+              <div key={title} style={{ background: 'var(--bg-secondary)', borderRadius: '0.5rem', padding: '1rem', borderLeft: `3px solid ${color}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '1.25rem' }}>{icon}</span>
+                  <strong style={{ color: 'var(--text-primary)', fontSize: '0.9rem' }}>{title}</strong>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', margin: 0, lineHeight: 1.6 }}>{body}</p>
+              </div>
+            ))}
+          </div>
+          <SourceNote text="FDLE Criminal Justice Data Transparency · Clerk of Court Statistical Reports · Generated 2026-06-08. Covers 3,593,714 cases across 67 counties." />
+        </Section>
+
+      </main>
+    </div>
+  );
+}
+
 // ─── Main route ────────────────────────────────────────────────────────────────
 
 export default function StateDeepDivePage({ params }: { params: Promise<{ state: string }> }) {
@@ -683,6 +896,7 @@ export default function StateDeepDivePage({ params }: { params: Promise<{ state:
 
   if (code === 'il') return <IllinoisPage />;
   if (code === 'ny') return <NewYorkPage />;
+  if (code === 'fl') return <FloridaPage />;
   return <ComingSoonPage stateCode={code} />;
 }
 

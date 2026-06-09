@@ -30,6 +30,20 @@ const STATE_COVERAGE = [
     code: 'IL',
     judgeCount: META.totalJudges,
     avgLeniency: Math.round(META.summary.avgLeniencyScore),
+    dataType: 'judge' as const,
+  },
+  {
+    code: 'NY',
+    judgeCount: 0,
+    avgLeniency: null,
+    dataType: 'judge' as const,
+  },
+  {
+    code: 'FL',
+    judgeCount: 0,
+    avgLeniency: null,
+    dataType: 'county' as const,
+    countyCount: 67,
   },
 ];
 

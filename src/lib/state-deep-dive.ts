@@ -3,6 +3,7 @@
 
 import ilRaw from '../../data/state-courts/illinois/cook-county-summary.json';
 import nyRaw from '../../data/state-courts/new-york/ny-summary.json';
+import flRaw from '../../data/state-courts/florida/county-profiles.json';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -99,10 +100,58 @@ export interface NYData {
   };
 }
 
+// ─── FL Types ─────────────────────────────────────────────────────────────────
+
+export interface FLCounty {
+  name: string;
+  slug: string;
+  judicialCircuit: string;
+  totalCases: number;
+  felonyCases: number;
+  misdemeanorCases: number;
+  felonyRatio: number;
+  prisonRate: number;
+  jailRate: number;
+  probationRate: number;
+  commCtrlRate: number;
+  noConfinementRate: number;
+  withheldAdjudicationRate: number;
+  avgFelonySentenceDays: number | null;
+  avgMisdSentenceDays: number | null;
+  violentCases: {
+    total: number;
+    rate: number;
+    prisonRate: number;
+    jailRate: number;
+    otherRate: number;
+  };
+  raceBreakdown: Record<string, number>;
+  leniencyScore: number;
+  leniencyRank: number;
+}
+
+export interface FLData {
+  generated: string;
+  source: string;
+  totalCounties: number;
+  totalCases: number;
+  stateAverage: {
+    prisonRate: number;
+    jailRate: number;
+    probationRate: number;
+    commCtrlRate: number;
+    withheldAdjudicationRate: number;
+    avgFelonySentenceDays: number;
+    violentCaseRate: number;
+  };
+  counties: Record<string, FLCounty>;
+}
+
 // ─── Data exports ─────────────────────────────────────────────────────────────
 
 export const IL_DATA: ILData = ilRaw as ILData;
 export const NY_DATA: NYData = nyRaw as NYData;
+export const FL_DATA: FLData = flRaw as FLData;
 
 // ─── Available states registry ────────────────────────────────────────────────
 
@@ -111,7 +160,7 @@ export const AVAILABLE_STATES: Record<string, { name: string; subtitle: string; 
   ny: { name: 'New York', subtitle: 'Statewide Court & Bail Analysis', available: true },
   ca: { name: 'California', subtitle: 'Data collection in progress', available: false },
   tx: { name: 'Texas', subtitle: 'Data collection in progress', available: false },
-  fl: { name: 'Florida', subtitle: 'Data collection in progress', available: false },
+  fl: { name: 'Florida', subtitle: '67-County Sentencing Analysis', available: true },
 };
 
 export function isStateAvailable(state: string): boolean {
@@ -140,6 +189,36 @@ export function share(part: number, total: number): number {
 /** Top N entries from a Record<string, number>, sorted descending */
 export function topN(obj: Record<string, number>, n: number): Array<[string, number]> {
   return Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n);
+}
+
+// ─── FL computed stats ────────────────────────────────────────────────────────
+
+export function getFLStats() {
+  const d = FL_DATA;
+  const counties = Object.values(d.counties);
+
+  const sorted = [...counties].sort((a, b) => b.leniencyScore - a.leniencyScore);
+  const sortedByPrison = [...counties].sort((a, b) => a.prisonRate - b.prisonRate);
+  const mostLenient = sorted.slice(0, 5);
+  const toughest = [...counties].sort((a, b) => a.leniencyScore - b.leniencyScore).slice(0, 5);
+
+  return {
+    totalCases: d.totalCases,
+    totalCounties: d.totalCounties,
+    stateAvgPrisonRate: d.stateAverage.prisonRate,
+    stateAvgJailRate: d.stateAverage.jailRate,
+    stateAvgProbationRate: d.stateAverage.probationRate,
+    avgFelonySentenceDays: d.stateAverage.avgFelonySentenceDays,
+    violentCaseRate: d.stateAverage.violentCaseRate,
+    counties,
+    sorted,
+    mostLenient,
+    toughest,
+    palmBeach: d.counties['palm-beach'],
+    broward: d.counties['broward'],
+    miamiDade: d.counties['miami-dade'],
+    gadsden: d.counties['gadsden'],
+  };
 }
 
 // ─── IL computed stats ────────────────────────────────────────────────────────

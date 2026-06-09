@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { getILStats, getNYStats, fmt, pct } from '@/lib/state-deep-dive';
+import { getILStats, getNYStats, getFLStats, fmt, pct } from '@/lib/state-deep-dive';
 
 export default function StateDeepDivesIndexPage() {
   const ilStats = getILStats();
   const nyStats = getNYStats();
+  const flStats = getFLStats();
 
   return (
     <div style={{ minHeight: '100vh' }}>
@@ -154,6 +155,56 @@ export default function StateDeepDivesIndexPage() {
             </div>
           </Link>
 
+          {/* Florida card */}
+          <Link href="/state-deep-dive/fl" style={{ textDecoration: 'none' }}>
+            <div className="judge-card" style={{
+              background: 'var(--bg-card)',
+              borderRadius: '0.75rem',
+              padding: '1.25rem',
+              cursor: 'pointer',
+              minHeight: '260px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                    <span style={{ fontSize: '1.5rem' }}>☀️</span>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>Florida</h3>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', margin: 0 }}>67-County Sentencing Analysis</p>
+                </div>
+                <div style={{ padding: '0.25rem 0.625rem', background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)', borderRadius: '0.375rem' }}>
+                  <span style={{ fontSize: '0.7rem', color: '#fb923c', fontWeight: 600 }}>COUNTY DATA</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1rem', flex: 1 }}>
+                <div style={{ background: 'var(--bg-secondary)', borderRadius: '0.5rem', padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--red-primary)', lineHeight: 1 }}>{fmt(flStats.totalCases)}</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Total Cases</div>
+                </div>
+                <div style={{ background: 'var(--bg-secondary)', borderRadius: '0.5rem', padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#22c55e', lineHeight: 1 }}>{(flStats.stateAvgPrisonRate * 100).toFixed(1)}%</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Avg Prison Rate</div>
+                </div>
+                <div style={{ background: 'var(--bg-secondary)', borderRadius: '0.5rem', padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f97316', lineHeight: 1 }}>81.9</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Most Lenient Score</div>
+                </div>
+                <div style={{ background: 'var(--bg-secondary)', borderRadius: '0.5rem', padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ca8a04', lineHeight: 1 }}>67</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Counties Mapped</div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border)', paddingTop: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>Source: FDLE Criminal Justice Data Transparency</span>
+                <span style={{ color: 'var(--red-primary)', fontWeight: 600 }}>View →</span>
+              </div>
+            </div>
+          </Link>
+
         </div>
 
         {/* Coming Soon states */}
@@ -170,7 +221,6 @@ export default function StateDeepDivesIndexPage() {
           {[
             { code: 'ca', flag: '🌴', name: 'California', note: 'LA & SF prosecution data' },
             { code: 'tx', flag: '⭐', name: 'Texas', note: 'Harris County court records' },
-            { code: 'fl', flag: '☀️', name: 'Florida', note: 'Statewide clerk data' },
           ].map(({ code, flag, name, note }) => (
             <Link key={code} href={`/state-deep-dive/${code}`} style={{ textDecoration: 'none' }}>
               <div style={{
