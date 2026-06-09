@@ -126,7 +126,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
           <div style={{ width: '10px', height: '10px', borderRadius: '2px', border: '2px solid #3b82f6', background: 'rgba(59,130,246,0.18)' }} />
-          <span>Palm Beach (Bryan's County)</span>
+          <span>Palm Beach</span>
         </div>
         <span>· Sorted most lenient → strictest (left to right)</span>
       </div>

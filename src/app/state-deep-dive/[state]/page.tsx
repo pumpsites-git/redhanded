@@ -828,7 +828,7 @@ function FloridaPage() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span style={{ fontSize: '1.25rem' }}>🏡</span>
-              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#93c5fd', margin: 0 }}>Palm Beach County — Bryan's Home County</h3>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#93c5fd', margin: 0 }}>Palm Beach County</h3>
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
               Judicial Circuit 15 · Leniency rank #{pb.leniencyRank} of 67 counties

@@ -138,11 +138,7 @@ export default function FloridaCountyTable({ counties }: Props) {
                 >
                   <td style={{ padding: '0.5rem 0.75rem', color: 'var(--text-primary)', fontWeight: isPalmBeach ? 700 : 500 }}>
                     {c.name}
-                    {isPalmBeach && (
-                      <span style={{ marginLeft: '6px', fontSize: '0.65rem', color: '#60a5fa', background: 'rgba(59,130,246,0.15)', padding: '1px 5px', borderRadius: '9999px' }}>
-                        Bryan's County
-                      </span>
-                    )}
+                    
                   </td>
                   <td style={{ padding: '0.5rem 0.75rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

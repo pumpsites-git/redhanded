@@ -18,7 +18,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/125.0.0.0 Safari/537.36'
 
-# BenchmarkWeb/Tyler counties with reCAPTCHA (confirmed working)
+# BenchmarkWeb/Tyler counties with reCAPTCHA/hCaptcha (confirmed working)
 COUNTIES = {
     'bay': {
         'base': 'https://court.baycoclerk.com/BenchmarkWeb2',
@@ -31,6 +31,19 @@ COUNTIES = {
     'st-johns': {
         'base': 'https://apps.stjohnsclerk.com/Benchmark',
         'pop': 273000, 'circuit': 7,
+    },
+    'charlotte': {
+        'base': 'https://courts.charlotteclerk.com/Benchmark',
+        'pop': 186000, 'circuit': 20,
+    },
+    'flagler': {
+        'base': 'https://cases.flaglerclerk.gov',
+        'pop': 115000, 'circuit': 7,
+    },
+    'martin': {
+        'base': 'https://court.martinclerk.com',
+        'pop': 161000, 'circuit': 19,
+        'captcha_type': 'image',  # Uses image CAPTCHA, not reCAPTCHA/hCaptcha
     },
 }
 
@@ -61,10 +74,30 @@ def scrape_county(key, config):
         print('ERROR: Missing CSRF token')
         return None
     
-    # Step 2: Solve CAPTCHA (auto-detect reCAPTCHA vs hCaptcha)
+    # Step 2: Solve CAPTCHA (auto-detect reCAPTCHA vs hCaptcha vs image)
+    captcha_type = config.get('captcha_type', 'auto')
     hcaptcha_key = re.findall(r'data-sitekey="([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"', r.text)
+    captcha_answer = ''
     
-    if hcaptcha_key:
+    if captcha_type == 'image' or (not hcaptcha_key and not sitekey and '/CaptchaImage' in r.text):
+        # Image-based CAPTCHA — download and solve via 2Captcha normal method
+        print(f'Solving image CAPTCHA...')
+        try:
+            import base64
+            img_r = s.get(f'{base}/CourtCase.aspx/CaptchaImage', timeout=10)
+            if img_r.status_code == 200:
+                img_b64 = base64.b64encode(img_r.content).decode('ascii')
+                result = solver.normal(img_b64)
+                captcha_answer = result.get('code', '') if isinstance(result, dict) else str(result)
+                print(f'Image CAPTCHA solved ✅: {captcha_answer}')
+                token = ''
+            else:
+                print(f'Could not load CAPTCHA image ({img_r.status_code}), trying without')
+                token = ''
+        except Exception as e:
+            print(f'Image CAPTCHA FAILED: {e}')
+            return None
+    elif hcaptcha_key:
         print(f'Solving hCaptcha...')
         try:
             result = solver.hcaptcha(sitekey=hcaptcha_key[0], url=f'{base}/Home.aspx/Search')
@@ -92,12 +125,12 @@ def scrape_county(key, config):
         'type': 'name', 'search': '%',  # Wildcard to get ALL cases
         'courtTypes': '2',  # Criminal court type only
         'caseTypes': '5,15,9',  # Criminal Felony, Misdemeanor, Criminal Traffic
-        'openedFrom': '01/01/2024', 'openedTo': '12/31/2026',
+        'openedFrom': '01/01/2020', 'openedTo': '12/31/2026',
         'closedFrom': '', 'closedTo': '',
         'partyTypes': '1,2,3,4,5',
         'divisions': '', 'statutes': '',
         'partyBirthYear': '', 'partyDOB': '',
-        'captcha': '', 'g-recaptcha-response': token, 'h-captcha-response': token,
+        'captcha': captcha_answer, 'g-recaptcha-response': token, 'h-captcha-response': token,
     }
     r2 = s.post(f'{base}/CourtCase.aspx/CaseSearch', data=data, timeout=30, allow_redirects=True)
     print(f'Search submitted: {r2.status_code}')
