@@ -13,8 +13,11 @@ from pathlib import Path
 
 # Paths
 BASE = Path(__file__).parent.parent
-INPUT = BASE / "data" / "state-courts" / "illinois" / "cook-county-sentencing.json"
+INPUT = BASE / "data" / "state-courts" / "illinois" / "raw" / "cook-county-sentencing-full.json"
 OUTPUT = BASE / "data" / "state-courts" / "illinois" / "judge-profiles.json"
+
+# Minimum cases to include a judge in the output
+MIN_CASES = 10
 
 # Sentence type classification
 PRISON_TYPES = {"Prison", "Death"}
@@ -275,10 +278,13 @@ def main():
 
     print(f"Found {len(by_judge)} judges")
 
-    # Build all judge stats
+    # Build all judge stats (filter to judges with >= MIN_CASES)
     all_stats = {}
     for judge_name, recs in by_judge.items():
-        all_stats[judge_name] = build_judge_stats(recs)
+        if len(recs) >= MIN_CASES:
+            all_stats[judge_name] = build_judge_stats(recs)
+
+    print(f"Judges with >= {MIN_CASES} cases: {len(all_stats)}")
 
     # Calculate court-wide averages
     total_records = len(records)

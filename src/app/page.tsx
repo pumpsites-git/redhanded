@@ -189,8 +189,8 @@ function ComparePanel({
 }
 
 // Platform-wide totals (IL judges + FL Bay + FL 67-county cases)
-const TOTAL_JUDGES_TRACKED = META.totalJudges; // 135 IL + 11 FL Bay
-const FL_COUNTY_CASES = 3593714;
+const TOTAL_JUDGES_TRACKED = META.totalJudges; // 212 IL + 19 FL county judges
+const FL_COUNTY_CASES = 3599352; // FDLE full dataset (4.26M records, 3.6M sentenced)
 const TOTAL_CASES_ANALYZED = META.totalCases + FL_COUNTY_CASES;
 const STATES_COVERED = 2;
 
@@ -362,7 +362,7 @@ export default function Home() {
         {/* Data provenance strip */}
         <div style={{ marginBottom: '1.5rem', paddingTop: '0.25rem' }}>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            Source: {META.source} · {META.totalCases.toLocaleString()} IL sentencing records + 3.59M FL records · {META.totalJudges} judges · Updated {META.generated}
+            Source: {META.source} · {META.totalCases.toLocaleString()} IL sentencing records + 3.6M FL records · {META.totalJudges} judges · Updated {META.generated}
           </p>
         </div>
 
