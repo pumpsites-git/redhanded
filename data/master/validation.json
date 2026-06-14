@@ -1,0 +1,181 @@
+{
+  "generated": "2026-06-13T18:55:18Z",
+  "passed": true,
+  "totalChecks": 21,
+  "totalErrors": 0,
+  "totalWarnings": 1,
+  "results": {
+    "state_judges": {
+      "passed": true,
+      "checks": 9,
+      "checksPassed": 8,
+      "warnings": 1,
+      "errors": 0,
+      "errorDetails": [],
+      "warningDetails": [
+        "state_judges_case_count_match: totalCases 309,525 vs raw 305,884"
+      ],
+      "allChecks": [
+        {
+          "name": "state_judges_exists",
+          "passed": true,
+          "message": "No judges found",
+          "severity": "error"
+        },
+        {
+          "name": "state_judges_minimum",
+          "passed": true,
+          "message": "Only 236 judges (expected 50+)",
+          "severity": "error"
+        },
+        {
+          "name": "no_duplicate_slugs",
+          "passed": true,
+          "message": "0 duplicate slugs",
+          "severity": "error"
+        },
+        {
+          "name": "rates_sum_to_one",
+          "passed": true,
+          "message": "0 judges with rates not summing to ~1.0: []",
+          "severity": "warning"
+        },
+        {
+          "name": "leniency_in_range",
+          "passed": true,
+          "message": "0 judges with leniency out of 0-100: []",
+          "severity": "error"
+        },
+        {
+          "name": "state_judges_case_count",
+          "passed": true,
+          "message": "totalCases is 0",
+          "severity": "error"
+        },
+        {
+          "name": "state_judges_case_count_match",
+          "passed": false,
+          "message": "totalCases 309,525 vs raw 305,884",
+          "severity": "warning"
+        },
+        {
+          "name": "all_judges_have_names",
+          "passed": true,
+          "message": "0 judges missing names",
+          "severity": "warning"
+        },
+        {
+          "name": "all_judges_have_state",
+          "passed": true,
+          "message": "0 judges missing stateCode",
+          "severity": "warning"
+        }
+      ]
+    },
+    "county_profiles": {
+      "passed": true,
+      "checks": 5,
+      "checksPassed": 5,
+      "warnings": 0,
+      "errors": 0,
+      "errorDetails": [],
+      "warningDetails": [],
+      "allChecks": [
+        {
+          "name": "counties_exists",
+          "passed": true,
+          "message": "No counties found",
+          "severity": "error"
+        },
+        {
+          "name": "florida_counties_count",
+          "passed": true,
+          "message": "Only 67 FL counties (expected 67)",
+          "severity": "warning"
+        },
+        {
+          "name": "county_rates_sum",
+          "passed": true,
+          "message": "0 counties with rates not summing to ~1.0: []",
+          "severity": "warning"
+        },
+        {
+          "name": "county_leniency_range",
+          "passed": true,
+          "message": "0 counties with leniency out of range",
+          "severity": "error"
+        },
+        {
+          "name": "county_case_count",
+          "passed": true,
+          "message": "Only 3,599,352 county cases (expected >1M for FL)",
+          "severity": "warning"
+        }
+      ]
+    },
+    "federal_judges": {
+      "passed": true,
+      "checks": 4,
+      "checksPassed": 4,
+      "warnings": 0,
+      "errors": 0,
+      "errorDetails": [],
+      "warningDetails": [],
+      "allChecks": [
+        {
+          "name": "federal_judges_exists",
+          "passed": true,
+          "message": "No federal judges found",
+          "severity": "error"
+        },
+        {
+          "name": "federal_judges_minimum",
+          "passed": true,
+          "message": "Only 9396 federal judges (expected 1000+)",
+          "severity": "warning"
+        },
+        {
+          "name": "federal_judges_names",
+          "passed": true,
+          "message": "0 federal judges missing names",
+          "severity": "warning"
+        },
+        {
+          "name": "federal_judges_slug_unique",
+          "passed": true,
+          "message": "Many duplicate/missing slugs (30)",
+          "severity": "warning"
+        }
+      ]
+    },
+    "manifest": {
+      "passed": true,
+      "checks": 3,
+      "checksPassed": 3,
+      "warnings": 0,
+      "errors": 0,
+      "errorDetails": [],
+      "warningDetails": [],
+      "allChecks": [
+        {
+          "name": "manifest_built",
+          "passed": true,
+          "message": "manifest.built missing",
+          "severity": "error"
+        },
+        {
+          "name": "manifest_version",
+          "passed": true,
+          "message": "manifest.pipelineVersion missing",
+          "severity": "error"
+        },
+        {
+          "name": "manifest_sources",
+          "passed": true,
+          "message": "manifest.sources has fewer than 2 entries",
+          "severity": "warning"
+        }
+      ]
+    }
+  }
+}

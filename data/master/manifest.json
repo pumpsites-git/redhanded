@@ -1,0 +1,54 @@
+{
+  "built": "2026-06-13T18:55:18Z",
+  "pipelineVersion": "1.0",
+  "sources": [
+    {
+      "name": "Cook County Sentencing",
+      "rawRecords": 305884,
+      "profiledJudges": 212,
+      "file": "data/raw/illinois/cook-county-sentencing-full.json"
+    },
+    {
+      "name": "FDLE Clerk Cases",
+      "rawRecords": 4259262,
+      "convictedRecords": 3599352,
+      "counties": 67,
+      "files": [
+        "data/raw/florida/fdle/CjdtClerkCase_00000.csv",
+        "data/raw/florida/fdle/CjdtClerkCase_00001.csv",
+        "data/raw/florida/fdle/CjdtClerkCase_00002.csv",
+        "data/raw/florida/fdle/CjdtClerkCase_00003.csv",
+        "data/raw/florida/fdle/CjdtClerkCase_00004.csv"
+      ]
+    },
+    {
+      "name": "FL BenchmarkWeb Cases",
+      "rawRecords": 4889,
+      "profiledJudges": 24,
+      "counties": [
+        "Bay",
+        "Indian River",
+        "St. Johns",
+        "Charlotte"
+      ]
+    },
+    {
+      "name": "CourtListener Federal Judges",
+      "rawRecords": 9396,
+      "courts": 338,
+      "file": "data/raw/federal/courtlistener-judges.json"
+    },
+    {
+      "name": "NY DCJS Stats",
+      "files": [
+        "data/raw/new-york/ny-summary.json"
+      ]
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "checks": 21,
+    "warnings": 1,
+    "errors": 0
+  }
+}

@@ -3,7 +3,8 @@
 
 import ilRaw from '../../data/state-courts/illinois/cook-county-summary.json';
 import nyRaw from '../../data/state-courts/new-york/ny-summary.json';
-import flRaw from '../../data/state-courts/florida/county-profiles.json';
+// FL county data: use master output if available, fall back to legacy
+import flRaw from '../../data/master/county-profiles.json';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

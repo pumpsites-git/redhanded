@@ -1,0 +1,171 @@
+# RedHanded Data Pipeline Configuration
+# Source paths are relative to project root
+
+version: "1.0"
+
+sources:
+  cook_county:
+    sentencing: "data/raw/illinois/cook-county-sentencing-full.json"
+    dispositions: "data/raw/illinois/cook-county-dispositions-full.json"
+  fdle:
+    csvs:
+      - "data/raw/florida/fdle/CjdtClerkCase_00000.csv"
+      - "data/raw/florida/fdle/CjdtClerkCase_00001.csv"
+      - "data/raw/florida/fdle/CjdtClerkCase_00002.csv"
+      - "data/raw/florida/fdle/CjdtClerkCase_00003.csv"
+      - "data/raw/florida/fdle/CjdtClerkCase_00004.csv"
+  florida_benchmark:
+    cases_dir: "data/raw/florida/benchmark"
+    counties:
+      - file: "bay-cases.json"
+        name: "Bay County"
+        slug: "bay"
+      - file: "indian-river-cases.json"
+        name: "Indian River County"
+        slug: "indian-river"
+      - file: "st-johns-cases.json"
+        name: "St. Johns County"
+        slug: "st-johns"
+      - file: "charlotte-cases.json"
+        name: "Charlotte County"
+        slug: "charlotte"
+  federal:
+    courtlistener: "data/raw/federal/courtlistener-judges.json"
+  new_york:
+    ny_summary: "data/raw/new-york/ny-summary.json"
+    pretrial: "data/raw/new-york/pretrial_2024_stats.json"
+    arrests: "data/raw/new-york/arrests_by_county_2024_2025.json"
+    crime_index: "data/raw/new-york/crime_index_2024.json"
+    jail_population: "data/raw/new-york/jail_population_2024_2025.json"
+    recidivism: "data/raw/new-york/recidivism_2022_2024.json"
+    recidivism_latest: "data/raw/new-york/recidivism_latest.json"
+
+output:
+  master_dir: "data/master"
+  files:
+    state_judges: "data/master/state-judges.json"
+    county_profiles: "data/master/county-profiles.json"
+    federal_judges: "data/master/federal-judges.json"
+    manifest: "data/master/manifest.json"
+    validation: "data/master/validation.json"
+    ny_stats: "data/master/ny-stats.json"
+
+thresholds:
+  min_cases_judge: 10          # Minimum cases for a judge profile
+  min_cases_fl_judge: 5        # Lower threshold for FL county judges (less data)
+  min_cases_county: 10         # Minimum cases for a county profile
+  max_sentence_years: 100      # Sanity cap for sentence length
+
+# Cook County sentence type classification
+# Maps raw sentence_type strings to canonical categories
+sentence_classification:
+  prison:
+    - "Prison"
+    - "Death"
+  jail:
+    - "Jail"
+    - "Cook County Boot Camp"
+  probation:
+    - "Probation"
+    - "2nd Chance Probation"
+    - "Conditional Discharge"
+    - "Supervision"
+    - "Conditional Release"
+    - "Inpatient Mental Health Services"
+    - "Probation Terminated Satisfactorily"
+    - "Probation Terminated Unsatisfactorily"
+    - "Probation Terminated Instanter"
+
+# Violent offense categories for Cook County
+violent_categories_il:
+  - "UUW - Unlawful Use of Weapon"
+  - "Homicide"
+  - "Attempt Homicide"
+  - "Armed Robbery"
+  - "Aggravated Battery"
+  - "Aggravated Battery With A Firearm"
+  - "Aggravated Battery Police Officer"
+  - "Aggravated Battery Police Officer Firearm"
+  - "Sex Crimes"
+  - "Attempt Sex Crimes"
+  - "Vehicular Hijacking"
+  - "Attempt Vehicular Hijacking"
+  - "Home Invasion"
+  - "Robbery"
+  - "Attempt Armed Robbery"
+  - "Armed Violence"
+  - "Gun Running"
+  - "Aggravated Assault Police Officer"
+  - "Aggravated Assault Police Officer Firearm"
+  - "Aggravated Robbery"
+  - "Aggravated Robbery BB Gun"
+  - "Reckless Homicide"
+  - "Police Shooting"
+  - "Disarming Police Officer"
+
+# Violent FCIC categories for Florida FDLE
+violent_categories_fl:
+  - "Assault"
+  - "Homicide"
+  - "Sex Offenses"
+  - "Robbery"
+  - "Battery"
+  - "Sexual Assault"
+  - "Aggravated Assault"
+  - "Aggravated Battery"
+  - "Kidnapping"
+  - "Murder"
+  - "Forcible Sex Offenses"
+  - "Weapons Offenses"
+  - "Carjacking"
+  - "Child Abuse"
+  - "Domestic Violence"
+
+# Florida FDLE: dispositions to include (convicted outcomes)
+fdle_sentenced_dispositions:
+  - "Adjudicated Guilty"
+  - "Adjudication Withheld"
+  - "G"
+  - "W"
+
+# Leniency score weights (Cook County / IL methodology)
+leniency_weights:
+  violent_probation: 0.50    # 50% weight
+  overall_probation: 0.30    # 30% weight
+  non_prison: 0.20           # 20% weight (1 - prison_rate)
+  court_avg_scale: 50        # court average maps to this score
+
+# Florida judge leniency formula weights (BenchmarkWeb)
+leniency_weights_fl:
+  non_prison: 0.40
+  non_violent_prison: 0.40
+  probation: 0.20
+
+# Florida county leniency weights (FDLE)
+leniency_weights_fdle:
+  prison_inverse: 0.50
+  withheld: 0.30
+  avg_days_inverse: 0.20
+
+# Judicial circuit mapping for Florida counties
+fl_judicial_circuits:
+  "1": ["Escambia", "Okaloosa", "Santa Rosa", "Walton"]
+  "2": ["Franklin", "Gadsden", "Jefferson", "Leon", "Liberty", "Wakulla"]
+  "3": ["Columbia", "Dixie", "Hamilton", "Lafayette", "Madison", "Suwannee", "Taylor"]
+  "4": ["Clay", "Duval", "Nassau"]
+  "5": ["Citrus", "Hernando", "Lake", "Marion", "Sumter"]
+  "6": ["Pasco", "Pinellas"]
+  "7": ["Flagler", "Putnam", "St. Johns", "Volusia"]
+  "8": ["Alachua", "Baker", "Bradford", "Gilchrist", "Levy", "Union"]
+  "9": ["Orange", "Osceola"]
+  "10": ["Hardee", "Highlands", "Polk"]
+  "11": ["Miami-Dade"]
+  "12": ["DeSoto", "Manatee", "Sarasota"]
+  "13": ["Hillsborough"]
+  "14": ["Bay", "Calhoun", "Gulf", "Holmes", "Jackson", "Washington"]
+  "15": ["Palm Beach"]
+  "16": ["Monroe"]
+  "17": ["Broward"]
+  "18": ["Brevard", "Seminole"]
+  "19": ["Indian River", "Martin", "Okeechobee", "St. Lucie"]
+  "20": ["Charlotte", "Collier", "Glades", "Hendry", "Lee"]

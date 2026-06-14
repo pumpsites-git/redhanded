@@ -7,15 +7,12 @@ interface StateCoverage {
   code: string;
   judgeCount: number;
   avgLeniency: number | null;
-  /** 'judge' = individual judge data (red), 'county' = county-level data (orange) */
   dataType?: 'judge' | 'county';
   countyCount?: number;
 }
 
 interface StateCourtMapProps {
-  /** States that have data (will be highlighted red) */
   coveredStates: StateCoverage[];
-  /** Optional callback when a covered state is clicked */
   onStateClick?: (code: string) => void;
 }
 
@@ -44,56 +41,35 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
   const hoveredIsCounty = hoveredData?.dataType === 'county';
 
   return (
-    <div
-      style={{
-        background: 'var(--bg-card)',
-        borderRadius: '0.875rem',
-        border: '1px solid var(--border)',
-        padding: '1.25rem 1.5rem',
-      }}
-    >
+    <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border)] px-5 py-5">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-          🗺️ State Court Coverage
-        </h2>
-        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+        <h2 className="text-lg font-bold text-[var(--text-primary)]">🗺️ State Court Coverage</h2>
+        <div className="text-sm text-[var(--text-muted)]">
           {hoveredState ? (
             isCovered ? (
               hoveredIsCounty ? (
                 <span>
-                  <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                    {STATE_NAMES[hoveredState] || hoveredState}
-                  </span>
+                  <span className="font-bold text-[var(--text-primary)]">{STATE_NAMES[hoveredState] || hoveredState}</span>
                   {' — '}
-                  <span style={{ color: '#f97316', fontWeight: 700 }}>
-                    {hoveredData!.countyCount ?? 67} counties
-                  </span>
-                  <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>county-level data</span>
+                  <span className="font-bold text-orange-500">{hoveredData!.countyCount ?? 67} counties</span>
+                  <span className="text-[var(--text-secondary)] ml-2">county-level data</span>
                 </span>
               ) : (
                 <span>
-                  <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                    {STATE_NAMES[hoveredState] || hoveredState}
-                  </span>
+                  <span className="font-bold text-[var(--text-primary)]">{STATE_NAMES[hoveredState] || hoveredState}</span>
                   {' — '}
-                  <span style={{ color: '#dc2626', fontWeight: 700 }}>
-                    {hoveredData!.judgeCount} judges
-                  </span>
+                  <span className="font-bold text-red-600">{hoveredData!.judgeCount} judges</span>
                   {hoveredData!.avgLeniency !== null && (
-                    <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
-                      avg leniency {hoveredData!.avgLeniency}
-                    </span>
+                    <span className="text-[var(--text-secondary)] ml-2">avg leniency {hoveredData!.avgLeniency}</span>
                   )}
                 </span>
               )
             ) : (
               <span>
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
-                  {STATE_NAMES[hoveredState] || hoveredState}
-                </span>
+                <span className="font-bold text-[var(--text-primary)]">{STATE_NAMES[hoveredState] || hoveredState}</span>
                 {' — '}
-                <span style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>Coming Soon</span>
+                <span className="italic text-[var(--text-muted)]">Coming Soon</span>
               </span>
             )
           ) : (
@@ -104,7 +80,7 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
 
       <svg
         viewBox="0 0 960 600"
-        style={{ width: '100%', height: 'auto', display: 'block' }}
+        className="w-full h-auto block"
         xmlns="http://www.w3.org/2000/svg"
       >
         {Object.entries(paths).map(([code, d]) => {
@@ -113,19 +89,12 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
           const isCounty = coveredMap.get(code)?.dataType === 'county';
 
           let fill: string;
-          if (isHovered && covered && isCounty) {
-            fill = '#fb923c'; // brighter orange on hover (county data)
-          } else if (covered && isCounty) {
-            fill = '#f97316'; // orange — county-level data
-          } else if (isHovered && covered) {
-            fill = '#ef4444'; // brighter red on hover (judge data)
-          } else if (covered) {
-            fill = '#dc2626'; // red — has judge-level data
-          } else if (isHovered) {
-            fill = '#3a3a3a'; // lighter dark on hover
-          } else {
-            fill = '#1f1f1f'; // dark grey — no data
-          }
+          if (isHovered && covered && isCounty) fill = '#fb923c';
+          else if (covered && isCounty) fill = '#f97316';
+          else if (isHovered && covered) fill = '#ef4444';
+          else if (covered) fill = '#dc2626';
+          else if (isHovered) fill = '#3a3a3a';
+          else fill = '#1f1f1f';
 
           return (
             <path
@@ -142,9 +111,7 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
             >
               <title>
                 {STATE_NAMES[code] || code}
-                {covered
-                  ? `: ${coveredMap.get(code)!.judgeCount} judges — click to filter`
-                  : ': Coming Soon'}
+                {covered ? `: ${coveredMap.get(code)!.judgeCount} judges — click to filter` : ': Coming Soon'}
               </title>
             </path>
           );
@@ -152,22 +119,22 @@ export default function StateCourtMap({ coveredStates, onStateClick }: StateCour
       </svg>
 
       {/* Legend */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-          <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#dc2626' }} />
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Judge-Level Data</span>
+      <div className="flex items-center justify-center gap-6 mt-3 flex-wrap">
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm bg-red-600" />
+          <span className="text-xs text-[var(--text-muted)]">Judge-Level Data</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-          <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#f97316' }} />
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>County Data Available</span>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm bg-orange-500" />
+          <span className="text-xs text-[var(--text-muted)]">County Data Available</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-          <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: '#1f1f1f', border: '1px solid #3a3a3a' }} />
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Coming Soon</span>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-sm bg-[#1f1f1f] border border-[#3a3a3a]" />
+          <span className="text-xs text-[var(--text-muted)]">Coming Soon</span>
         </div>
       </div>
 
-      <p style={{ textAlign: 'center', fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+      <p className="text-center text-[0.7rem] text-[var(--text-muted)] mt-2">
         IL/NY: judge-level data · FL: 67-county sentencing data · More states being added
       </p>
     </div>

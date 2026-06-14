@@ -76,41 +76,22 @@ export default function FederalJudgesPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-[var(--border)] bg-[var(--bg-secondary)]">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="flex items-center gap-3 mb-1">
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ display: 'inline-block', width: '28px', height: '28px', borderRadius: '50%', background: '#dc2626', boxShadow: '0 0 12px rgba(220,38,38,0.5)', flexShrink: 0 }} />
-                <h1 className="text-3xl font-bold tracking-tight">
-                  Red<span className="text-[var(--red-primary)]">Handed</span>
-                </h1>
-              </div>
-            </Link>
-          </div>
-          <p className="text-[var(--text-secondary)] text-sm ml-12">
-            Federal Judges — Accountability scores from CourtListener
+      <header className="border-b border-[var(--border)] bg-[var(--bg-secondary)] px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
+            Federal <span className="text-[var(--red-primary)]">Judges</span>
+          </h1>
+          <p className="text-[var(--text-secondary)] text-sm">
+            9,396 federal judges · Accountability scores from CourtListener
           </p>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
         {/* Back link */}
-        <div>
-          <Link
-            href="/"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.375rem',
-              fontSize: '0.875rem',
-              color: 'var(--text-muted)',
-              textDecoration: 'none',
-            }}
-          >
-            ← Back to State Judges
-          </Link>
-        </div>
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] no-underline transition-colors">
+          ← Back to State Judges
+        </Link>
 
         <StatsOverview {...overview} />
 

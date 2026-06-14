@@ -1,19 +1,16 @@
 export default function Loading() {
   return (
-    <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '2rem 1rem' }}>
+    <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Hero skeleton */}
-      <div
-        className="skeleton"
-        style={{ height: '180px', marginBottom: '1.5rem', borderRadius: '0.75rem' }}
-      />
+      <div className="skeleton h-44 rounded-xl mb-6" />
       {/* Stats row skeleton */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="skeleton" style={{ height: '100px', borderRadius: '0.75rem' }} />
+          <div key={i} className="skeleton h-24 rounded-xl" />
         ))}
       </div>
       {/* Table skeleton */}
-      <div className="skeleton" style={{ height: '400px', borderRadius: '0.75rem' }} />
+      <div className="skeleton h-96 rounded-xl" />
     </div>
   );
 }
