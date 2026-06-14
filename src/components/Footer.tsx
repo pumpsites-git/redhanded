@@ -19,7 +19,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors no-underline">State Judges</Link></li>
               <li><Link href="/judges/federal" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors no-underline">Federal Judges</Link></li>
-              <li><Link href="/state-deep-dive/fl" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors no-underline">Florida Deep Dive</Link></li>
+              <li><Link href="/states" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors no-underline">States</Link></li>
             </ul>
           </div>
           <div>

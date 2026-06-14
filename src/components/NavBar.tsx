@@ -46,10 +46,19 @@ function DocIcon() {
   );
 }
 
+function MapIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+      <line x1="9" y1="3" x2="9" y2="18" /><line x1="15" y1="6" x2="15" y2="21" />
+    </svg>
+  );
+}
+
 const NAV_LINKS = [
-  { href: '/', label: 'State Judges', Icon: ScalesIcon },
-  { href: '/judges/federal', label: 'Federal Judges', Icon: BuildingIcon },
-  { href: '/state-deep-dive/fl', label: 'Florida Deep Dive', Icon: SunIcon },
+  { href: '/', label: 'Judges', Icon: ScalesIcon },
+  { href: '/judges/federal', label: 'Federal', Icon: BuildingIcon },
+  { href: '/states', label: 'States', Icon: MapIcon },
   { href: '/methodology', label: 'Methodology', Icon: DocIcon },
 ];
 

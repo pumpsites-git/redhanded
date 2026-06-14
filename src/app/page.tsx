@@ -25,38 +25,24 @@ const ALL_FACILITIES = Array.from(
 
 const AVAILABLE_STATES = getAvailableStates();
 
-const IL_JUDGES = ALL_JUDGES.filter(j => j.stateCode === 'IL');
-const FL_JUDGES = ALL_JUDGES.filter(j => j.stateCode === 'FL');
+// Build state coverage dynamically from actual judge data
+const STATE_JUDGE_MAP = new Map<string, typeof ALL_JUDGES>();
+ALL_JUDGES.forEach(j => {
+  const list = STATE_JUDGE_MAP.get(j.stateCode) || [];
+  list.push(j);
+  STATE_JUDGE_MAP.set(j.stateCode, list);
+});
 
-const STATE_COVERAGE = [
-  {
-    code: 'IL',
-    judgeCount: IL_JUDGES.length,
-    avgLeniency: IL_JUDGES.length
-      ? Math.round(IL_JUDGES.reduce((s, j) => s + j.leniencyScore, 0) / IL_JUDGES.length)
-      : null,
-    dataType: 'judge' as const,
-  },
-  {
-    code: 'NY',
-    judgeCount: 0,
-    avgLeniency: null,
-    dataType: 'judge' as const,
-  },
-  {
-    code: 'FL',
-    judgeCount: FL_JUDGES.length,
-    avgLeniency: FL_JUDGES.length
-      ? Math.round(FL_JUDGES.reduce((s, j) => s + j.leniencyScore, 0) / FL_JUDGES.length)
-      : null,
-    dataType: 'judge' as const,
-    countyCount: 3,
-  },
-];
+const STATE_COVERAGE = Array.from(STATE_JUDGE_MAP.entries()).map(([code, judges]) => ({
+  code,
+  judgeCount: judges.length,
+  avgLeniency: Math.round(judges.reduce((s, j) => s + j.leniencyScore, 0) / judges.length),
+  dataType: 'judge' as const,
+}));
 
 const FL_COUNTY_CASES = 3599352;
 const TOTAL_CASES_ANALYZED = META.totalCases + FL_COUNTY_CASES;
-const STATES_COVERED = 2;
+const STATES_COVERED = STATE_COVERAGE.length;
 
 function ComparePanel({
   judge1,
@@ -345,45 +331,42 @@ export default function Home() {
               document.getElementById('judge-table')?.scrollIntoView({ behavior: 'smooth' });
             }}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
-            {[
-              { code: 'IL', name: 'Illinois', detail: 'Cook County', count: IL_JUDGES.length, desc: 'Individual judge profiles' },
-              { code: 'FL', name: 'Florida', detail: 'Bay · Indian River · St. Johns', count: FL_JUDGES.length, desc: 'Individual judge profiles' },
-              { code: 'NY', name: 'New York', detail: 'Coming soon', count: 0, desc: 'Data collection in progress' },
-            ].map(({ code, name, detail, count, desc }) => (
+          {/* Dynamic state filter buttons */}
+          <div className="flex flex-wrap gap-2 mt-3">
+            <button
+              onClick={() => setStateFilter('')}
+              className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-150
+                ${!stateFilter
+                  ? 'bg-[var(--red-primary)] text-white border border-red-700'
+                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-red-700 cursor-pointer'
+                }`}
+            >
+              All States ({ALL_JUDGES.length})
+            </button>
+            {STATE_COVERAGE.map(({ code, judgeCount, avgLeniency }) => (
               <button
                 key={code}
-                onClick={() => count > 0 ? setStateFilter(code) : undefined}
-                className={`bg-[var(--bg-card)] rounded-xl p-3.5 text-left transition-all duration-150
-                  ${count > 0 ? 'cursor-pointer hover:border-red-700' : 'cursor-default opacity-50'}
-                  ${count > 0 && stateFilter === code
-                    ? 'border border-red-700 bg-red-950/20'
-                    : 'border border-[var(--border)]'
+                onClick={() => setStateFilter(stateFilter === code ? '' : code)}
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-150 cursor-pointer
+                  ${stateFilter === code
+                    ? 'bg-red-950/40 text-red-400 border border-red-700'
+                    : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-red-700'
                   }`}
               >
-                <div className="flex justify-between items-start mb-1">
-                  <span className="font-bold text-[0.95rem] text-[var(--text-primary)]">{name}</span>
-                  {count > 0 && (
-                    <span className="text-xs font-bold text-red-500 bg-red-950/40 px-1.5 py-0.5 rounded">
-                      {count} judges
-                    </span>
-                  )}
-                </div>
-                <div className="text-xs text-[var(--text-muted)]">{detail}</div>
-                <div className={`text-xs mt-0.5 ${count > 0 ? 'text-[var(--text-secondary)]' : 'text-[var(--text-muted)]'}`}>{desc}</div>
+                {code} · {judgeCount} judges · avg {avgLeniency}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Judicial Retention Context */}
+        {/* Public Accountability Context */}
         <div className="flex gap-3 items-start bg-red-950/10 border border-red-900/40 rounded-xl px-5 py-4 mb-6">
-          <span className="text-red-500 text-xs font-bold uppercase tracking-wider shrink-0 mt-0.5">VOTE</span>
+          <span className="text-red-500 text-xs font-bold uppercase tracking-wider shrink-0 mt-0.5">KNOW</span>
           <div>
-            <strong className="text-[var(--text-primary)] text-sm">Judicial Retention Elections:</strong>
+            <strong className="text-[var(--text-primary)] text-sm">Public Accountability:</strong>
             <span className="text-[var(--text-secondary)] text-sm">
-              {' '}Cook County judges face YES/NO retention votes. Illinois voters can remove any judge from the bench.
-              These sentencing records are public information. Your vote is your voice.
+              {' '}Every judge on this platform is accountable to the public. Sentencing records are public information.
+              In many states, judges face retention elections — your vote decides who stays on the bench.
             </span>
           </div>
         </div>
