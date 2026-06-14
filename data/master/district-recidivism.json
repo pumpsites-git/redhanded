@@ -1,0 +1,848 @@
+{
+  "0": {
+    "total_cases": 144,
+    "repeat_offenders": 10,
+    "repeat_rate_pct": 6.9,
+    "criminal_history_categories": {
+      "0": 10,
+      "1": 134
+    }
+  },
+  "1": {
+    "total_cases": 557,
+    "repeat_offenders": 96,
+    "repeat_rate_pct": 17.2,
+    "criminal_history_categories": {
+      "0": 96,
+      "1": 461
+    }
+  },
+  "10": {
+    "total_cases": 208,
+    "repeat_offenders": 31,
+    "repeat_rate_pct": 14.9,
+    "criminal_history_categories": {
+      "0": 31,
+      "1": 177
+    }
+  },
+  "11": {
+    "total_cases": 149,
+    "repeat_offenders": 13,
+    "repeat_rate_pct": 8.7,
+    "criminal_history_categories": {
+      "0": 13,
+      "1": 136
+    }
+  },
+  "12": {
+    "total_cases": 663,
+    "repeat_offenders": 98,
+    "repeat_rate_pct": 14.8,
+    "criminal_history_categories": {
+      "0": 98,
+      "1": 565
+    }
+  },
+  "13": {
+    "total_cases": 476,
+    "repeat_offenders": 87,
+    "repeat_rate_pct": 18.3,
+    "criminal_history_categories": {
+      "0": 87,
+      "1": 389
+    }
+  },
+  "14": {
+    "total_cases": 407,
+    "repeat_offenders": 26,
+    "repeat_rate_pct": 6.4,
+    "criminal_history_categories": {
+      "0": 26,
+      "1": 381
+    }
+  },
+  "15": {
+    "total_cases": 430,
+    "repeat_offenders": 42,
+    "repeat_rate_pct": 9.8,
+    "criminal_history_categories": {
+      "0": 42,
+      "1": 388
+    }
+  },
+  "16": {
+    "total_cases": 420,
+    "repeat_offenders": 28,
+    "repeat_rate_pct": 6.7,
+    "criminal_history_categories": {
+      "0": 28,
+      "1": 392
+    }
+  },
+  "17": {
+    "total_cases": 612,
+    "repeat_offenders": 25,
+    "repeat_rate_pct": 4.1,
+    "criminal_history_categories": {
+      "0": 25,
+      "1": 587
+    }
+  },
+  "18": {
+    "total_cases": 312,
+    "repeat_offenders": 11,
+    "repeat_rate_pct": 3.5,
+    "criminal_history_categories": {
+      "0": 11,
+      "1": 301
+    }
+  },
+  "19": {
+    "total_cases": 352,
+    "repeat_offenders": 8,
+    "repeat_rate_pct": 2.3,
+    "criminal_history_categories": {
+      "0": 8,
+      "1": 344
+    }
+  },
+  "2": {
+    "total_cases": 130,
+    "repeat_offenders": 15,
+    "repeat_rate_pct": 11.5,
+    "criminal_history_categories": {
+      "0": 15,
+      "1": 115
+    }
+  },
+  "20": {
+    "total_cases": 589,
+    "repeat_offenders": 51,
+    "repeat_rate_pct": 8.7,
+    "criminal_history_categories": {
+      "0": 51,
+      "1": 538
+    }
+  },
+  "22": {
+    "total_cases": 745,
+    "repeat_offenders": 118,
+    "repeat_rate_pct": 15.8,
+    "criminal_history_categories": {
+      "0": 118,
+      "1": 627
+    }
+  },
+  "23": {
+    "total_cases": 248,
+    "repeat_offenders": 23,
+    "repeat_rate_pct": 9.3,
+    "criminal_history_categories": {
+      "0": 23,
+      "1": 225
+    }
+  },
+  "24": {
+    "total_cases": 325,
+    "repeat_offenders": 10,
+    "repeat_rate_pct": 3.1,
+    "criminal_history_categories": {
+      "0": 10,
+      "1": 315
+    }
+  },
+  "25": {
+    "total_cases": 216,
+    "repeat_offenders": 19,
+    "repeat_rate_pct": 8.8,
+    "criminal_history_categories": {
+      "0": 19,
+      "1": 197
+    }
+  },
+  "26": {
+    "total_cases": 445,
+    "repeat_offenders": 27,
+    "repeat_rate_pct": 6.1,
+    "criminal_history_categories": {
+      "0": 27,
+      "1": 418
+    }
+  },
+  "27": {
+    "total_cases": 262,
+    "repeat_offenders": 16,
+    "repeat_rate_pct": 6.1,
+    "criminal_history_categories": {
+      "0": 16,
+      "1": 246
+    }
+  },
+  "28": {
+    "total_cases": 299,
+    "repeat_offenders": 22,
+    "repeat_rate_pct": 7.4,
+    "criminal_history_categories": {
+      "0": 22,
+      "1": 277
+    }
+  },
+  "29": {
+    "total_cases": 294,
+    "repeat_offenders": 20,
+    "repeat_rate_pct": 6.8,
+    "criminal_history_categories": {
+      "0": 20,
+      "1": 274
+    }
+  },
+  "3": {
+    "total_cases": 98,
+    "repeat_offenders": 15,
+    "repeat_rate_pct": 15.3,
+    "criminal_history_categories": {
+      "0": 15,
+      "1": 83
+    }
+  },
+  "30": {
+    "total_cases": 1527,
+    "repeat_offenders": 309,
+    "repeat_rate_pct": 20.2,
+    "criminal_history_categories": {
+      "0": 309,
+      "1": 1218
+    }
+  },
+  "31": {
+    "total_cases": 1433,
+    "repeat_offenders": 230,
+    "repeat_rate_pct": 16.1,
+    "criminal_history_categories": {
+      "0": 230,
+      "1": 1203
+    }
+  },
+  "32": {
+    "total_cases": 501,
+    "repeat_offenders": 76,
+    "repeat_rate_pct": 15.2,
+    "criminal_history_categories": {
+      "0": 76,
+      "1": 425
+    }
+  },
+  "33": {
+    "total_cases": 394,
+    "repeat_offenders": 49,
+    "repeat_rate_pct": 12.4,
+    "criminal_history_categories": {
+      "0": 49,
+      "1": 345
+    }
+  },
+  "34": {
+    "total_cases": 266,
+    "repeat_offenders": 40,
+    "repeat_rate_pct": 15.0,
+    "criminal_history_categories": {
+      "0": 40,
+      "1": 226
+    }
+  },
+  "35": {
+    "total_cases": 316,
+    "repeat_offenders": 29,
+    "repeat_rate_pct": 9.2,
+    "criminal_history_categories": {
+      "0": 29,
+      "1": 287
+    }
+  },
+  "36": {
+    "total_cases": 377,
+    "repeat_offenders": 22,
+    "repeat_rate_pct": 5.8,
+    "criminal_history_categories": {
+      "0": 22,
+      "1": 355
+    }
+  },
+  "37": {
+    "total_cases": 180,
+    "repeat_offenders": 15,
+    "repeat_rate_pct": 8.3,
+    "criminal_history_categories": {
+      "0": 15,
+      "1": 165
+    }
+  },
+  "38": {
+    "total_cases": 377,
+    "repeat_offenders": 36,
+    "repeat_rate_pct": 9.5,
+    "criminal_history_categories": {
+      "0": 36,
+      "1": 341
+    }
+  },
+  "39": {
+    "total_cases": 1377,
+    "repeat_offenders": 139,
+    "repeat_rate_pct": 10.1,
+    "criminal_history_categories": {
+      "0": 139,
+      "1": 1238
+    }
+  },
+  "4": {
+    "total_cases": 963,
+    "repeat_offenders": 374,
+    "repeat_rate_pct": 38.8,
+    "criminal_history_categories": {
+      "0": 374,
+      "1": 589
+    }
+  },
+  "40": {
+    "total_cases": 1011,
+    "repeat_offenders": 194,
+    "repeat_rate_pct": 19.2,
+    "criminal_history_categories": {
+      "0": 194,
+      "1": 817
+    }
+  },
+  "41": {
+    "total_cases": 7490,
+    "repeat_offenders": 633,
+    "repeat_rate_pct": 8.5,
+    "criminal_history_categories": {
+      "0": 633,
+      "1": 6857
+    }
+  },
+  "42": {
+    "total_cases": 9366,
+    "repeat_offenders": 909,
+    "repeat_rate_pct": 9.7,
+    "criminal_history_categories": {
+      "0": 909,
+      "1": 8457
+    }
+  },
+  "43": {
+    "total_cases": 389,
+    "repeat_offenders": 13,
+    "repeat_rate_pct": 3.3,
+    "criminal_history_categories": {
+      "0": 13,
+      "1": 376
+    }
+  },
+  "44": {
+    "total_cases": 385,
+    "repeat_offenders": 22,
+    "repeat_rate_pct": 5.7,
+    "criminal_history_categories": {
+      "0": 22,
+      "1": 363
+    }
+  },
+  "45": {
+    "total_cases": 850,
+    "repeat_offenders": 78,
+    "repeat_rate_pct": 9.2,
+    "criminal_history_categories": {
+      "0": 78,
+      "1": 772
+    }
+  },
+  "46": {
+    "total_cases": 241,
+    "repeat_offenders": 31,
+    "repeat_rate_pct": 12.9,
+    "criminal_history_categories": {
+      "0": 31,
+      "1": 210
+    }
+  },
+  "47": {
+    "total_cases": 660,
+    "repeat_offenders": 61,
+    "repeat_rate_pct": 9.2,
+    "criminal_history_categories": {
+      "0": 61,
+      "1": 599
+    }
+  },
+  "48": {
+    "total_cases": 559,
+    "repeat_offenders": 42,
+    "repeat_rate_pct": 7.5,
+    "criminal_history_categories": {
+      "0": 42,
+      "1": 517
+    }
+  },
+  "49": {
+    "total_cases": 532,
+    "repeat_offenders": 29,
+    "repeat_rate_pct": 5.5,
+    "criminal_history_categories": {
+      "0": 29,
+      "1": 503
+    }
+  },
+  "5": {
+    "total_cases": 260,
+    "repeat_offenders": 50,
+    "repeat_rate_pct": 19.2,
+    "criminal_history_categories": {
+      "0": 50,
+      "1": 210
+    }
+  },
+  "50": {
+    "total_cases": 331,
+    "repeat_offenders": 26,
+    "repeat_rate_pct": 7.9,
+    "criminal_history_categories": {
+      "0": 26,
+      "1": 305
+    }
+  },
+  "51": {
+    "total_cases": 337,
+    "repeat_offenders": 19,
+    "repeat_rate_pct": 5.6,
+    "criminal_history_categories": {
+      "0": 19,
+      "1": 318
+    }
+  },
+  "52": {
+    "total_cases": 585,
+    "repeat_offenders": 47,
+    "repeat_rate_pct": 8.0,
+    "criminal_history_categories": {
+      "0": 47,
+      "1": 538
+    }
+  },
+  "53": {
+    "total_cases": 218,
+    "repeat_offenders": 24,
+    "repeat_rate_pct": 11.0,
+    "criminal_history_categories": {
+      "0": 24,
+      "1": 194
+    }
+  },
+  "54": {
+    "total_cases": 240,
+    "repeat_offenders": 22,
+    "repeat_rate_pct": 9.2,
+    "criminal_history_categories": {
+      "0": 22,
+      "1": 218
+    }
+  },
+  "55": {
+    "total_cases": 279,
+    "repeat_offenders": 39,
+    "repeat_rate_pct": 14.0,
+    "criminal_history_categories": {
+      "0": 39,
+      "1": 240
+    }
+  },
+  "56": {
+    "total_cases": 356,
+    "repeat_offenders": 16,
+    "repeat_rate_pct": 4.5,
+    "criminal_history_categories": {
+      "0": 16,
+      "1": 340
+    }
+  },
+  "57": {
+    "total_cases": 301,
+    "repeat_offenders": 31,
+    "repeat_rate_pct": 10.3,
+    "criminal_history_categories": {
+      "0": 31,
+      "1": 270
+    }
+  },
+  "58": {
+    "total_cases": 129,
+    "repeat_offenders": 4,
+    "repeat_rate_pct": 3.1,
+    "criminal_history_categories": {
+      "0": 4,
+      "1": 125
+    }
+  },
+  "6": {
+    "total_cases": 380,
+    "repeat_offenders": 41,
+    "repeat_rate_pct": 10.8,
+    "criminal_history_categories": {
+      "0": 41,
+      "1": 339
+    }
+  },
+  "60": {
+    "total_cases": 475,
+    "repeat_offenders": 25,
+    "repeat_rate_pct": 5.3,
+    "criminal_history_categories": {
+      "0": 25,
+      "1": 450
+    }
+  },
+  "61": {
+    "total_cases": 161,
+    "repeat_offenders": 8,
+    "repeat_rate_pct": 5.0,
+    "criminal_history_categories": {
+      "0": 8,
+      "1": 153
+    }
+  },
+  "62": {
+    "total_cases": 313,
+    "repeat_offenders": 14,
+    "repeat_rate_pct": 4.5,
+    "criminal_history_categories": {
+      "0": 14,
+      "1": 299
+    }
+  },
+  "63": {
+    "total_cases": 343,
+    "repeat_offenders": 21,
+    "repeat_rate_pct": 6.1,
+    "criminal_history_categories": {
+      "0": 21,
+      "1": 322
+    }
+  },
+  "64": {
+    "total_cases": 396,
+    "repeat_offenders": 21,
+    "repeat_rate_pct": 5.3,
+    "criminal_history_categories": {
+      "0": 21,
+      "1": 375
+    }
+  },
+  "65": {
+    "total_cases": 988,
+    "repeat_offenders": 98,
+    "repeat_rate_pct": 9.9,
+    "criminal_history_categories": {
+      "0": 98,
+      "1": 890
+    }
+  },
+  "66": {
+    "total_cases": 668,
+    "repeat_offenders": 32,
+    "repeat_rate_pct": 4.8,
+    "criminal_history_categories": {
+      "0": 32,
+      "1": 636
+    }
+  },
+  "67": {
+    "total_cases": 433,
+    "repeat_offenders": 23,
+    "repeat_rate_pct": 5.3,
+    "criminal_history_categories": {
+      "0": 23,
+      "1": 410
+    }
+  },
+  "68": {
+    "total_cases": 325,
+    "repeat_offenders": 16,
+    "repeat_rate_pct": 4.9,
+    "criminal_history_categories": {
+      "0": 16,
+      "1": 309
+    }
+  },
+  "69": {
+    "total_cases": 505,
+    "repeat_offenders": 19,
+    "repeat_rate_pct": 3.8,
+    "criminal_history_categories": {
+      "0": 19,
+      "1": 486
+    }
+  },
+  "7": {
+    "total_cases": 601,
+    "repeat_offenders": 195,
+    "repeat_rate_pct": 32.4,
+    "criminal_history_categories": {
+      "0": 195,
+      "1": 406
+    }
+  },
+  "70": {
+    "total_cases": 3903,
+    "repeat_offenders": 465,
+    "repeat_rate_pct": 11.9,
+    "criminal_history_categories": {
+      "0": 465,
+      "1": 3438
+    }
+  },
+  "71": {
+    "total_cases": 335,
+    "repeat_offenders": 63,
+    "repeat_rate_pct": 18.8,
+    "criminal_history_categories": {
+      "0": 63,
+      "1": 272
+    }
+  },
+  "72": {
+    "total_cases": 470,
+    "repeat_offenders": 86,
+    "repeat_rate_pct": 18.3,
+    "criminal_history_categories": {
+      "0": 86,
+      "1": 384
+    }
+  },
+  "73": {
+    "total_cases": 913,
+    "repeat_offenders": 173,
+    "repeat_rate_pct": 18.9,
+    "criminal_history_categories": {
+      "0": 173,
+      "1": 740
+    }
+  },
+  "74": {
+    "total_cases": 2288,
+    "repeat_offenders": 642,
+    "repeat_rate_pct": 28.1,
+    "criminal_history_categories": {
+      "0": 642,
+      "1": 1646
+    }
+  },
+  "75": {
+    "total_cases": 142,
+    "repeat_offenders": 25,
+    "repeat_rate_pct": 17.6,
+    "criminal_history_categories": {
+      "0": 25,
+      "1": 117
+    }
+  },
+  "76": {
+    "total_cases": 309,
+    "repeat_offenders": 17,
+    "repeat_rate_pct": 5.5,
+    "criminal_history_categories": {
+      "0": 17,
+      "1": 292
+    }
+  },
+  "77": {
+    "total_cases": 402,
+    "repeat_offenders": 22,
+    "repeat_rate_pct": 5.5,
+    "criminal_history_categories": {
+      "0": 22,
+      "1": 380
+    }
+  },
+  "78": {
+    "total_cases": 198,
+    "repeat_offenders": 12,
+    "repeat_rate_pct": 6.1,
+    "criminal_history_categories": {
+      "0": 12,
+      "1": 186
+    }
+  },
+  "79": {
+    "total_cases": 501,
+    "repeat_offenders": 90,
+    "repeat_rate_pct": 18.0,
+    "criminal_history_categories": {
+      "0": 90,
+      "1": 411
+    }
+  },
+  "8": {
+    "total_cases": 896,
+    "repeat_offenders": 308,
+    "repeat_rate_pct": 34.4,
+    "criminal_history_categories": {
+      "0": 308,
+      "1": 588
+    }
+  },
+  "80": {
+    "total_cases": 335,
+    "repeat_offenders": 23,
+    "repeat_rate_pct": 6.9,
+    "criminal_history_categories": {
+      "0": 23,
+      "1": 312
+    }
+  },
+  "81": {
+    "total_cases": 292,
+    "repeat_offenders": 63,
+    "repeat_rate_pct": 21.6,
+    "criminal_history_categories": {
+      "0": 63,
+      "1": 229
+    }
+  },
+  "82": {
+    "total_cases": 372,
+    "repeat_offenders": 36,
+    "repeat_rate_pct": 9.7,
+    "criminal_history_categories": {
+      "0": 36,
+      "1": 336
+    }
+  },
+  "83": {
+    "total_cases": 387,
+    "repeat_offenders": 29,
+    "repeat_rate_pct": 7.5,
+    "criminal_history_categories": {
+      "0": 29,
+      "1": 358
+    }
+  },
+  "84": {
+    "total_cases": 2698,
+    "repeat_offenders": 139,
+    "repeat_rate_pct": 5.2,
+    "criminal_history_categories": {
+      "0": 139,
+      "1": 2559
+    }
+  },
+  "85": {
+    "total_cases": 563,
+    "repeat_offenders": 55,
+    "repeat_rate_pct": 9.8,
+    "criminal_history_categories": {
+      "0": 55,
+      "1": 508
+    }
+  },
+  "86": {
+    "total_cases": 259,
+    "repeat_offenders": 30,
+    "repeat_rate_pct": 11.6,
+    "criminal_history_categories": {
+      "0": 30,
+      "1": 229
+    }
+  },
+  "87": {
+    "total_cases": 579,
+    "repeat_offenders": 64,
+    "repeat_rate_pct": 11.1,
+    "criminal_history_categories": {
+      "0": 64,
+      "1": 515
+    }
+  },
+  "88": {
+    "total_cases": 772,
+    "repeat_offenders": 63,
+    "repeat_rate_pct": 8.2,
+    "criminal_history_categories": {
+      "0": 63,
+      "1": 709
+    }
+  },
+  "89": {
+    "total_cases": 181,
+    "repeat_offenders": 10,
+    "repeat_rate_pct": 5.5,
+    "criminal_history_categories": {
+      "0": 10,
+      "1": 171
+    }
+  },
+  "9": {
+    "total_cases": 402,
+    "repeat_offenders": 62,
+    "repeat_rate_pct": 15.4,
+    "criminal_history_categories": {
+      "0": 62,
+      "1": 340
+    }
+  },
+  "90": {
+    "total_cases": 421,
+    "repeat_offenders": 87,
+    "repeat_rate_pct": 20.7,
+    "criminal_history_categories": {
+      "0": 87,
+      "1": 334
+    }
+  },
+  "91": {
+    "total_cases": 59,
+    "repeat_offenders": 19,
+    "repeat_rate_pct": 32.2,
+    "criminal_history_categories": {
+      "0": 19,
+      "1": 40
+    }
+  },
+  "93": {
+    "total_cases": 35,
+    "repeat_offenders": 6,
+    "repeat_rate_pct": 17.1,
+    "criminal_history_categories": {
+      "0": 6,
+      "1": 29
+    }
+  },
+  "94": {
+    "total_cases": 17,
+    "repeat_offenders": 10,
+    "repeat_rate_pct": 58.8,
+    "criminal_history_categories": {
+      "0": 10,
+      "1": 7
+    }
+  },
+  "95": {
+    "total_cases": 132,
+    "repeat_offenders": 10,
+    "repeat_rate_pct": 7.6,
+    "criminal_history_categories": {
+      "0": 10,
+      "1": 122
+    }
+  },
+  "96": {
+    "total_cases": 95,
+    "repeat_offenders": 4,
+    "repeat_rate_pct": 4.2,
+    "criminal_history_categories": {
+      "0": 4,
+      "1": 91
+    }
+  }
+}

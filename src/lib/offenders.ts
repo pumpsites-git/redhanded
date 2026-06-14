@@ -1,4 +1,4 @@
-import analytics from '../../data/ussc/offender-analytics-fy25.json';
+import analytics from '../../data/master/offender-analytics.json';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 

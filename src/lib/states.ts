@@ -1,4 +1,4 @@
-import stateStatsRaw from '../../data/ussc/state-stats-fy25.json';
+import stateStatsRaw from '../../data/master/state-stats.json';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 

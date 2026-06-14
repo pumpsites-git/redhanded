@@ -1,0 +1,19 @@
+# Raw data (large files — only data/master/ is needed for the app)
+data/raw/
+data/state-courts/
+data/ussc/
+data/defendants/
+data/incoming/
+court-data/
+
+# Pipeline (server-side only)
+pipeline/
+scripts/
+
+# Docs
+docs/
+
+# Large files
+*.zip
+*.bz2
+*.csv

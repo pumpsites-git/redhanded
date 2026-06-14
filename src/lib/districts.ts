@@ -1,7 +1,7 @@
-import districtCodeMap from '../../data/ussc/district-code-map.json';
-import districtOffenseStats from '../../data/ussc/district-offense-stats-fy25.json';
-import districtRecidivism from '../../data/ussc/district-recidivism-fy25.json';
-import criminalHistorySeverity from '../../data/ussc/criminal-history-severity-fy25.json';
+import districtCodeMap from '../../data/master/district-code-map.json';
+import districtOffenseStats from '../../data/master/district-offense-stats.json';
+import districtRecidivism from '../../data/master/district-recidivism.json';
+import criminalHistorySeverity from '../../data/master/criminal-history-severity.json';
 
 // ─── Raw JSON types ────────────────────────────────────────────────────────────
 

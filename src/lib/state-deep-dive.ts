@@ -1,8 +1,8 @@
 // State Deep Dive data library
 // Uses REAL state court data — fundamentally different from federal USSC data on other pages
 
-import ilRaw from '../../data/state-courts/illinois/cook-county-summary.json';
-import nyRaw from '../../data/state-courts/new-york/ny-summary.json';
+import ilRaw from '../../data/master/il-summary.json';
+import nyRaw from '../../data/master/ny-summary.json';
 // FL county data: use master output if available, fall back to legacy
 import flRaw from '../../data/master/county-profiles.json';
 
