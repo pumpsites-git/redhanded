@@ -13,3 +13,8 @@ data/state-courts/illinois/cook-county-intake.json
 data/state-courts/florida/raw/
 data/state-courts/florida/*.png
 data/state-courts/florida/raw/
+
+# Large raw data files (>100MB)
+data/state-courts/illinois/raw/
+data/raw/illinois/*.json
+data/raw/florida/fdle/*.csv
