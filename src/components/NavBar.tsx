@@ -55,11 +55,24 @@ function MapIcon() {
   );
 }
 
+function GiftIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 12 20 22 4 22 4 12" />
+      <rect x="2" y="7" width="20" height="5" />
+      <line x1="12" y1="22" x2="12" y2="7" />
+      <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" />
+      <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" />
+    </svg>
+  );
+}
+
 const NAV_LINKS = [
   { href: '/', label: 'Judges', Icon: ScalesIcon },
   { href: '/judges/federal', label: 'Federal', Icon: BuildingIcon },
   { href: '/states', label: 'States', Icon: MapIcon },
   { href: '/methodology', label: 'Methodology', Icon: DocIcon },
+  { href: '/contribute', label: 'Contribute', Icon: GiftIcon, badge: 'NEW' as const },
 ];
 
 export default function NavBar() {
@@ -79,7 +92,7 @@ export default function NavBar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 flex-1 overflow-x-auto">
-          {NAV_LINKS.map(({ href, label, Icon }) => {
+          {NAV_LINKS.map(({ href, label, Icon, badge }) => {
             const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
             return (
               <Link
@@ -93,6 +106,23 @@ export default function NavBar() {
               >
                 <Icon />
                 {label}
+                {badge && (
+                  <span
+                    style={{
+                      fontSize: '0.55rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.05em',
+                      padding: '0.1rem 0.35rem',
+                      background: 'rgba(220,38,38,0.15)',
+                      border: '1px solid rgba(220,38,38,0.35)',
+                      borderRadius: '0.25rem',
+                      color: 'var(--red-primary)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {badge}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -119,7 +149,7 @@ export default function NavBar() {
       {/* Mobile dropdown menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg-secondary)] px-4 py-2">
-          {NAV_LINKS.map(({ href, label, Icon }) => {
+          {NAV_LINKS.map(({ href, label, Icon, badge }) => {
             const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
             return (
               <Link
@@ -134,6 +164,23 @@ export default function NavBar() {
               >
                 <Icon />
                 {label}
+                {badge && (
+                  <span
+                    style={{
+                      fontSize: '0.55rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.05em',
+                      padding: '0.1rem 0.35rem',
+                      background: 'rgba(220,38,38,0.15)',
+                      border: '1px solid rgba(220,38,38,0.35)',
+                      borderRadius: '0.25rem',
+                      color: 'var(--red-primary)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {badge}
+                  </span>
+                )}
               </Link>
             );
           })}

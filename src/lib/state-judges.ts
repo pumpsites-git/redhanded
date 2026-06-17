@@ -101,8 +101,37 @@ export interface JudgeProfilesData {
 
 // ── Build judge cache from master data ────────────────────────────────────────
 
+const DEFAULT_VIOLENT_CASES: ViolentCaseStats = {
+  total: 0,
+  prisonRate: 0,
+  probationRate: 0,
+  jailRate: 0,
+  prisonCount: 0,
+  probationCount: 0,
+};
+
+// Normalise judges that are missing fields added in later pipeline versions.
+function normaliseJudge(j: Partial<StateJudge> & { name: string; slug: string }): StateJudge {
+  return {
+    state: 'Unknown',
+    stateCode: 'UN',
+    county: 'Unknown',
+    courtFacility: '',
+    leniencyScore: 50,
+    violentCases: DEFAULT_VIOLENT_CASES,
+    sentenceTypes: {},
+    offenseBreakdown: {},
+    raceBreakdown: {},
+    genderBreakdown: {},
+    otherRate: 0,
+    otherCount: 0,
+    avgCommitmentDays: null,
+    ...j,
+  } as StateJudge;
+}
+
 // All judges from master data (already have stateCode/county set by pipeline)
-const allJudgesCache: StateJudge[] = judgesList;
+const allJudgesCache: StateJudge[] = judgesList.map(normaliseJudge);
 
 export function getAllStateJudges(): StateJudge[] {
   return allJudgesCache;

@@ -119,67 +119,125 @@ def scrape_county(key, config):
         print('No CAPTCHA found, submitting without token')
         token = ''
     
-    # Step 3: Submit search — CRIMINAL ONLY (felony + misdemeanor + criminal traffic)
-    data = {
-        '__RequestVerificationToken': csrf[0],
-        'type': 'name', 'search': '%',  # Wildcard to get ALL cases
-        'courtTypes': '2',  # Criminal court type only
-        'caseTypes': '5,15,9',  # Criminal Felony, Misdemeanor, Criminal Traffic
-        'openedFrom': '01/01/2020', 'openedTo': '12/31/2026',
-        'closedFrom': '', 'closedTo': '',
-        'partyTypes': '1,2,3,4,5',
-        'divisions': '', 'statutes': '',
-        'partyBirthYear': '', 'partyDOB': '',
-        'captcha': captcha_answer, 'g-recaptcha-response': token, 'h-captcha-response': token,
-    }
-    r2 = s.post(f'{base}/CourtCase.aspx/CaseSearch', data=data, timeout=30, allow_redirects=True)
-    print(f'Search submitted: {r2.status_code}')
+    # Step 3: Search by common names (wildcard % no longer works on BenchmarkWeb)
+    # Each name search requires a fresh CAPTCHA solve
+    common_names = [
+        'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Davis', 'Miller',
+        'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White',
+        'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson',
+        'Clark', 'Rodriguez', 'Lewis', 'Lee', 'Walker', 'Hall', 'Allen',
+        'Young', 'King', 'Wright', 'Lopez', 'Hill', 'Scott', 'Green',
+        'Adams', 'Baker', 'Nelson', 'Carter', 'Mitchell', 'Perez',
+        'Roberts', 'Turner', 'Phillips', 'Campbell', 'Parker', 'Evans',
+        'Edwards', 'Collins', 'Stewart', 'Sanchez', 'Morris', 'Rogers',
+        'Reed', 'Cook', 'Morgan', 'Bell', 'Murphy', 'Bailey', 'Rivera',
+        'Cooper', 'Richardson', 'Cox', 'Howard', 'Ward', 'Torres', 'Peterson',
+        'Gray', 'Ramirez', 'James', 'Watson', 'Brooks', 'Kelly', 'Sanders',
+        'Price', 'Bennett', 'Wood', 'Barnes', 'Ross', 'Henderson', 'Coleman',
+        'Jenkins', 'Perry', 'Powell', 'Long', 'Patterson', 'Hughes', 'Flores',
+        'Washington', 'Butler', 'Simmons', 'Foster', 'Gonzales', 'Bryant',
+        'Alexander', 'Russell', 'Griffin', 'Diaz', 'Hayes',
+    ]
     
-    # Step 4: Get DataTables results (paginated)
     all_cases = {}
-    page = 0
-    page_size = 100
     
-    while True:
-        dt = s.post(f'{base}/Search.aspx/CaseSearch', data={
-            'draw': str(page + 1), 'start': str(page * page_size), 
-            'length': str(page_size), 'search[value]': '',
-        }, headers={'X-Requested-With': 'XMLHttpRequest'}, timeout=15)
-        
+    for name_idx, search_name in enumerate(common_names):
+        # Solve fresh CAPTCHA for each name search
         try:
-            jdata = dt.json()
-        except:
-            print(f'ERROR: Invalid JSON response on page {page}')
-            break
+            r_fresh = s.get(f'{base}/Home.aspx/Search', timeout=15)
+            csrf_fresh = re.findall(r'name="__RequestVerificationToken"[^>]*value="([^"]*)"', r_fresh.text)
+            sitekey_fresh = re.findall(r'data-sitekey="([^"]+)"', r_fresh.text)
+            
+            if captcha_type == 'image' or (not sitekey_fresh and '/CaptchaImage' in r_fresh.text):
+                import base64
+                img_r = s.get(f'{base}/CourtCase.aspx/CaptchaImage', timeout=10)
+                img_b64 = base64.b64encode(img_r.content).decode('ascii')
+                result = solver.normal(img_b64)
+                captcha_answer = result.get('code', '') if isinstance(result, dict) else str(result)
+                fresh_token = ''
+            elif sitekey_fresh:
+                hcaptcha = re.findall(r'data-sitekey="([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"', r_fresh.text)
+                if hcaptcha:
+                    result = solver.hcaptcha(sitekey=hcaptcha[0], url=f'{base}/Home.aspx/Search')
+                else:
+                    result = solver.recaptcha(sitekey=sitekey_fresh[0], url=f'{base}/Home.aspx/Search')
+                fresh_token = result.get('code', '') if isinstance(result, dict) else str(result)
+                captcha_answer = ''
+            else:
+                fresh_token = ''
+                captcha_answer = ''
+        except Exception as e:
+            print(f'  CAPTCHA failed for {search_name}: {e}')
+            continue
         
-        total = jdata.get('recordsTotal', 0)
-        rows = jdata.get('data', [])
+        data = {
+            '__RequestVerificationToken': csrf_fresh[0] if csrf_fresh else csrf[0],
+            'type': 'Name', 'search': search_name,
+            'courtTypes': '2', 'caseTypes': '',
+            'openedFrom': '01/01/2018', 'openedTo': '12/31/2026',
+            'closedFrom': '', 'closedTo': '',
+            'partyTypes': '1,2,3,4,5',
+            'divisions': '', 'statutes': '',
+            'partyBirthYear': '', 'partyDOB': '',
+            'captcha': captcha_answer, 'g-recaptcha-response': fresh_token, 'h-captcha-response': fresh_token,
+        }
+        r2 = s.post(f'{base}/CourtCase.aspx/CaseSearch', data=data, timeout=30, allow_redirects=True)
         
-        if page == 0:
-            print(f'Total records: {total}')
+        # Check if single result redirected to detail
+        if 'Details' in r2.url:
+            cid_match = re.search(r'Details/(\d+)', r2.url)
+            if cid_match:
+                cid = cid_match.group(1)
+                all_cases[cid] = {'digest': '', 'defendant': search_name, 'case_number': ''}
+            total = 1
+        else:
+            # Get DataTables results (paginated)
+            page = 0
+            page_size = 500
+            total = 0
+            while True:
+                dt = s.post(f'{base}/Search.aspx/CaseSearch', data={
+                    'draw': str(page + 1), 'start': str(page * page_size),
+                    'length': str(page_size), 'search[value]': '',
+                }, headers={'X-Requested-With': 'XMLHttpRequest'}, timeout=15)
+                try:
+                    jdata = dt.json()
+                except:
+                    break
+                total = jdata.get('recordsTotal', 0)
+                rows = jdata.get('data', [])
+                if not rows:
+                    break
+                for row in rows:
+                    row_str = str(row)
+                    # NEW format: imgExpand_{cid}
+                    for m in re.finditer(r'imgExpand_(\d+)', row_str):
+                        cid = m.group(1)
+                        if cid not in all_cases:
+                            name_match = re.findall(r'View Party Details for ([^"]+)', row_str)
+                            case_match = re.findall(r'View Case Details for ([^"]+)', row_str)
+                            all_cases[cid] = {
+                                'digest': '',
+                                'defendant': name_match[0] if name_match else search_name,
+                                'case_number': case_match[0] if case_match else '',
+                            }
+                    # OLD format: Details/{cid}?digest={dig}
+                    for m in re.finditer(r'Details/(\d+)\?digest=([^"&]+)', row_str):
+                        cid, dig = m.group(1), m.group(2)
+                        if cid not in all_cases:
+                            name_match = re.findall(r'View Party Details for ([^"]+)', row_str)
+                            case_match = re.findall(r'View Case Details for ([^"]+)', row_str)
+                            all_cases[cid] = {
+                                'digest': dig,
+                                'defendant': name_match[0] if name_match else search_name,
+                                'case_number': case_match[0] if case_match else '',
+                            }
+                if (page + 1) * page_size >= total:
+                    break
+                page += 1
+                time.sleep(0.3)
         
-        if not rows:
-            break
-        
-        # Extract case IDs and digests
-        for row in rows:
-            for m in re.finditer(r'Details/(\d+)\?digest=([^"&]+)', str(row)):
-                cid, dig = m.group(1), m.group(2)
-                if cid not in all_cases:
-                    # Extract defendant name from row
-                    name_match = re.findall(r'title="View Party Details for ([^"]+)"', str(row))
-                    case_num = re.findall(r'title="View Case Details for ([^"]+)"', str(row))
-                    all_cases[cid] = {
-                        'digest': dig,
-                        'defendant': name_match[0] if name_match else '',
-                        'case_number': case_num[0] if case_num else '',
-                    }
-        
-        print(f'  Page {page}: {len(rows)} rows, {len(all_cases)} unique cases so far')
-        
-        if (page + 1) * page_size >= total:
-            break
-        page += 1
+        print(f'  [{name_idx+1}/{len(common_names)}] {search_name}: {total} results, {len(all_cases)} total unique cases')
         time.sleep(0.5)
     
     print(f'\nTotal unique cases: {len(all_cases)}')
@@ -188,7 +246,8 @@ def scrape_county(key, config):
     results = []
     for i, (cid, info) in enumerate(all_cases.items()):
         try:
-            tr = s.get(f'{base}/CourtCase.aspx/CaseThumbnail/{cid}?digest={info["digest"]}', timeout=10)
+            digest_param = f'?digest={info["digest"]}' if info.get('digest') else ''
+            tr = s.get(f'{base}/CourtCase.aspx/CaseThumbnail/{cid}{digest_param}', timeout=10)
             text = re.sub(r'<[^>]+>', '\n', tr.text)
             
             # Parse fields
