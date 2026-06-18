@@ -29,7 +29,7 @@ function Stat({ label, val, color }: { label: string; val: string; color?: strin
 export default function FloridaCountyHeatmap({ counties }: Props) {
   const [hovered, setHovered] = useState<FLCounty | null>(null);
 
-  const sorted = [...counties].sort((a, b) => b.leniencyScore - a.leniencyScore);
+  const sorted = [...counties].sort((a, b) => (b.leniencyScore ?? 50) - (a.leniencyScore ?? 50));
 
   return (
     <div>
@@ -37,26 +37,26 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
       <div
         className="min-h-[3.5rem] mb-3 px-3.5 py-2.5 rounded-lg border transition-all duration-150"
         style={{
-          background: hovered ? leniencyBg(hovered.leniencyScore) : 'var(--bg-secondary)',
-          borderColor: hovered ? `${leniencyColor(hovered.leniencyScore)}55` : 'var(--border)',
+          background: hovered ? leniencyBg(hovered.leniencyScore ?? 50) : 'var(--bg-secondary)',
+          borderColor: hovered ? `${leniencyColor(hovered.leniencyScore ?? 50)}55` : 'var(--border)',
         }}
       >
         {hovered ? (
           <div className="flex flex-wrap gap-5 items-center">
             <div>
-              <div className="text-base font-bold" style={{ color: leniencyColor(hovered.leniencyScore) }}>
+              <div className="text-base font-bold" style={{ color: leniencyColor(hovered.leniencyScore ?? 50) }}>
                 {hovered.name} County
               </div>
               <div className="text-[0.72rem] text-[var(--text-muted)]">
-                Circuit {hovered.judicialCircuit} · Rank #{hovered.leniencyRank} of 67
+                {hovered.judicialCircuit ? `Circuit ${hovered.judicialCircuit} · ` : ''}Rank #{hovered.leniencyRank ?? '—'} of {counties.length}
               </div>
             </div>
             <div className="flex gap-5 flex-wrap">
-              <Stat label="Leniency" val={hovered.leniencyScore.toFixed(1)} color={leniencyColor(hovered.leniencyScore)} />
+              <Stat label="Leniency" val={(hovered.leniencyScore ?? 50).toFixed(1)} color={leniencyColor(hovered.leniencyScore ?? 50)} />
               <Stat label="Prison Rate" val={`${(hovered.prisonRate * 100).toFixed(1)}%`} />
               <Stat label="Jail Rate" val={`${(hovered.jailRate * 100).toFixed(1)}%`} />
               <Stat label="Total Cases" val={hovered.totalCases.toLocaleString()} />
-              <Stat label="Avg Felony Sentence" val={hovered.avgFelonySentenceDays ? `${Math.round(hovered.avgFelonySentenceDays)} days` : '—'} />
+              <Stat label="Avg Felony Sentence" val={hovered.avgFelonySentenceDays != null ? `${Math.round(hovered.avgFelonySentenceDays)} days` : (hovered.avgCommitmentDays != null ? `${Math.round(hovered.avgCommitmentDays)} days` : '—')} />
             </div>
           </div>
         ) : (
@@ -69,8 +69,8 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
       {/* Tile grid */}
       <div className="flex flex-wrap gap-1">
         {sorted.map(c => {
-          const color = leniencyColor(c.leniencyScore);
-          const bg = leniencyBg(c.leniencyScore);
+          const color = leniencyColor(c.leniencyScore ?? 50);
+          const bg = leniencyBg(c.leniencyScore ?? 50);
           const isHovered = hovered?.slug === c.slug;
 
           return (
@@ -87,7 +87,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
                 boxShadow: isHovered ? `0 0 0 2px ${color}` : 'none',
                 transform: isHovered ? 'scale(1.08)' : 'scale(1)',
               }}
-              title={`${c.name}: Leniency ${c.leniencyScore}`}
+              title={`${c.name}: Leniency ${c.leniencyScore ?? 50}`}
             >
               <div
                 className="font-bold leading-tight text-center px-0.5 overflow-hidden max-w-full whitespace-nowrap text-ellipsis"
@@ -96,7 +96,7 @@ export default function FloridaCountyHeatmap({ counties }: Props) {
                 {c.name.split(' ')[0]}
               </div>
               <div className="font-extrabold leading-none" style={{ fontSize: '0.65rem', color }}>
-                {c.leniencyScore.toFixed(0)}
+                {(c.leniencyScore ?? 50).toFixed(0)}
               </div>
             </div>
           );

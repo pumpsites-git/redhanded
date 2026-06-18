@@ -106,29 +106,55 @@ export interface NYData {
 export interface FLCounty {
   name: string;
   slug: string;
-  judicialCircuit: string;
-  totalCases: number;
-  felonyCases: number;
-  misdemeanorCases: number;
-  felonyRatio: number;
-  prisonRate: number;
-  jailRate: number;
-  probationRate: number;
-  commCtrlRate: number;
-  noConfinementRate: number;
-  withheldAdjudicationRate: number;
-  avgFelonySentenceDays: number | null;
-  avgMisdSentenceDays: number | null;
-  violentCases: {
+  // FDLE-specific fields (optional when using DOC scoresheet data)
+  judicialCircuit?: string;
+  felonyCases?: number;
+  misdemeanorCases?: number;
+  felonyRatio?: number;
+  commCtrlRate?: number;
+  noConfinementRate?: number;
+  withheldAdjudicationRate?: number;
+  avgFelonySentenceDays?: number | null;
+  avgMisdSentenceDays?: number | null;
+  violentCases?: {
     total: number;
     rate: number;
     prisonRate: number;
     jailRate: number;
     otherRate: number;
   };
-  raceBreakdown: Record<string, number>;
-  leniencyScore: number;
-  leniencyRank: number;
+  raceBreakdown?: Record<string, number>;
+  leniencyScore?: number;
+  leniencyRank?: number;
+  // Core fields (present in both FDLE and DOC data)
+  totalCases: number;
+  prisonRate: number;
+  jailRate: number;
+  probationRate: number;
+  otherRate?: number;
+  // DOC scoresheet-specific fields
+  stateCode?: string;
+  state?: string;
+  prisonCount?: number;
+  jailCount?: number;
+  probationCount?: number;
+  pleaBargainRate?: number;
+  mitigatedDepartureRate?: number;
+  avgCommitmentDays?: number | null;
+  avgSentencePoints?: number | null;
+  vsStatePrisonRate?: number;
+  vsStateProbRate?: number;
+  dataSource?: string;
+  docScoresheetData?: {
+    totalCases: number;
+    prisonRate: number;
+    jailRate: number;
+    probationRate: number;
+    pleaBargainRate: number;
+    mitigatedDepartureRate: number;
+    avgCommitmentDays: number | null;
+    avgSentencePoints: number | null;
+  };
 }
 
 export interface FLData {
@@ -140,10 +166,17 @@ export interface FLData {
     prisonRate: number;
     jailRate: number;
     probationRate: number;
-    commCtrlRate: number;
-    withheldAdjudicationRate: number;
-    avgFelonySentenceDays: number;
-    violentCaseRate: number;
+    // FDLE-specific (optional)
+    commCtrlRate?: number;
+    withheldAdjudicationRate?: number;
+    avgFelonySentenceDays?: number;
+    violentCaseRate?: number;
+    // DOC-specific (optional)
+    pleaBargainRate?: number;
+    mitigatedDepartureRate?: number;
+    avgCommitmentDays?: number | null;
+    avgSentencePoints?: number | null;
+    totalCases?: number;
   };
   counties: Record<string, FLCounty>;
 }
@@ -152,7 +185,7 @@ export interface FLData {
 
 export const IL_DATA: ILData = ilRaw as ILData;
 export const NY_DATA: NYData = nyRaw as NYData;
-export const FL_DATA: FLData = flRaw as FLData;
+export const FL_DATA: FLData = flRaw as unknown as FLData;
 
 // ─── Available states registry ────────────────────────────────────────────────
 
@@ -198,10 +231,19 @@ export function getFLStats() {
   const d = FL_DATA;
   const counties = Object.values(d.counties);
 
-  const sorted = [...counties].sort((a, b) => b.leniencyScore - a.leniencyScore);
+  const sorted = [...counties].sort((a, b) => (b.leniencyScore ?? 50) - (a.leniencyScore ?? 50));
   const sortedByPrison = [...counties].sort((a, b) => a.prisonRate - b.prisonRate);
   const mostLenient = sorted.slice(0, 5);
-  const toughest = [...counties].sort((a, b) => a.leniencyScore - b.leniencyScore).slice(0, 5);
+  const toughest = [...counties].sort((a, b) => (a.leniencyScore ?? 50) - (b.leniencyScore ?? 50)).slice(0, 5);
+
+  // avgFelonySentenceDays: use DOC avgCommitmentDays from stateAverage if available
+  const avgFelonySentenceDays =
+    d.stateAverage.avgFelonySentenceDays ??
+    (d.stateAverage as { avgCommitmentDays?: number | null }).avgCommitmentDays ??
+    null;
+
+  // violentCaseRate: not available from DOC data directly, default 0
+  const violentCaseRate = d.stateAverage.violentCaseRate ?? 0;
 
   return {
     totalCases: d.totalCases,
@@ -209,16 +251,16 @@ export function getFLStats() {
     stateAvgPrisonRate: d.stateAverage.prisonRate,
     stateAvgJailRate: d.stateAverage.jailRate,
     stateAvgProbationRate: d.stateAverage.probationRate,
-    avgFelonySentenceDays: d.stateAverage.avgFelonySentenceDays,
-    violentCaseRate: d.stateAverage.violentCaseRate,
+    avgFelonySentenceDays,
+    violentCaseRate,
     counties,
     sorted,
     mostLenient,
     toughest,
-    palmBeach: d.counties['palm-beach'],
-    broward: d.counties['broward'],
-    miamiDade: d.counties['miami-dade'],
-    gadsden: d.counties['gadsden'],
+    palmBeach: d.counties['palm-beach-fl'] ?? d.counties['palm-beach'],
+    broward: d.counties['broward-fl'] ?? d.counties['broward'],
+    miamiDade: d.counties['miami-dade-fl'] ?? d.counties['miami-dade'],
+    gadsden: d.counties['gadsden-fl'] ?? d.counties['gadsden'],
   };
 }
 

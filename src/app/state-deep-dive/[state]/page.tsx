@@ -804,9 +804,9 @@ function FloridaPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
             <BigStat value={fmt(stats.totalCases)} label="Total Cases" sub="Across 67 counties" />
             <BigStat value={`${(stats.stateAvgPrisonRate * 100).toFixed(1)}%`} label="State Avg Prison Rate" color="#22c55e" sub="14.4% sentenced to prison" />
-            <BigStat value={`${Math.round(stats.avgFelonySentenceDays).toLocaleString()} days`} label="Avg Felony Sentence" color="#ca8a04" sub="~3.1 years" />
+            <BigStat value={stats.avgFelonySentenceDays != null ? `${Math.round(stats.avgFelonySentenceDays).toLocaleString()} days` : '—'} label="Avg Felony Sentence" color="#ca8a04" sub="Prison sentences" />
             <BigStat value={`${(stats.stateAvgJailRate * 100).toFixed(1)}%`} label="State Avg Jail Rate" color="#8b5cf6" sub="County jail (not prison)" />
-            <BigStat value={`${(stats.violentCaseRate * 100).toFixed(1)}%`} label="Violent Case Rate" color="#dc2626" sub="Of all cases" />
+            <BigStat value={stats.violentCaseRate > 0 ? `${(stats.violentCaseRate * 100).toFixed(1)}%` : '—'} label="Violent Case Rate" color="#dc2626" sub="Of all cases" />
             <BigStat value={stats.totalCounties.toString()} label="Counties Analyzed" color="#6b7280" sub="All 67 FL counties" />
           </div>
           <SourceNote text="FDLE Criminal Justice Data Transparency Portal · Clerk of Court Reports · 3.59M cases" />
@@ -842,7 +842,7 @@ function FloridaPage() {
                     <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.85rem' }}>{c.name}</span>
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Prison: {(c.prisonRate * 100).toFixed(1)}%</div>
                   </div>
-                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#dc2626' }}>{c.leniencyScore.toFixed(1)}</span>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#dc2626' }}>{(c.leniencyScore ?? 50).toFixed(1)}</span>
                 </div>
               ))}
             </div>
@@ -858,7 +858,7 @@ function FloridaPage() {
                     <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.85rem' }}>{c.name}</span>
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Prison: {(c.prisonRate * 100).toFixed(1)}%</div>
                   </div>
-                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#16a34a' }}>{c.leniencyScore.toFixed(1)}</span>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#16a34a' }}>{(c.leniencyScore ?? 50).toFixed(1)}</span>
                 </div>
               ))}
             </div>
@@ -919,7 +919,7 @@ function FloridaPage() {
                 icon: '⚖️',
                 color: '#ca8a04',
                 title: 'Miami-Dade: Large County, Tough Sentencing',
-                body: `Miami-Dade (score 24.6) is Florida's most populous county with ${fmt(stats.miamiDade.totalCases)} cases — yet ranks among the toughest third. Prison rate ${(stats.miamiDade.prisonRate * 100).toFixed(1)}%, violent crime prison rate ${(stats.miamiDade.violentCases.prisonRate * 100).toFixed(1)}%.`,
+                body: `Miami-Dade is Florida's most populous county with ${fmt(stats.miamiDade?.totalCases ?? 0)} cases — yet ranks among the toughest third. Prison rate ${((stats.miamiDade?.prisonRate ?? 0) * 100).toFixed(1)}%${stats.miamiDade?.violentCases ? `, violent crime prison rate ${(stats.miamiDade.violentCases.prisonRate * 100).toFixed(1)}%` : ''}.`,
               },
               {
                 icon: '📍',

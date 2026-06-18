@@ -194,7 +194,7 @@ def run_all(master_dir: Path, ingest_results: dict) -> dict:
     if sj_path.exists():
         with open(sj_path) as f:
             sj_data = json_load(f)
-        raw_count = ingest_results.get("cook_county", {}).get("raw_count", 0)
+        raw_count = (ingest_results.get("cook_county") or {}).get("raw_count", 0)
         r = validate_state_judges(sj_data, raw_count)
         results["state_judges"] = r.summary()
         total_errors += len(r.errors)
@@ -211,7 +211,7 @@ def run_all(master_dir: Path, ingest_results: dict) -> dict:
     if cp_path.exists():
         with open(cp_path) as f:
             cp_data = json_load(f)
-        raw_count = ingest_results.get("fdle", {}).get("sentenced_count", 0)
+        raw_count = (ingest_results.get("fdle") or {}).get("sentenced_count", 0)
         r = validate_county_profiles(cp_data, raw_count)
         results["county_profiles"] = r.summary()
         total_errors += len(r.errors)

@@ -1,20 +1,18 @@
 {
-  "generated": "2026-06-13T18:55:18Z",
-  "passed": true,
-  "totalChecks": 21,
-  "totalErrors": 0,
-  "totalWarnings": 1,
+  "generated": "2026-06-18T15:29:44Z",
+  "passed": false,
+  "totalChecks": 18,
+  "totalErrors": 1,
+  "totalWarnings": 3,
   "results": {
     "state_judges": {
       "passed": true,
-      "checks": 9,
+      "checks": 8,
       "checksPassed": 8,
-      "warnings": 1,
+      "warnings": 0,
       "errors": 0,
       "errorDetails": [],
-      "warningDetails": [
-        "state_judges_case_count_match: totalCases 309,525 vs raw 305,884"
-      ],
+      "warningDetails": [],
       "allChecks": [
         {
           "name": "state_judges_exists",
@@ -25,7 +23,7 @@
         {
           "name": "state_judges_minimum",
           "passed": true,
-          "message": "Only 236 judges (expected 50+)",
+          "message": "Only 657 judges (expected 50+)",
           "severity": "error"
         },
         {
@@ -53,12 +51,6 @@
           "severity": "error"
         },
         {
-          "name": "state_judges_case_count_match",
-          "passed": false,
-          "message": "totalCases 309,525 vs raw 305,884",
-          "severity": "warning"
-        },
-        {
           "name": "all_judges_have_names",
           "passed": true,
           "message": "0 judges missing names",
@@ -75,11 +67,14 @@
     "county_profiles": {
       "passed": true,
       "checks": 5,
-      "checksPassed": 5,
-      "warnings": 0,
+      "checksPassed": 3,
+      "warnings": 2,
       "errors": 0,
       "errorDetails": [],
-      "warningDetails": [],
+      "warningDetails": [
+        "county_rates_sum: 33 counties with rates not summing to ~1.0: ['alachua-fl: 1.249', 'baker-fl: 1.127', 'bradford-fl: 1.309']",
+        "county_case_count: Only 128,819 county cases (expected >1M for FL)"
+      ],
       "allChecks": [
         {
           "name": "counties_exists",
@@ -90,13 +85,13 @@
         {
           "name": "florida_counties_count",
           "passed": true,
-          "message": "Only 67 FL counties (expected 67)",
+          "message": "Only 66 FL counties (expected 67)",
           "severity": "warning"
         },
         {
           "name": "county_rates_sum",
-          "passed": true,
-          "message": "0 counties with rates not summing to ~1.0: []",
+          "passed": false,
+          "message": "33 counties with rates not summing to ~1.0: ['alachua-fl: 1.249', 'baker-fl: 1.127', 'bradford-fl: 1.309']",
           "severity": "warning"
         },
         {
@@ -107,43 +102,35 @@
         },
         {
           "name": "county_case_count",
-          "passed": true,
-          "message": "Only 3,599,352 county cases (expected >1M for FL)",
+          "passed": false,
+          "message": "Only 128,819 county cases (expected >1M for FL)",
           "severity": "warning"
         }
       ]
     },
     "federal_judges": {
-      "passed": true,
-      "checks": 4,
-      "checksPassed": 4,
-      "warnings": 0,
-      "errors": 0,
-      "errorDetails": [],
-      "warningDetails": [],
+      "passed": false,
+      "checks": 2,
+      "checksPassed": 0,
+      "warnings": 1,
+      "errors": 1,
+      "errorDetails": [
+        "federal_judges_exists: No federal judges found"
+      ],
+      "warningDetails": [
+        "federal_judges_minimum: Only 0 federal judges (expected 1000+)"
+      ],
       "allChecks": [
         {
           "name": "federal_judges_exists",
-          "passed": true,
+          "passed": false,
           "message": "No federal judges found",
           "severity": "error"
         },
         {
           "name": "federal_judges_minimum",
-          "passed": true,
-          "message": "Only 9396 federal judges (expected 1000+)",
-          "severity": "warning"
-        },
-        {
-          "name": "federal_judges_names",
-          "passed": true,
-          "message": "0 federal judges missing names",
-          "severity": "warning"
-        },
-        {
-          "name": "federal_judges_slug_unique",
-          "passed": true,
-          "message": "Many duplicate/missing slugs (30)",
+          "passed": false,
+          "message": "Only 0 federal judges (expected 1000+)",
           "severity": "warning"
         }
       ]

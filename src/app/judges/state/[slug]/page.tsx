@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!judge) return {};
   return {
     title: `${judge.name} — Judicial Profile`,
-    description: `${judge.name} (${judge.courtFacility || 'Cook County Circuit Court'}) — Leniency score: ${judge.leniencyScore}. Sentenced ${pct(judge.violentCases.prisonRate)} of violent offenders to prison. ${judge.totalCases.toLocaleString()} cases analyzed.`,
+    description: `${judge.name} (${judge.courtFacility || 'Cook County Circuit Court'}) — Leniency score: ${judge.leniencyScore}. ${judge.violentCases?.total ? `Sentenced ${pct(judge.violentCases.prisonRate)} of violent offenders to prison. ` : ''}${judge.totalCases.toLocaleString()} cases analyzed.`,
     openGraph: {
       title: `${judge.name} — RedHanded Judicial Profile`,
-      description: `Leniency score: ${judge.leniencyScore} (${getLeniencyLabel(judge.leniencyScore)}). Violent offenders to prison: ${pct(judge.violentCases.prisonRate)}. Based on ${judge.totalCases.toLocaleString()} real cases.`,
+      description: `Leniency score: ${judge.leniencyScore} (${getLeniencyLabel(judge.leniencyScore)}). ${judge.violentCases?.total ? `Violent offenders to prison: ${pct(judge.violentCases.prisonRate)}. ` : ''}Based on ${judge.totalCases.toLocaleString()} real cases.`,
     },
   };
 }

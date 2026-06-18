@@ -169,7 +169,49 @@ export function getJudgeProfilesMeta(): Omit<JudgeProfilesData, 'judges'> {
 }
 
 export function getCourtAverage(): CourtAverage {
-  return masterData.courtAverage;
+  // If the pipeline didn't produce a courtAverage (e.g. IL data skipped),
+  // compute a fallback from all judges in the master data.
+  const stored = masterData.courtAverage;
+  if (stored && typeof stored.prisonRate === 'number') {
+    return stored;
+  }
+  // Compute from all judges
+  const judges = allJudgesCache;
+  if (judges.length === 0) {
+    return {
+      prisonRate: 0.25,
+      jailRate: 0.30,
+      probationRate: 0.40,
+      otherRate: 0.05,
+      violentCases: { total: 0, prisonRate: 0.50, probationRate: 0.25, jailRate: 0.15, prisonCount: 0, probationCount: 0 },
+      avgCommitmentDays: null,
+    };
+  }
+  const totalCases = judges.reduce((s, j) => s + j.totalCases, 0);
+  const weightedPrison = judges.reduce((s, j) => s + j.prisonRate * j.totalCases, 0);
+  const weightedJail = judges.reduce((s, j) => s + j.jailRate * j.totalCases, 0);
+  const weightedProbation = judges.reduce((s, j) => s + j.probationRate * j.totalCases, 0);
+  const weightedViolentPrison = judges.reduce((s, j) => s + (j.violentCases?.prisonRate ?? 0) * (j.violentCases?.total ?? 0), 0);
+  const weightedViolentProbation = judges.reduce((s, j) => s + (j.violentCases?.probationRate ?? 0) * (j.violentCases?.total ?? 0), 0);
+  const totalViolent = judges.reduce((s, j) => s + (j.violentCases?.total ?? 0), 0);
+  const prisonRate = totalCases > 0 ? weightedPrison / totalCases : 0.25;
+  const jailRate = totalCases > 0 ? weightedJail / totalCases : 0.30;
+  const probationRate = totalCases > 0 ? weightedProbation / totalCases : 0.40;
+  return {
+    prisonRate: Math.round(prisonRate * 10000) / 10000,
+    jailRate: Math.round(jailRate * 10000) / 10000,
+    probationRate: Math.round(probationRate * 10000) / 10000,
+    otherRate: Math.round(Math.max(0, 1 - prisonRate - jailRate - probationRate) * 10000) / 10000,
+    violentCases: {
+      total: totalViolent,
+      prisonRate: totalViolent > 0 ? Math.round(weightedViolentPrison / totalViolent * 10000) / 10000 : 0.5,
+      probationRate: totalViolent > 0 ? Math.round(weightedViolentProbation / totalViolent * 10000) / 10000 : 0.25,
+      jailRate: 0,
+      prisonCount: 0,
+      probationCount: 0,
+    },
+    avgCommitmentDays: null,
+  };
 }
 
 export function getLeniencyLabel(score: number): string {

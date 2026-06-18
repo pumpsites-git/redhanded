@@ -31,6 +31,8 @@ sources:
         slug: "charlotte"
   federal:
     courtlistener: "data/raw/federal/courtlistener-judges.json"
+  florida_doc_scoresheets:
+    csv: "data/unified_sentencing_2024.csv"
   new_york:
     ny_summary: "data/raw/new-york/ny-summary.json"
     pretrial: "data/raw/new-york/pretrial_2024_stats.json"

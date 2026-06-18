@@ -23,7 +23,7 @@ HERE = Path(__file__).parent
 PROJECT_ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
-from ingest import cook_county, fdle_counties, florida_judges, federal_judges, new_york
+from ingest import cook_county, fdle_counties, florida_judges, florida_doc_scoresheets, federal_judges, new_york
 from validate import validators
 
 
@@ -70,8 +70,15 @@ def write_master_file(path: Path, data: dict) -> None:
     tmp.rename(path)
 
 
-def build_state_judges(il_result: dict, fl_result: dict, today: str) -> dict:
-    """Merge IL and FL judges into unified state-judges.json."""
+def build_state_judges(
+    il_result: dict,
+    fl_result: dict,
+    fl_doc_result: dict,
+    today: str,
+) -> dict:
+    """Merge IL, FL BenchmarkWeb, and FL DOC scoresheet judges into unified state-judges.json.
+    FL DOC judges REPLACE BenchmarkWeb judges for the same county (DOC data is more comprehensive).
+    """
     all_judges: dict[str, dict] = {}
 
     # IL judge profiles
@@ -80,21 +87,45 @@ def build_state_judges(il_result: dict, fl_result: dict, today: str) -> dict:
         for slug, judge in il_profiles.get("judges", {}).items():
             all_judges[slug] = judge
 
-    # FL judge profiles from BenchmarkWeb
+    # FL BenchmarkWeb judges — only include counties NOT covered by DOC data
+    # Since DOC data covers all FL counties, BenchmarkWeb is superseded
+    doc_counties: set[str] = set()
+    if fl_doc_result and "judges" in fl_doc_result:
+        for judge in fl_doc_result["judges"].values():
+            county = judge.get("county", "")
+            if county:
+                doc_counties.add(county.lower())
+
     if fl_result and "judges" in fl_result:
         for slug, judge in fl_result["judges"].items():
+            judge_county = judge.get("county", "").lower()
+            # Skip BenchmarkWeb judges if the county is covered by DOC data
+            if judge_county in doc_counties:
+                continue
             # Avoid slug collision with IL judges
-            if slug in all_judges:
-                slug = f"fl-{slug}"
-            all_judges[slug] = judge
+            s = slug
+            if s in all_judges:
+                s = f"fl-{s}"
+            all_judges[s] = judge
+
+    # FL DOC scoresheet judges (highest priority for FL)
+    if fl_doc_result and "judges" in fl_doc_result:
+        for slug, judge in fl_doc_result["judges"].items():
+            # Avoid slug collision
+            s = slug
+            if s in all_judges:
+                s = f"doc-{s}"
+            all_judges[s] = judge
 
     total_cases = sum(j.get("totalCases", 0) for j in all_judges.values())
 
     sources = []
     if il_result:
         sources.append("Cook County IL Sentencing")
-    if fl_result:
+    if fl_result and not doc_counties:
         sources.append("FL BenchmarkWeb (Bay, Indian River, St. Johns, Charlotte Counties)")
+    if fl_doc_result:
+        sources.append("FL DOC Sentencing Scoresheets 2024-2025")
 
     return {
         "meta": {
@@ -115,31 +146,69 @@ def build_state_judges(il_result: dict, fl_result: dict, today: str) -> dict:
     }
 
 
-def build_county_profiles(fdle_result: dict, today: str) -> dict:
-    """Build county-profiles.json from FDLE data."""
-    if not fdle_result or not fdle_result.get("counties"):
+def build_county_profiles(fdle_result: dict, fl_doc_result: dict, today: str) -> dict:
+    """Build county-profiles.json from FDLE data, enriched with FL DOC scoresheet data."""
+    # Start with FDLE counties
+    counties: dict[str, dict] = {}
+    total_cases = 0
+    sources = []
+
+    if fdle_result and fdle_result.get("counties"):
+        counties.update(fdle_result["counties"])
+        total_cases = fdle_result.get("sentenced_count", 0)
+        sources.append("FDLE Criminal Justice Data Transparency, Clerk of Court Reports")
+
+    # Merge / add FL DOC county data
+    if fl_doc_result and fl_doc_result.get("county_data"):
+        doc_county_data = fl_doc_result["county_data"]
+        doc_counties = doc_county_data.get("counties", {})
+        doc_state_avg = doc_county_data.get("stateAverage", {})
+
+        for slug, county_profile in doc_counties.items():
+            if slug in counties:
+                # Enrich existing FDLE county with DOC data
+                counties[slug]['docScoresheetData'] = {
+                    'totalCases': county_profile['totalCases'],
+                    'prisonRate': county_profile['prisonRate'],
+                    'jailRate': county_profile['jailRate'],
+                    'probationRate': county_profile['probationRate'],
+                    'pleaBargainRate': county_profile['pleaBargainRate'],
+                    'mitigatedDepartureRate': county_profile['mitigatedDepartureRate'],
+                    'avgCommitmentDays': county_profile.get('avgCommitmentDays'),
+                    'avgSentencePoints': county_profile.get('avgSentencePoints'),
+                }
+            else:
+                # New county from DOC data
+                counties[slug] = county_profile
+
+        if doc_counties:
+            sources.append("FL DOC Sentencing Scoresheets 2024-2025")
+            total_cases = max(total_cases, doc_state_avg.get('totalCases', 0))
+
+        state_average = doc_state_avg
+    else:
+        state_average = fdle_result.get("stateAverage", {}) if fdle_result else {}
+
+    if not counties:
         return {
             "meta": {"generated": today, "sources": [], "totalCounties": 0, "totalCases": 0},
             "counties": {},
         }
 
-    counties = fdle_result["counties"]
-    total_cases = fdle_result.get("sentenced_count", 0)
-
     return {
         "meta": {
             "generated": today,
-            "sources": ["FDLE Criminal Justice Data Transparency, Clerk of Court Reports"],
+            "sources": sources,
             "totalCounties": len(counties),
             "totalCases": total_cases,
             "pipelineVersion": "1.0",
         },
         # Legacy fields
         "generated": today,
-        "source": fdle_result.get("source", "FDLE"),
+        "source": "; ".join(sources) if sources else "Unknown",
         "totalCounties": len(counties),
         "totalCases": total_cases,
-        "stateAverage": fdle_result.get("stateAverage", {}),
+        "stateAverage": state_average,
         "counties": counties,
     }
 
@@ -181,6 +250,7 @@ def build_manifest(
 def print_summary_table(
     il_result: dict | None,
     fl_judge_result: dict | None,
+    fl_doc_result: dict | None,
     fdle_result: dict | None,
     fed_result: dict | None,
     ny_result: dict | None,
@@ -208,6 +278,13 @@ def print_summary_table(
         print(f"  {'FL BenchmarkWeb (4 counties)':<32} {total:>12,}  {judges:>13} judges")
     else:
         print(f"  {'FL BenchmarkWeb':<32} {'SKIPPED':>12}  {'—':>16}")
+
+    if fl_doc_result:
+        raw = fl_doc_result.get("raw_count", 0)
+        judges = fl_doc_result.get("total_judges", 0)
+        print(f"  {'FL DOC Scoresheets 2024-25':<32} {raw:>12,}  {judges:>13} judges")
+    else:
+        print(f"  {'FL DOC Scoresheets':<32} {'SKIPPED':>12}  {'—':>16}")
 
     if fdle_result:
         raw = fdle_result.get("raw_count", 0)
@@ -320,6 +397,16 @@ def main() -> None:
         print("\n[3/5] FL BenchmarkWeb Judges — SKIPPED")
         ingest_results["florida_judges"] = None
 
+    # FL DOC Scoresheets
+    print("\n[3b] FL DOC Sentencing Scoresheets...")
+    try:
+        fl_doc_result = florida_doc_scoresheets.run(config, PROJECT_ROOT)
+        ingest_results["florida_doc"] = fl_doc_result
+    except Exception as e:
+        print(f"  ✗ FL DOC scoresheets failed: {e}")
+        import traceback; traceback.print_exc()
+        ingest_results["florida_doc"] = None
+
     # Federal judges
     if not args.skip_federal:
         print("\n[4/5] Federal Judges (CourtListener)...")
@@ -349,18 +436,19 @@ def main() -> None:
 
     il_result = ingest_results.get("cook_county")
     fl_judge_result = ingest_results.get("florida_judges")
+    fl_doc_result = ingest_results.get("florida_doc")
     fdle_result = ingest_results.get("fdle")
     fed_result = ingest_results.get("federal")
     ny_result = ingest_results.get("new_york")
 
     # state-judges.json
-    state_judges = build_state_judges(il_result, fl_judge_result, today)
+    state_judges = build_state_judges(il_result, fl_judge_result, fl_doc_result, today)
     sj_path = PROJECT_ROOT / config["output"]["files"]["state_judges"]
     write_master_file(sj_path, state_judges)
     print(f"  ✓ {sj_path.relative_to(PROJECT_ROOT)} — {state_judges['totalJudges']} judges")
 
     # county-profiles.json
-    county_profiles = build_county_profiles(fdle_result, today)
+    county_profiles = build_county_profiles(fdle_result, fl_doc_result, today)
     cp_path = PROJECT_ROOT / config["output"]["files"]["county_profiles"]
     write_master_file(cp_path, county_profiles)
     print(f"  ✓ {cp_path.relative_to(PROJECT_ROOT)} — {county_profiles['totalCounties']} counties")
@@ -445,7 +533,7 @@ def main() -> None:
     # ── Summary ───────────────────────────────────────────────────────────────
     elapsed = time.time() - start_time
     print_summary_table(
-        il_result, fl_judge_result, fdle_result, fed_result, ny_result,
+        il_result, fl_judge_result, fl_doc_result, fdle_result, fed_result, ny_result,
         validation_result, elapsed
     )
 

@@ -31,8 +31,8 @@ export default function FloridaCountyTable({ counties }: Props) {
       list = list.filter(c => c.name.toLowerCase().includes(q));
     }
     list.sort((a, b) => {
-      const av = sortKey === 'avgFelonySentenceDays' ? (a[sortKey] ?? 0) : a[sortKey];
-      const bv = sortKey === 'avgFelonySentenceDays' ? (b[sortKey] ?? 0) : b[sortKey];
+      const av = sortKey === 'avgFelonySentenceDays' ? (a[sortKey] ?? a.avgCommitmentDays ?? 0) : (a[sortKey] ?? 0);
+      const bv = sortKey === 'avgFelonySentenceDays' ? (b[sortKey] ?? b.avgCommitmentDays ?? 0) : (b[sortKey] ?? 0);
       const diff = (av as number) - (bv as number);
       return sortDir === 'asc' ? diff : -diff;
     });
@@ -92,7 +92,7 @@ export default function FloridaCountyTable({ counties }: Props) {
           <tbody>
             {sorted.map((c, i) => {
               const bg = i % 2 === 0 ? 'bg-[var(--bg-card)]' : 'bg-[var(--bg-secondary)]';
-              const color = leniencyColor(c.leniencyScore);
+              const color = leniencyColor(c.leniencyScore ?? 50);
               const prisonColor = c.prisonRate > 0.2 ? '#22c55e' : c.prisonRate < 0.1 ? '#dc2626' : 'var(--text-primary)';
 
               return (
@@ -101,10 +101,10 @@ export default function FloridaCountyTable({ counties }: Props) {
                   <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <div className="w-12 h-1.5 bg-[var(--bg-secondary)] rounded-full overflow-hidden shrink-0">
-                        <div className="h-full rounded-full" style={{ width: `${c.leniencyScore}%`, background: color }} />
+                        <div className="h-full rounded-full" style={{ width: `${c.leniencyScore ?? 50}%`, background: color }} />
                       </div>
                       <span className="font-bold text-xs min-w-[2.5rem]" style={{ color }}>
-                        {c.leniencyScore.toFixed(1)}
+                        {(c.leniencyScore ?? 50).toFixed(1)}
                       </span>
                     </div>
                   </td>
@@ -118,10 +118,10 @@ export default function FloridaCountyTable({ counties }: Props) {
                     {c.totalCases.toLocaleString()}
                   </td>
                   <td className="px-3 py-2 text-[var(--text-secondary)]">
-                    {c.avgFelonySentenceDays ? `${Math.round(c.avgFelonySentenceDays).toLocaleString()} days` : '—'}
+                    {c.avgFelonySentenceDays != null ? `${Math.round(c.avgFelonySentenceDays).toLocaleString()} days` : c.avgCommitmentDays != null ? `${Math.round(c.avgCommitmentDays).toLocaleString()} days` : '—'}
                   </td>
                   <td className="px-3 py-2 text-[var(--text-secondary)]">
-                    {pct(c.violentCases.rate)}
+                    {c.violentCases ? pct(c.violentCases.rate) : '—'}
                   </td>
                 </tr>
               );
