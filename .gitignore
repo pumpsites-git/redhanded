@@ -20,3 +20,12 @@ data/raw/illinois/*.json
 data/raw/florida/fdle/*.csv
 .vercel
 data/raw/florida/obis/
+
+# FL DOC scoresheet raw data (large files)
+data/unified_sentencing_2024.csv
+data/scoresheets/
+data/obis/
+data/raw/florida/scoresheets/
+data/summary_stats.md
+pipeline/ingest/__pycache__/
+pipeline/validate/__pycache__/

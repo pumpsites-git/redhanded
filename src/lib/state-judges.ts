@@ -73,6 +73,11 @@ export interface StateJudge {
   offenseBreakdown: Record<string, OffenseStats>;
   raceBreakdown: Record<string, DemographicStats>;
   genderBreakdown: Record<string, DemographicStats>;
+  // Optional fields added in later pipeline versions
+  mitigatedDepartureRate?: number;
+  pleaBargainRate?: number;
+  avgSentencePoints?: number;
+  dataSource?: string;
 }
 
 export interface CourtAverage {
@@ -236,4 +241,33 @@ export function getLeniencyColor(score: number): string {
 
 export function pct(rate: number): string {
   return `${Math.round(rate * 100)}%`;
+}
+
+/** Compute state-average mitigated departure & plea bargain rates from judge data */
+export function getDepartureAverages(): { mitigatedDepartureRate: number; pleaBargainRate: number } {
+  const judges = allJudgesCache.filter(
+    (j) => j.mitigatedDepartureRate !== undefined && j.totalCases >= 10
+  );
+  if (judges.length === 0) return { mitigatedDepartureRate: 0.033, pleaBargainRate: 0.478 };
+  const totalCases = judges.reduce((s, j) => s + j.totalCases, 0);
+  const weightedMDR = judges.reduce(
+    (s, j) => s + (j.mitigatedDepartureRate ?? 0) * j.totalCases,
+    0
+  );
+  const weightedPlea = judges.reduce(
+    (s, j) => s + (j.pleaBargainRate ?? 0) * j.totalCases,
+    0
+  );
+  return {
+    mitigatedDepartureRate: totalCases > 0 ? weightedMDR / totalCases : 0.033,
+    pleaBargainRate: totalCases > 0 ? weightedPlea / totalCases : 0.478,
+  };
+}
+
+/** Get top judges by mitigated departure rate */
+export function getTopDepartureJudges(limit = 20): StateJudge[] {
+  return [...allJudgesCache]
+    .filter((j) => j.mitigatedDepartureRate !== undefined && j.totalCases >= 30)
+    .sort((a, b) => (b.mitigatedDepartureRate ?? 0) - (a.mitigatedDepartureRate ?? 0))
+    .slice(0, limit);
 }

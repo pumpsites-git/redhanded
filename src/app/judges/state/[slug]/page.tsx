@@ -7,9 +7,13 @@ import {
   getJudgeProfilesMeta,
   getLeniencyLabel,
   getLeniencyColor,
+  getDepartureAverages,
   pct,
 } from '@/lib/state-judges';
 import { notFound } from 'next/navigation';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { ElectionBadgeServer, ElectionEntry } from '@/components/ElectionBadge';
 
 export async function generateStaticParams() {
   const judges = getAllStateJudges();
@@ -24,14 +28,47 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const judge = getStateJudgeBySlug(slug);
   if (!judge) return {};
+
+  const county = judge.county || judge.courtFacility || 'Florida';
+  const titleStr = `Judge ${judge.name} Sentencing Record — ${county}, ${judge.state} | RedHanded`;
+  const descStr = [
+    `${judge.name} (${judge.courtFacility || county}) — Leniency score: ${judge.leniencyScore} (${getLeniencyLabel(judge.leniencyScore)}).`,
+    judge.violentCases?.total ? `Sentenced ${pct(judge.violentCases.prisonRate)} of violent offenders to prison.` : '',
+    judge.mitigatedDepartureRate !== undefined
+      ? `Mitigated departure rate: ${pct(judge.mitigatedDepartureRate)}.`
+      : '',
+    `${judge.totalCases.toLocaleString()} cases analyzed.`,
+  ].filter(Boolean).join(' ');
+
+  const canonicalUrl = `https://redhanded.vercel.app/judges/state/${slug}`;
+
   return {
-    title: `${judge.name} — Judicial Profile`,
-    description: `${judge.name} (${judge.courtFacility || 'Cook County Circuit Court'}) — Leniency score: ${judge.leniencyScore}. ${judge.violentCases?.total ? `Sentenced ${pct(judge.violentCases.prisonRate)} of violent offenders to prison. ` : ''}${judge.totalCases.toLocaleString()} cases analyzed.`,
+    title: titleStr,
+    description: descStr,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `${judge.name} — RedHanded Judicial Profile`,
+      title: `Judge ${judge.name} — RedHanded`,
       description: `Leniency score: ${judge.leniencyScore} (${getLeniencyLabel(judge.leniencyScore)}). ${judge.violentCases?.total ? `Violent offenders to prison: ${pct(judge.violentCases.prisonRate)}. ` : ''}Based on ${judge.totalCases.toLocaleString()} real cases.`,
+      url: canonicalUrl,
+      type: 'profile',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Judge ${judge.name} — RedHanded`,
+      description: descStr,
     },
   };
+}
+
+function getElectionEntries(): ElectionEntry[] {
+  try {
+    const filePath = join(process.cwd(), 'data', 'master', 'judge-elections.json');
+    const raw = readFileSync(filePath, 'utf-8');
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : (data.judges ?? []);
+  } catch {
+    return [];
+  }
 }
 
 function SentenceBar({
@@ -108,6 +145,8 @@ export default async function JudgeProfilePage({ params }: Props) {
 
   const avg = getCourtAverage();
   const meta = getJudgeProfilesMeta();
+  const departureAvg = getDepartureAverages();
+  const electionEntries = getElectionEntries();
 
   const violentProbHigh = judge.violentCases.total >= 3 && judge.violentCases.probationRate > 0.5;
   const prisonDelta = judge.prisonRate - avg.prisonRate;
@@ -134,8 +173,26 @@ export default async function JudgeProfilePage({ params }: Props) {
 
   const color = getLeniencyColor(judge.leniencyScore);
 
+  // JSON-LD structured data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: judge.name,
+    jobTitle: 'Judge',
+    worksFor: {
+      '@type': 'Organization',
+      name: judge.courtFacility || `${judge.county} Court`,
+    },
+    description: `${judge.name} is a ${judge.state} state judge with a leniency score of ${judge.leniencyScore}. Based on ${judge.totalCases.toLocaleString()} cases analyzed.`,
+    url: `https://redhanded.vercel.app/judges/state/${judge.slug}`,
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="bg-[var(--bg-secondary)] border-b border-[var(--border)] px-4 py-3">
         <div className="max-w-6xl mx-auto text-xs text-[var(--text-muted)]">
@@ -167,9 +224,10 @@ export default async function JudgeProfilePage({ params }: Props) {
               <h1 className="text-3xl font-extrabold text-[var(--text-primary)] mb-1 tracking-tight">
                 {judge.name}
               </h1>
-              <p className="text-[var(--text-secondary)] mb-4">
+              <p className="text-[var(--text-secondary)] mb-2">
                 {judge.courtFacility || 'Cook County Circuit Court'} · {judge.totalCases.toLocaleString()} cases sentenced
               </p>
+              <ElectionBadgeServer entries={electionEntries} slug={judge.slug} name={judge.name} size="large" />
 
               {/* Quick stat pills */}
               <div className="flex flex-wrap gap-3">
@@ -280,6 +338,97 @@ export default async function JudgeProfilePage({ params }: Props) {
               <p className="text-[var(--text-muted)] text-sm">No violent offense cases in this dataset.</p>
             )}
           </section>
+
+          {/* Mitigated Departure & Plea Stats */}
+          {(judge.mitigatedDepartureRate !== undefined || judge.pleaBargainRate !== undefined) && (
+            <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-5">
+              <h2 className="font-bold mb-4 text-base text-[var(--text-primary)]">
+                Sentencing Departures &amp; Plea Bargains
+              </h2>
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                {judge.mitigatedDepartureRate !== undefined && (
+                  <div className="bg-[var(--bg-secondary)] rounded-lg p-3 text-center">
+                    <div
+                      className="text-xl font-bold"
+                      style={{
+                        color:
+                          judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate * 1.5
+                            ? '#f97316'
+                            : '#22c55e',
+                      }}
+                    >
+                      {pct(judge.mitigatedDepartureRate)}
+                    </div>
+                    <div className="text-xs text-[var(--text-muted)]">Mitigated Departure Rate</div>
+                    <div
+                      className={`text-[0.65rem] font-semibold mt-0.5 ${
+                        judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate
+                          ? 'text-orange-400'
+                          : 'text-green-500'
+                      }`}
+                    >
+                      {judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate ? '+' : ''}
+                      {((judge.mitigatedDepartureRate - departureAvg.mitigatedDepartureRate) * 100).toFixed(1)}% vs avg
+                    </div>
+                  </div>
+                )}
+                {judge.pleaBargainRate !== undefined && (
+                  <div className="bg-[var(--bg-secondary)] rounded-lg p-3 text-center">
+                    <div className="text-xl font-bold text-[var(--text-secondary)]">
+                      {pct(judge.pleaBargainRate)}
+                    </div>
+                    <div className="text-xs text-[var(--text-muted)]">Plea Bargain Rate</div>
+                    <div
+                      className={`text-[0.65rem] font-semibold mt-0.5 ${
+                        judge.pleaBargainRate > departureAvg.pleaBargainRate
+                          ? 'text-orange-400'
+                          : 'text-green-500'
+                      }`}
+                    >
+                      {judge.pleaBargainRate > departureAvg.pleaBargainRate ? '+' : ''}
+                      {((judge.pleaBargainRate - departureAvg.pleaBargainRate) * 100).toFixed(1)}% vs avg
+                    </div>
+                  </div>
+                )}
+              </div>
+              {judge.mitigatedDepartureRate !== undefined && (
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-[var(--text-secondary)]">Mitigated Departure Rate</span>
+                    <span
+                      className="font-bold"
+                      style={{
+                        color:
+                          judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate
+                            ? '#f97316'
+                            : '#22c55e',
+                      }}
+                    >
+                      {pct(judge.mitigatedDepartureRate)}
+                    </span>
+                  </div>
+                  <div className="h-2.5 bg-[#1a1a1a] rounded-full overflow-hidden border border-[var(--border)] mb-1">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.min(100, Math.round(judge.mitigatedDepartureRate * 100 * 5))}%`,
+                        background: judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate ? '#f97316' : '#22c55e',
+                      }}
+                    />
+                  </div>
+                  <p className="text-xs text-[var(--text-muted)]">
+                    A mitigated departure means the judge sentenced below the calculated guideline range.
+                    State avg: {pct(departureAvg.mitigatedDepartureRate)}.
+                    {judge.mitigatedDepartureRate > departureAvg.mitigatedDepartureRate * 2 && (
+                      <span className="text-orange-400 ml-1 font-semibold">
+                        This judge departs from guidelines at unusually high rates.
+                      </span>
+                    )}
+                  </p>
+                </div>
+              )}
+            </section>
+          )}
 
           {/* Offense Breakdown */}
           <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-5">

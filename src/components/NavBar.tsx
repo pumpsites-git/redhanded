@@ -67,9 +67,19 @@ function GiftIcon() {
   );
 }
 
+function GridIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
+      <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+    </svg>
+  );
+}
+
 const NAV_LINKS = [
   { href: '/', label: 'Judges', Icon: ScalesIcon },
   { href: '/judges/federal', label: 'Federal', Icon: BuildingIcon },
+  { href: '/counties', label: 'Counties', Icon: GridIcon },
   { href: '/states', label: 'States', Icon: MapIcon },
   { href: '/methodology', label: 'Methodology', Icon: DocIcon },
   { href: '/contribute', label: 'Contribute', Icon: GiftIcon, badge: 'NEW' as const },

@@ -14,6 +14,7 @@ import {
 } from '@/lib/state-judges';
 import StateCourtMap from '@/components/StateCourtMap';
 import { LeniencyBar } from '@/components/LeniencyBar';
+import { ElectionBadgeSmall } from '@/components/ElectionBadge';
 
 const ALL_JUDGES = getAllStateJudges();
 const META = getJudgeProfilesMeta();
@@ -43,6 +44,12 @@ const STATE_COVERAGE = Array.from(STATE_JUDGE_MAP.entries()).map(([code, judges]
 const FL_COUNTY_CASES = 3599352;
 const TOTAL_CASES_ANALYZED = META.totalCases + FL_COUNTY_CASES;
 const STATES_COVERED = STATE_COVERAGE.length;
+
+// Top 5 most lenient on violent crime (for homepage spotlight)
+const WORST_VIOLENT = [...ALL_JUDGES]
+  .filter((j) => j.violentCases.total >= 10)
+  .sort((a, b) => a.violentCases.prisonRate - b.violentCases.prisonRate)
+  .slice(0, 5);
 
 function ComparePanel({
   judge1,
@@ -223,6 +230,13 @@ export default function Home() {
             Real sentencing data. Real accountability.
           </p>
 
+          {/* Impact banner */}
+          <p className="text-[var(--text-muted)] text-xs sm:text-sm font-mono mb-4 tracking-wide">
+            <span className="text-white font-bold">{META.totalCases.toLocaleString()}</span> cases analyzed.{' '}
+            <span className="text-white font-bold">{META.totalJudges.toLocaleString()}</span> judges scored.{' '}
+            <span className="text-[var(--red-primary)] font-bold">Your judges, exposed.</span>
+          </p>
+
           {/* Stat Counters */}
           <div className="hero-stats-grid grid grid-cols-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl overflow-hidden max-w-lg">
             {[
@@ -239,8 +253,8 @@ export default function Home() {
                 ),
               },
               {
-                value: TOTAL_CASES_ANALYZED.toLocaleString(),
-                label: 'Cases Analyzed',
+                value: META.totalCases.toLocaleString(),
+                label: 'FL Cases Analyzed',
                 color: '#f97316',
                 svg: (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -320,6 +334,70 @@ export default function Home() {
               · {pct(COURT_AVG.violentCases.prisonRate)} violent → prison
             </p>
           </div>
+        </div>
+
+        {/* Most Lenient on Violent Crime Spotlight */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-bold text-[var(--text-primary)] text-base">
+              🚨 Most Lenient on Violent Crime
+            </h2>
+            <span className="text-xs text-[var(--text-muted)]">
+              Judges with ≥10 violent cases
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+            {WORST_VIOLENT.map((judge, i) => {
+              const c = getLeniencyColor(judge.leniencyScore);
+              return (
+                <Link
+                  key={judge.slug}
+                  href={`/judges/state/${judge.slug}`}
+                  className="no-underline bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--red-primary)] transition-all group"
+                >
+                  <div className="flex items-start gap-2 mb-2">
+                    <span className="text-[var(--text-muted)] text-xs font-bold">#{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-[var(--text-primary)] text-sm truncate group-hover:text-[var(--red-primary)] transition-colors">
+                        {judge.name}
+                      </div>
+                      <div className="text-[0.65rem] text-[var(--text-muted)] truncate">
+                        {judge.county}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-black text-red-600">
+                      {pct(judge.violentCases.prisonRate)}
+                    </div>
+                    <div className="text-[0.65rem] text-[var(--text-muted)]">
+                      violent → prison
+                    </div>
+                    <div className="text-xs mt-1 font-semibold" style={{ color: c }}>
+                      Score: {judge.leniencyScore}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* County Report Cards teaser */}
+        <div className="mb-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-5 py-4 flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-widest mb-1">New Feature</p>
+            <h3 className="font-bold text-[var(--text-primary)]">Florida County Report Cards</h3>
+            <p className="text-sm text-[var(--text-secondary)] mt-0.5">
+              A–F grades for all 66 FL counties based on prison rates, departures &amp; leniency
+            </p>
+          </div>
+          <Link
+            href="/counties"
+            className="inline-flex items-center gap-1.5 bg-[var(--red-primary)] hover:bg-red-700 text-white rounded-lg px-4 py-2 text-sm font-semibold no-underline transition-colors whitespace-nowrap"
+          >
+            View County Grades →
+          </Link>
         </div>
 
         {/* US Map + State Cards */}
@@ -500,12 +578,15 @@ export default function Home() {
                   <div key={judge.slug} className="border-b border-[var(--border)] p-4">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <Link
-                          href={`/judges/state/${judge.slug}`}
-                          className="font-semibold text-sm text-[var(--text-primary)] no-underline hover:text-[var(--red-primary)] transition-colors"
-                        >
-                          {judge.name}
-                        </Link>
+                        <div className="flex items-center gap-1">
+                          <Link
+                            href={`/judges/state/${judge.slug}`}
+                            className="font-semibold text-sm text-[var(--text-primary)] no-underline hover:text-[var(--red-primary)] transition-colors"
+                          >
+                            {judge.name}
+                          </Link>
+                          <ElectionBadgeSmall slug={judge.slug} name={judge.name} />
+                        </div>
                         <div className="text-xs text-[var(--text-muted)] mt-0.5">
                           {judge.stateCode} · {judge.county}
                         </div>
@@ -566,12 +647,15 @@ export default function Home() {
                         className={`border-b border-[var(--border)] table-row ${idx % 2 !== 0 ? 'bg-white/[0.01]' : ''}`}
                       >
                         <td className="px-4 py-3">
-                          <Link
-                            href={`/judges/state/${judge.slug}`}
-                            className="text-[var(--text-primary)] no-underline font-semibold text-sm hover:text-[var(--red-primary)] transition-colors"
-                          >
-                            {judge.name}
-                          </Link>
+                          <div className="flex items-center gap-1">
+                            <Link
+                              href={`/judges/state/${judge.slug}`}
+                              className="text-[var(--text-primary)] no-underline font-semibold text-sm hover:text-[var(--red-primary)] transition-colors"
+                            >
+                              {judge.name}
+                            </Link>
+                            <ElectionBadgeSmall slug={judge.slug} name={judge.name} />
+                          </div>
                           <div className="text-[0.7rem] text-[var(--text-muted)] mt-0.5">
                             {judge.courtFacility || '—'}
                           </div>
