@@ -17,3 +17,6 @@ docs/
 *.zip
 *.bz2
 *.csv
+*.xlsx
+*.xls
+*.pdf
