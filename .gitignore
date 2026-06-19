@@ -29,3 +29,4 @@ data/raw/florida/scoresheets/
 data/summary_stats.md
 pipeline/ingest/__pycache__/
 pipeline/validate/__pycache__/
+data/raw/maryland/MD_guidelines_data_FULL_CY1999_FY2025.xlsx
