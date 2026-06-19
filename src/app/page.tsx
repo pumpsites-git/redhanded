@@ -383,6 +383,23 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Interactive Map CTA */}
+        <div className="mb-6 bg-gradient-to-r from-blue-950/40 to-gray-900 border border-blue-900/50 rounded-xl px-5 py-4 flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-xs text-blue-400 uppercase tracking-widest mb-1">Interactive</p>
+            <h3 className="font-bold text-[var(--text-primary)]">🗺️ Drill-Down Sentencing Map</h3>
+            <p className="text-sm text-[var(--text-secondary)] mt-0.5">
+              Explore US states → Florida counties → individual judges. See who&apos;s soft on crime at a glance.
+            </p>
+          </div>
+          <Link
+            href="/map"
+            className="inline-flex items-center gap-1.5 bg-blue-700 hover:bg-blue-600 text-white rounded-lg px-4 py-2 text-sm font-semibold no-underline transition-colors whitespace-nowrap"
+          >
+            Open Map →
+          </Link>
+        </div>
+
         {/* County Report Cards teaser */}
         <div className="mb-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-5 py-4 flex items-center justify-between flex-wrap gap-4">
           <div>
